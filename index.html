@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saúde Água Kangen - Transforme sua Vida</title>
+    <meta name="description" content="Descubra como a tecnologia japonesa Kangen pode revolucionar sua saúde e bem-estar com água ionizada, alcalina e antioxidante.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Definindo as fontes e cores personalizadas do Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2D3748; /* texto principal */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .text-secondary {
+            color: #718096;
+        }
+        .bg-primary { background-color: #2C5282; }
+        .bg-secondary { background-color: #4299E1; }
+        .bg-accent { background-color: #48BB78; }
+        .bg-neutral-light { background-color: #F7FAFC; }
+        .text-primary { color: #2C5282; }
+        .text-accent { color: #48BB78; }
+        .ring-accent { ring-color: #48BB78; }
+        .hover-lift {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-neutral-light">
+
+    <!-- ===== Header ===== -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-primary">
+                Saúde<span class="text-secondary">ÁguaKangen</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
+                <a href="#products" class="text-gray-600 hover:text-primary transition">Produtos</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
+                <a href="#contact" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Falar com Especialista</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-feather="menu" class="text-primary"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
+            <a href="#products" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Produtos</a>
+            <a href="#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
+            <a href="#contact" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== Hero Section ===== -->
+        <section id="home" class="relative pt-32 pb-20 md:pt-48 md:pb-32">
+            <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1598395612137-4b9a643433d8?q=80&w=2070&auto=format&fit=crop');"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-light via-neutral-light/80 to-transparent"></div>
+            <div class="container mx-auto px-6 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-bold text-primary leading-tight mb-4">
+                    Transforme Sua Vida com a <br class="hidden md:block"> Água Mais Pura do Mundo
+                </h1>
+                <p class="text-lg md:text-xl text-secondary max-w-3xl mx-auto mb-8">
+                    Descubra como a tecnologia japonesa Kangen pode revolucionar sua saúde e bem-estar.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#contact" class="w-full sm:w-auto bg-primary text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-blue-900 transition shadow-lg">
+                        Solicitar Demonstração Gratuita
+                    </a>
+                    <a href="#benefits" class="w-full sm:w-auto text-primary font-semibold py-4 px-8 rounded-full text-lg hover:bg-blue-100 transition">
+                        Conhecer os Benefícios
+                    </a>
+                </div>
+                <div class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-secondary font-medium">
+                    <span class="flex items-center gap-2"><i data-feather="award" class="w-5 h-5 text-accent"></i>Certificado Inmetro</span>
+                    <span class="flex items-center gap-2"><i data-feather="cpu" class="w-5 h-5 text-accent"></i>Tecnologia Japonesa</span>
+                    <span class="flex items-center gap-2"><i data-feather="calendar" class="w-5 h-5 text-accent"></i>49 anos de experiência</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Benefits Section ===== -->
+        <section id="benefits" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Por que escolher a Água Kangen?</h2>
+                    <p class="text-lg text-secondary mt-2">Mais que hidratação, uma nova forma de viver.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Benefit Card 1 -->
+                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift">
+                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="droplet" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Hidratação Superior</h3>
+                        <p class="text-secondary">A água Kangen é micro-clusterizada, permitindo uma absorção até 6x mais rápida e eficiente pelas células do seu corpo.</p>
+                    </div>
+                    <!-- Benefit Card 2 -->
+                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift">
+                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="shield" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Poder Antioxidante</h3>
+                        <p class="text-secondary">Combate os radicais livres, responsáveis pelo envelhecimento precoce e diversas doenças, com um alto ORP negativo.</p>
+                    </div>
+                    <!-- Benefit Card 3 -->
+                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift">
+                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="bar-chart-2" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">pH Alcalino Balanceado</h3>
+                        <p class="text-secondary">Ajuda a equilibrar o pH do seu corpo, combatendo a acidez e promovendo um ambiente interno mais saudável e resistente.</p>
+                    </div>
+                    <!-- Benefit Card 4 -->
+                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift">
+                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="award" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">Certificações Globais</h3>
+                        <p class="text-secondary">A única no mercado com selo de Ouro da WQA e certificações ISO, garantindo a máxima qualidade e segurança.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Products Section ===== -->
+        <section id="products" class="py-20 bg-neutral-light">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Nossos Ionizadores</h2>
+                    <p class="text-lg text-secondary mt-2">Tecnologia de ponta para a saúde da sua família.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product Card 1: K8 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift">
+                        <div class="p-4 bg-gray-100 flex justify-center">
+                            <img src="https://placehold.co/300x300/E2E8F0/2D3748?text=Kangen+K8" alt="Ionizador Kangen Leveluk K8" class="h-48 object-contain">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-primary">Leveluk K8</h3>
+                            <p class="text-secondary mt-2 mb-4 flex-grow">O modelo mais poderoso e inteligente. 8 placas de titânio para um poder antioxidante superior e tela touch screen.</p>
+                            <a href="#" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 2: SD501 Platinum -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift">
+                        <div class="p-4 bg-gray-100 flex justify-center">
+                            <img src="https://placehold.co/300x300/E2E8F0/2D3748?text=SD501+Platinum" alt="Ionizador Kangen SD501 Platinum" class="h-48 object-contain">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-primary">SD501 Platinum</h3>
+                            <p class="text-secondary mt-2 mb-4 flex-grow">O best-seller mundial. 7 placas de titânio, design moderno e alta performance para toda a família.</p>
+                             <a href="#" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
+                        </div>
+                    </div>
+                    <!-- Product Card 3: Anespa DX -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift">
+                        <div class="p-4 bg-gray-100 flex justify-center">
+                            <img src="https://placehold.co/300x300/E2E8F0/2D3748?text=Anespa+DX" alt="Ducha Anespa DX" class="h-48 object-contain">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-primary">Anespa DX</h3>
+                            <p class="text-secondary mt-2 mb-4 flex-grow">Transforme seu banho em uma experiência de spa. Remove 100% do cloro e mineraliza a água para uma pele e cabelo saudáveis.</p>
+                             <a href="#" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Testimonials Section ===== -->
+        <section id="testimonials" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Vidas Transformadas</h2>
+                    <p class="text-lg text-secondary mt-2">Veja o que nossos clientes dizem.</p>
+                </div>
+                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm">
+                        <img src="https://placehold.co/80x80/4299E1/FFFFFF?text=M" alt="Cliente Maria S." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white">
+                        <p class="text-secondary italic mt-6">"Desde que comecei a beber Água Kangen, minha energia e disposição mudaram completamente. Adeus enxaqueca e dores no corpo. Recomendo de olhos fechados!"</p>
+                        <h4 class="font-bold text-primary mt-4 text-center">Maria S.</h4>
+                        <p class="text-sm text-secondary text-center">Empresária, 45 anos</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm">
+                        <img src="https://placehold.co/80x80/48BB78/FFFFFF?text=J" alt="Cliente João P." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white">
+                        <p class="text-secondary italic mt-6">"Como atleta, a hidratação é fundamental. Com a Kangen, minha recuperação muscular é muito mais rápida e meu desempenho melhorou visivelmente. É outro nível!"</p>
+                        <h4 class="font-bold text-primary mt-4 text-center">João P.</h4>
+                        <p class="text-sm text-secondary text-center">Atleta, 32 anos</p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm">
+                        <img src="https://placehold.co/80x80/2C5282/FFFFFF?text=A" alt="Cliente Ana L." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white">
+                        <p class="text-secondary italic mt-6">"Minha pele e cabelo nunca estiveram tão saudáveis. A ducha Anespa fez uma diferença incrível, e a água de beber melhorou minha digestão. Toda a família usa e ama."</p>
+                        <h4 class="font-bold text-primary mt-4 text-center">Ana L.</h4>
+                        <p class="text-sm text-secondary text-center">Mãe, 38 anos</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Final CTA Section ===== -->
+        <section id="contact" class="py-20 bg-primary text-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-secondary rounded-xl p-8 md:p-12 lg:p-16 shadow-2xl flex flex-col lg:flex-row items-center gap-8">
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Veja a diferença na prática.</h2>
+                        <p class="text-lg text-blue-100 mb-6">Agende uma demonstração gratuita em sua casa ou online e descubra, sem compromisso, o poder da Água Kangen.</p>
+                        <div class="flex items-center justify-center lg:justify-start gap-2 text-lg font-semibold">
+                            <i data-feather="zap" class="text-green-300"></i>
+                            <span>Resultados imediatos e comprovados.</span>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 w-full">
+                        <form action="#" method="POST" class="bg-white p-8 rounded-lg shadow-lg w-full">
+                            <h3 class="text-2xl font-bold text-primary mb-6 text-center">Quero minha demonstração!</h3>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-1">Nome</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ring-accent" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-gray-700 font-medium mb-1">WhatsApp</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ring-accent" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="city" class="block text-gray-700 font-medium mb-1">Cidade/Estado</label>
+                                <input type="text" id="city" name="city" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 ring-accent" required>
+                            </div>
+                            <button type="submit" class="w-full bg-accent text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg">
+                                Agendar Agora
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">Saúde Água Kangen</h3>
+            <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
+            <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
+            <div class="mt-6">
+                <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+                    <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-8">&copy; <span id="year"></span> Saúde Água Kangen. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 bg-accent text-white w-12 h-12 rounded-full hidden justify-center items-center shadow-lg hover:bg-green-600 transition">
+        <i data-feather="arrow-up"></i>
+    </button>
+
+    <script>
+        // Feather Icons
+        feather.replace();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Dynamic Year in Footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll to Top Button
+        const scrollToTopButton = document.getElementById('scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopButton.classList.remove('hidden');
+                scrollToTopButton.classList.add('flex');
+            } else {
+                scrollToTopButton.classList.add('hidden');
+                scrollToTopButton.classList.remove('flex');
+            }
+        });
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Header shadow on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+
+    </script>
+</body>
+</html>
