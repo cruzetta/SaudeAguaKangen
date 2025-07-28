@@ -58,6 +58,19 @@
             font-size: 0.875rem;
             margin-top: 0.25rem;
         }
+        /* Estilo para o vídeo de fundo */
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="bg-neutral-light overflow-x-hidden">
@@ -89,25 +102,32 @@
 
     <main>
         <!-- ===== Hero Section ===== -->
-        <section id="home" class="relative pt-32 pb-20 md:pt-48 md:pb-32">
-            <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1598395612137-4b9a643433d8?q=80&w=2070&auto=format&fit=crop');"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-neutral-light via-neutral-light/80 to-transparent"></div>
+        <section id="home" class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+            <!-- Vídeo de Fundo -->
+            <video autoplay muted loop playsinline id="hero-video">
+                <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/saude%20kangen%20brasil%2FV%C3%ADdeo%20sem%20t%C3%ADtulo.mp4?alt=media&token=78e9f776-133d-4e18-be82-556a4700bd5d" type="video/mp4">
+                O seu navegador não suporta a tag de vídeo.
+            </video>
+            <!-- Overlay Escuro -->
+            <div class="absolute inset-0 bg-black/50 z-0"></div>
+            
+            <!-- Conteúdo da Secção -->
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h1 class="text-4xl md:text-6xl font-bold text-primary leading-tight mb-4" data-aos="fade-up">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4" data-aos="fade-up" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
                     Transforme Sua Vida com a <br class="hidden md:block"> Água Mais Pura do Mundo
                 </h1>
-                <p class="text-lg md:text-xl text-secondary max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
                     Descubra como a tecnologia japonesa Kangen pode revolucionar sua saúde e bem-estar.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="fade-up" data-aos-delay="400">
                     <a href="#contact" class="w-full sm:w-auto bg-primary text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-blue-900 transition shadow-lg">
                         Solicitar Demonstração Gratuita
                     </a>
-                    <a href="#benefits" class="w-full sm:w-auto text-primary font-semibold py-4 px-8 rounded-full text-lg hover:bg-blue-100 transition">
+                    <a href="#benefits" class="w-full sm:w-auto text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/20 transition border-2 border-white">
                         Conhecer os Benefícios
                     </a>
                 </div>
-                <div class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 text-secondary font-medium" data-aos="fade-up" data-aos-delay="600">
+                <div class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 font-medium" data-aos="fade-up" data-aos-delay="600" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
                     <span class="flex items-center gap-2"><i data-feather="award" class="w-5 h-5 text-accent"></i>Certificado Inmetro</span>
                     <span class="flex items-center gap-2"><i data-feather="cpu" class="w-5 h-5 text-accent"></i>Tecnologia Japonesa</span>
                     <span class="flex items-center gap-2"><i data-feather="calendar" class="w-5 h-5 text-accent"></i>49 anos de experiência</span>
