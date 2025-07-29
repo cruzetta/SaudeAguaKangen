@@ -9,21 +9,12 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            color: white;
-            z-index: 100;
-            opacity: 0;
+            position: fixed; bottom: 20px; right: 20px; padding: 1rem 1.5rem;
+            border-radius: 0.5rem; color: white; z-index: 100; opacity: 0;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
             transform: translateY(20px);
         }
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .toast.show { opacity: 1; transform: translateY(0); }
         .toast.success { background-color: #48BB78; }
         .toast.error { background-color: #E53E3E; }
     </style>
@@ -53,32 +44,19 @@
             <h1 class="text-3xl font-bold text-gray-800">Gerir Conteúdo do Site</h1>
             <button id="logout-button" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition">Sair</button>
         </div>
-
         <form id="content-form" class="space-y-8">
-            <!-- Seção de Benefícios -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Benefícios</h2>
-                <div id="benefits-container" class="space-y-4">
-                    <!-- Campos de benefícios serão gerados aqui pelo JS -->
-                </div>
+                <div id="benefits-container" class="space-y-4"></div>
             </div>
-
-            <!-- Seção de Produtos -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Produtos</h2>
-                <div id="products-container" class="space-y-4">
-                    <!-- Campos de produtos serão gerados aqui pelo JS -->
-                </div>
+                <div id="products-container" class="space-y-4"></div>
             </div>
-
-            <!-- Seção de Depoimentos -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Depoimentos</h2>
-                <div id="testimonials-container" class="space-y-4">
-                    <!-- Campos de depoimentos serão gerados aqui pelo JS -->
-                </div>
+                <div id="testimonials-container" class="space-y-4"></div>
             </div>
-
             <div class="flex justify-end">
                 <button type="submit" id="save-button" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition text-lg">
                     Salvar Alterações
@@ -89,7 +67,29 @@
 
     <div id="toast-notification" class="toast"></div>
 
+    <!-- Scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
     <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
+            authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
+            projectId: "saudekangenbrasil-e96ff",
+            storageBucket: "saudekangenbrasil-e96ff.firebasestorage.app",
+            messagingSenderId: "854664871239",
+            appId: "1:854664871239:web:a41935181e1b7092c56062",
+            measurementId: "G-KXEP25LRF8"
+        };
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const contentRef = db.collection('siteContent').doc('home');
+
         document.addEventListener('DOMContentLoaded', () => {
             const loginSection = document.getElementById('login-section');
             const adminPanel = document.getElementById('admin-panel');
@@ -102,124 +102,88 @@
             const saveButton = document.getElementById('save-button');
             const toast = document.getElementById('toast-notification');
 
-            // Função para mostrar notificações
             const showToast = (message, type = 'success') => {
                 toast.textContent = message;
                 toast.className = `toast ${type} show`;
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
+                setTimeout(() => { toast.classList.remove('show'); }, 3000);
             };
 
-            // Função de Login
-            loginForm.addEventListener('submit', async (e) => {
+            // Verifica o estado da autenticação
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    loginSection.classList.add('hidden');
+                    adminPanel.classList.remove('hidden');
+                    loadContent();
+                } else {
+                    adminPanel.classList.add('hidden');
+                    loginSection.classList.remove('hidden');
+                }
+            });
+
+            // Login
+            loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const email = emailInput.value;
                 const password = passwordInput.value;
                 loginError.classList.add('hidden');
 
-                try {
-                    const response = await fetch('/api/login', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email, password })
-                    });
-
-                    if (response.ok) {
-                        const { token } = await response.json();
-                        sessionStorage.setItem('authToken', token); // Salva o token na sessão
-                        loginSection.classList.add('hidden');
-                        adminPanel.classList.remove('hidden');
-                        loadContent();
-                    } else {
-                        const { message } = await response.json();
-                        loginError.textContent = message;
+                auth.signInWithEmailAndPassword(email, password)
+                    .catch(error => {
+                        loginError.textContent = "Email ou senha inválidos.";
                         loginError.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    loginError.textContent = 'Erro de conexão. Tente novamente.';
-                    loginError.classList.remove('hidden');
-                }
-            });
-            
-            // Função de Logout
-            logoutButton.addEventListener('click', () => {
-                sessionStorage.removeItem('authToken');
-                adminPanel.classList.add('hidden');
-                loginSection.classList.remove('hidden');
-                passwordInput.value = '';
-                emailInput.value = '';
+                    });
             });
 
-            // Função para carregar o conteúdo do site nos formulários
+            // Logout
+            logoutButton.addEventListener('click', () => {
+                auth.signOut();
+            });
+
+            // Carregar conteúdo
             const loadContent = async () => {
                 try {
-                    const response = await fetch('/api/content');
-                    if (!response.ok) throw new Error('Falha ao carregar conteúdo.');
-                    
-                    const content = await response.json();
-                    
-                    populateForm('benefits', content.benefits);
-                    populateForm('products', content.products);
-                    populateForm('testimonials', content.testimonials);
-
+                    const doc = await contentRef.get();
+                    if (doc.exists) {
+                        const content = doc.data();
+                        populateForm('benefits', content.benefits);
+                        populateForm('products', content.products);
+                        populateForm('testimonials', content.testimonials);
+                    } else {
+                        // Se o documento não existe, inicializa com valores padrão
+                        await initializeContent();
+                        await loadContent(); // Tenta carregar novamente
+                    }
                 } catch (error) {
-                    showToast(error.message, 'error');
+                    console.error("Erro ao carregar conteúdo:", error);
+                    showToast("Erro ao carregar conteúdo.", "error");
                 }
             };
 
-            // Função auxiliar para criar e preencher os campos do formulário
             const populateForm = (section, data) => {
                 const container = document.getElementById(`${section}-container`);
-                container.innerHTML = ''; // Limpa o container
-                if (!data) return; // Adiciona verificação para dados indefinidos
+                container.innerHTML = '';
+                if (!data) return;
                 data.forEach((item, index) => {
                     const itemDiv = document.createElement('div');
                     itemDiv.className = 'border p-4 rounded-md space-y-2';
-                    
                     if (section === 'benefits') {
-                        itemDiv.innerHTML = `
-                            <label class="block text-sm font-medium text-gray-600">Benefício ${index + 1}</label>
-                            <input type="text" data-section="${section}" data-index="${index}" data-field="title" value="${item.title || ''}" class="w-full p-2 border rounded-md" placeholder="Título">
-                            <textarea data-section="${section}" data-index="${index}" data-field="text" class="w-full p-2 border rounded-md" rows="3" placeholder="Descrição">${item.text || ''}</textarea>
-                        `;
+                        itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Benefício ${index + 1}</label><input type="text" data-section="${section}" data-index="${index}" data-field="title" value="${item.title || ''}" class="w-full p-2 border rounded-md" placeholder="Título"><textarea data-section="${section}" data-index="${index}" data-field="text" class="w-full p-2 border rounded-md" rows="3" placeholder="Descrição">${item.text || ''}</textarea>`;
                     } else if (section === 'products') {
-                        itemDiv.innerHTML = `
-                            <label class="block text-sm font-medium text-gray-600">Produto ${index + 1}</label>
-                            <input type="text" data-section="${section}" data-index="${index}" data-field="name" value="${item.name || ''}" class="w-full p-2 border rounded-md" placeholder="Nome do Produto">
-                            <textarea data-section="${section}" data-index="${index}" data-field="description" class="w-full p-2 border rounded-md" rows="3" placeholder="Descrição">${item.description || ''}</textarea>
-                        `;
+                        itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Produto ${index + 1}</label><input type="text" data-section="${section}" data-index="${index}" data-field="name" value="${item.name || ''}" class="w-full p-2 border rounded-md" placeholder="Nome do Produto"><textarea data-section="${section}" data-index="${index}" data-field="description" class="w-full p-2 border rounded-md" rows="3" placeholder="Descrição">${item.description || ''}</textarea>`;
                     } else if (section === 'testimonials') {
-                        itemDiv.innerHTML = `
-                            <label class="block text-sm font-medium text-gray-600">Depoimento ${index + 1}</label>
-                            <textarea data-section="${section}" data-index="${index}" data-field="quote" class="w-full p-2 border rounded-md" rows="3" placeholder="Depoimento">${item.quote || ''}</textarea>
-                            <input type="text" data-section="${section}" data-index="${index}" data-field="author" value="${item.author || ''}" class="w-full p-2 border rounded-md" placeholder="Autor">
-                        `;
+                        itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Depoimento ${index + 1}</label><textarea data-section="${section}" data-index="${index}" data-field="quote" class="w-full p-2 border rounded-md" rows="3" placeholder="Depoimento">${item.quote || ''}</textarea><input type="text" data-section="${section}" data-index="${index}" data-field="author" value="${item.author || ''}" class="w-full p-2 border rounded-md" placeholder="Autor">`;
                     }
                     container.appendChild(itemDiv);
                 });
             };
 
-            // Função para salvar o conteúdo
+            // Salvar conteúdo
             contentForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 saveButton.disabled = true;
                 saveButton.textContent = 'Salvando...';
 
-                const token = sessionStorage.getItem('authToken');
-                if (!token) {
-                    showToast('Sessão expirada. Faça login novamente.', 'error');
-                    logoutButton.click();
-                    return;
-                }
-
-                // Monta o objeto de conteúdo a partir dos campos do formulário
-                const newContent = {
-                    benefits: [],
-                    products: [],
-                    testimonials: [],
-                };
-
+                const newContent = { benefits: [], products: [], testimonials: [] };
                 document.querySelectorAll('#content-form [data-section]').forEach(input => {
                     const { section, index, field } = input.dataset;
                     if (!newContent[section][parseInt(index)]) {
@@ -229,36 +193,45 @@
                 });
 
                 try {
-                    const response = await fetch('/api/content', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        body: JSON.stringify(newContent)
-                    });
-
-                    const result = await response.json();
-                    if (response.ok) {
-                        showToast(result.message, 'success');
-                    } else {
-                        throw new Error(result.message);
-                    }
+                    await contentRef.set(newContent, { merge: true });
+                    showToast("Conteúdo atualizado com sucesso!", 'success');
                 } catch (error) {
-                    showToast(error.message, 'error');
+                    showToast("Erro ao salvar. Verifique as regras de segurança.", 'error');
                 } finally {
                     saveButton.disabled = false;
                     saveButton.textContent = 'Salvar Alterações';
                 }
             });
 
-            // Verifica se já existe um token de sessão ao carregar a página
-            const existingToken = sessionStorage.getItem('authToken');
-            if (existingToken) {
-                loginSection.classList.add('hidden');
-                adminPanel.classList.remove('hidden');
-                loadContent();
-            }
+            // Função para criar o conteúdo inicial se não existir
+            const initializeContent = async () => {
+                console.log("Inicializando conteúdo padrão no Firestore...");
+                const initialContent = {
+                    benefits: [
+                        { title: "Hidratação Superior", text: "A água Kangen é micro-clusterizada, permitindo uma absorção até 6x mais rápida e eficiente pelas células do seu corpo." },
+                        { title: "Poder Antioxidante", text: "Combate os radicais livres, responsáveis pelo envelhecimento precoce e diversas doenças, com um alto ORP negativo." },
+                        { title: "pH Alcalino Balanceado", text: "Ajuda a equilibrar o pH do seu corpo, combatendo a acidez e promovendo um ambiente interno mais saudável e resistente." },
+                        { title: "Certificações Globais", text: "A única no mercado com selo de Ouro da WQA e certificações ISO, garantindo a máxima qualidade e segurança." }
+                    ],
+                    products: [
+                        { name: "Leveluk K8", description: "O modelo mais poderoso e inteligente. 8 placas de titânio para um poder antioxidante superior e tela touch screen." },
+                        { name: "SD501 Platinum", description: "O best-seller mundial. 7 placas de titânio, design moderno e alta performance para toda a família." },
+                        { name: "Anespa DX", description: "Transforme seu banho em uma experiência de spa. Remove 100% do cloro e mineraliza a água para uma pele e cabelo saudáveis." }
+                    ],
+                    testimonials: [
+                        { quote: "Desde que comecei a beber Água Kangen, minha energia e disposição mudaram completamente. Adeus enxaqueca e dores no corpo. Recomendo de olhos fechados!", author: "Maria S." },
+                        { quote: "Como atleta, a hidratação é fundamental. Com a Kangen, minha recuperação muscular é muito mais rápida e meu desempenho melhorou visivelmente. É outro nível!", author: "João P." },
+                        { quote: "Minha pele e cabelo nunca estiveram tão saudáveis. A ducha Anespa fez uma diferença incrível, e a água de beber melhorou minha digestão. Toda a família usa e ama.", author: "Ana L." }
+                    ]
+                };
+                try {
+                    await contentRef.set(initialContent);
+                    showToast("Conteúdo inicial criado. A página será recarregada.", "success");
+                } catch (error) {
+                    console.error("Erro ao inicializar conteúdo: ", error);
+                    showToast("Erro ao criar conteúdo inicial. Verifique as regras de segurança.", "error");
+                }
+            };
         });
     </script>
 </body>

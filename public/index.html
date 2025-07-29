@@ -21,22 +21,14 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        /* Definindo as fontes e cores personalizadas do Tailwind */
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #2D3748; /* texto principal */
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-        }
+        body { font-family: 'Inter', sans-serif; color: #2D3748; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
         .text-secondary { color: #718096; }
         .bg-primary { background-color: #2C5282; }
         .bg-secondary { background-color: #4299E1; }
         .bg-accent { background-color: #48BB78; }
         .bg-neutral-light { background-color: #F7FAFC; }
         .text-primary { color: #2C5282; }
-        .text-accent { color: #48BB78; }
-        .ring-accent { ring-color: #48BB78; }
         .hover-lift {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
@@ -44,50 +36,13 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-        /* Estilos para validação do formulário */
-        .form-input.invalid {
-            border-color: #E53E3E; /* red-500 */
-            ring-color: #E53E3E;
-        }
-        .form-input.valid {
-            border-color: #48BB78; /* green-500 */
-            ring-color: #48BB78;
-        }
-        .error-message {
-            color: #E53E3E;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-        /* Estilo para o vídeo de fundo */
-        #hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
-        }
-        /* Estilo para a mensagem de feedback do formulário */
-        #form-feedback {
-            display: none;
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            text-align: center;
-        }
-        #form-feedback.success {
-            background-color: #C6F6D5; /* green-200 */
-            color: #2F855A; /* green-800 */
-        }
-        #form-feedback.error {
-            background-color: #FED7D7; /* red-200 */
-            color: #C53030; /* red-800 */
-        }
+        .form-input.invalid { border-color: #E53E3E; ring-color: #E53E3E; }
+        .form-input.valid { border-color: #48BB78; ring-color: #48BB78; }
+        .error-message { color: #E53E3E; font-size: 0.875rem; margin-top: 0.25rem; }
+        #hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translateX(-50%) translateY(-50%); object-fit: cover; }
+        #form-feedback { display: none; padding: 1rem; margin-top: 1rem; border-radius: 0.5rem; font-weight: 500; text-align: center; }
+        #form-feedback.success { background-color: #C6F6D5; color: #2F855A; }
+        #form-feedback.error { background-color: #FED7D7; color: #C53030; }
     </style>
 </head>
 <body class="bg-neutral-light overflow-x-hidden">
@@ -159,39 +114,8 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-primary">Por que escolher a Água Kangen?</h2>
                     <p class="text-lg text-secondary mt-2">Mais que hidratação, uma nova forma de viver.</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Benefit Card 1 -->
-                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift" data-aos="fade-up" data-aos-delay="100">
-                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                            <i data-feather="droplet" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Hidratação Superior</h3>
-                        <p class="text-secondary">A água Kangen é micro-clusterizada, permitindo uma absorção até 6x mais rápida e eficiente pelas células do seu corpo.</p>
-                    </div>
-                    <!-- Benefit Card 2 -->
-                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift" data-aos="fade-up" data-aos-delay="200">
-                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                            <i data-feather="shield" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Poder Antioxidante</h3>
-                        <p class="text-secondary">Combate os radicais livres, responsáveis pelo envelhecimento precoce e diversas doenças, com um alto ORP negativo.</p>
-                    </div>
-                    <!-- Benefit Card 3 -->
-                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift" data-aos="fade-up" data-aos-delay="300">
-                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                            <i data-feather="bar-chart-2" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">pH Alcalino Balanceado</h3>
-                        <p class="text-secondary">Ajuda a equilibrar o pH do seu corpo, combatendo a acidez e promovendo um ambiente interno mais saudável e resistente.</p>
-                    </div>
-                    <!-- Benefit Card 4 -->
-                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift" data-aos="fade-up" data-aos-delay="400">
-                        <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                            <i data-feather="award" class="w-8 h-8"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-2">Certificações Globais</h3>
-                        <p class="text-secondary">A única no mercado com selo de Ouro da WQA e certificações ISO, garantindo a máxima qualidade e segurança.</p>
-                    </div>
+                <div id="benefits-list" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Conteúdo dinâmico -->
                 </div>
             </div>
         </section>
@@ -203,40 +127,8 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-primary">Nossos Ionizadores</h2>
                     <p class="text-lg text-secondary mt-2">Tecnologia de ponta para a saúde da sua família.</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Product Card 1: K8 -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up">
-                        <div class="p-4 bg-gray-100 flex justify-center">
-                            <img src="https://placehold.co/300x300/E2E8F0/2D3748?text=Kangen+K8" alt="Ionizador Kangen Leveluk K8" class="h-48 object-contain">
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-bold text-primary">Leveluk K8</h3>
-                            <p class="text-secondary mt-2 mb-4 flex-grow">O modelo mais poderoso e inteligente. 8 placas de titânio para um poder antioxidante superior e tela touch screen.</p>
-                            <a href="#contact" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
-                        </div>
-                    </div>
-                    <!-- Product Card 2: SD501 Platinum -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="150">
-                        <div class="p-4 bg-gray-100 flex justify-center">
-                            <img src="https://placehold.co/300x300/E2E8F0/2D3748?text=SD501+Platinum" alt="Ionizador Kangen SD501 Platinum" class="h-48 object-contain">
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-bold text-primary">SD501 Platinum</h3>
-                            <p class="text-secondary mt-2 mb-4 flex-grow">O best-seller mundial. 7 placas de titânio, design moderno e alta performance para toda a família.</p>
-                             <a href="#contact" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
-                        </div>
-                    </div>
-                    <!-- Product Card 3: Anespa DX -->
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="300">
-                        <div class="p-4 bg-gray-100 flex justify-center">
-                            <img src="https://placehold.co/300x300/E2E8F0/2D3748?text=Anespa+DX" alt="Ducha Anespa DX" class="h-48 object-contain">
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-2xl font-bold text-primary">Anespa DX</h3>
-                            <p class="text-secondary mt-2 mb-4 flex-grow">Transforme seu banho em uma experiência de spa. Remove 100% do cloro e mineraliza a água para uma pele e cabelo saudáveis.</p>
-                             <a href="#contact" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
-                        </div>
-                    </div>
+                <div id="products-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Conteúdo dinâmico -->
                 </div>
             </div>
         </section>
@@ -272,28 +164,8 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-primary">Vidas Transformadas</h2>
                     <p class="text-lg text-secondary mt-2">Veja o que nossos clientes dizem.</p>
                 </div>
-                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm" data-aos="fade-right">
-                        <img src="https://placehold.co/80x80/4299E1/FFFFFF?text=M" alt="Cliente Maria S." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white">
-                        <p class="text-secondary italic mt-6">"Desde que comecei a beber Água Kangen, minha energia e disposição mudaram completamente. Adeus enxaqueca e dores no corpo. Recomendo de olhos fechados!"</p>
-                        <h4 class="font-bold text-primary mt-4 text-center">Maria S.</h4>
-                        <p class="text-sm text-secondary text-center">Empresária, 45 anos</p>
-                    </div>
-                    <!-- Testimonial 2 -->
-                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm" data-aos="fade-up">
-                        <img src="https://placehold.co/80x80/48BB78/FFFFFF?text=J" alt="Cliente João P." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white">
-                        <p class="text-secondary italic mt-6">"Como atleta, a hidratação é fundamental. Com a Kangen, minha recuperação muscular é muito mais rápida e meu desempenho melhorou visivelmente. É outro nível!"</p>
-                        <h4 class="font-bold text-primary mt-4 text-center">João P.</h4>
-                        <p class="text-sm text-secondary text-center">Atleta, 32 anos</p>
-                    </div>
-                    <!-- Testimonial 3 -->
-                    <div class="bg-neutral-light p-8 rounded-xl shadow-sm" data-aos="fade-left">
-                        <img src="https://placehold.co/80x80/2C5282/FFFFFF?text=A" alt="Cliente Ana L." class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white">
-                        <p class="text-secondary italic mt-6">"Minha pele e cabelo nunca estiveram tão saudáveis. A ducha Anespa fez uma diferença incrível, e a água de beber melhorou minha digestão. Toda a família usa e ama."</p>
-                        <h4 class="font-bold text-primary mt-4 text-center">Ana L.</h4>
-                        <p class="text-sm text-secondary text-center">Mãe, 38 anos</p>
-                    </div>
+                <div id="testimonials-list" class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Conteúdo dinâmico -->
                 </div>
             </div>
         </section>
@@ -359,211 +231,245 @@
         <i data-feather="arrow-up"></i>
     </button>
     
-    <!-- AOS JS -->
+    <!-- Scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // Feather Icons
-        feather.replace();
-
-        // AOS Initialization
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50,
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Dynamic Year in Footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Scroll to Top Button
-        const scrollToTopButton = document.getElementById('scroll-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopButton.classList.remove('hidden');
-                scrollToTopButton.classList.add('flex');
-            } else {
-                scrollToTopButton.classList.add('hidden');
-                scrollToTopButton.classList.remove('flex');
-            }
-        });
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        
-        // Header shadow on scroll
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('shadow-lg');
-            } else {
-                header.classList.remove('shadow-lg');
-            }
-        });
-
-        // Animated Stats Counter
-        const statsSection = document.getElementById('stats');
-        const statNumbers = document.querySelectorAll('.stat-number');
-        let hasAnimated = false;
-
-        const startCounter = () => {
-            if (hasAnimated) return;
-            hasAnimated = true;
-            statNumbers.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                let count = 0;
-                const speed = 200; // Lower is faster
-
-                const updateCount = () => {
-                    const increment = target / speed;
-                    if (count < target) {
-                        count += increment;
-                        counter.innerText = Math.ceil(count).toLocaleString('pt-BR');
-                        setTimeout(updateCount, 10);
-                    } else {
-                        counter.innerText = target.toLocaleString('pt-BR');
-                    }
-                };
-                updateCount();
-            });
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
+            authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
+            projectId: "saudekangenbrasil-e96ff",
+            storageBucket: "saudekangenbrasil-e96ff.firebasestorage.app",
+            messagingSenderId: "854664871239",
+            appId: "1:854664871239:web:a41935181e1b7092c56062",
+            measurementId: "G-KXEP25LRF8"
         };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    startCounter();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        observer.observe(statsSection);
-
-        // Interactive Form Validation & Submission
-        const form = document.getElementById('contact-form');
-        const nameInput = document.getElementById('name');
-        const phoneInput = document.getElementById('phone');
-        const cityInput = document.getElementById('city');
-        const submitButton = document.getElementById('submit-button');
-        const formFeedback = document.getElementById('form-feedback');
         
-        const inputs = [nameInput, phoneInput, cityInput];
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-        const validateInput = (input) => {
-            const errorMessage = input.nextElementSibling;
-            let isValid = false;
-
-            if (input.type === 'tel') {
-                const phoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/;
-                isValid = phoneRegex.test(input.value);
-            } else {
-                isValid = input.checkValidity();
-            }
+        // --- LÓGICA PARA CONTEÚDO DINÂMICO ---
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchContent();
             
-            if (isValid) {
-                input.classList.add('valid');
-                input.classList.remove('invalid');
-                errorMessage.classList.add('hidden');
-            } else {
-                input.classList.add('invalid');
-                input.classList.remove('valid');
-                errorMessage.classList.remove('hidden');
-            }
-            return isValid;
-        };
+            // Feather Icons
+            feather.replace();
 
-        const checkFormValidity = () => {
-            const isFormValid = inputs.every(input => validateInput(input));
-            submitButton.disabled = !isFormValid;
-        };
-        
-        inputs.forEach(input => {
-            input.addEventListener('input', () => {
-                validateInput(input);
-                const isFormValid = inputs.every(i => i.classList.contains('valid'));
-                submitButton.disabled = !isFormValid;
+            // AOS Initialization
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Dynamic Year in Footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Scroll to Top Button
+            const scrollToTopButton = document.getElementById('scroll-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopButton.classList.remove('hidden');
+                    scrollToTopButton.classList.add('flex');
+                } else {
+                    scrollToTopButton.classList.add('hidden');
+                    scrollToTopButton.classList.remove('flex');
+                }
+            });
+            scrollToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Header shadow on scroll
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-lg');
+                } else {
+                    header.classList.remove('shadow-lg');
+                }
+            });
+
+            // Animated Stats Counter
+            const statsSection = document.getElementById('stats');
+            const statNumbers = document.querySelectorAll('.stat-number');
+            let hasAnimated = false;
+
+            const startCounter = () => {
+                if (hasAnimated) return;
+                hasAnimated = true;
+                statNumbers.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = 200; 
+
+                    const updateCount = () => {
+                        const increment = target / speed;
+                        if (count < target) {
+                            count += increment;
+                            counter.innerText = Math.ceil(count).toLocaleString('pt-BR');
+                            setTimeout(updateCount, 10);
+                        } else {
+                            counter.innerText = target.toLocaleString('pt-BR');
+                        }
+                    };
+                    updateCount();
+                });
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(statsSection);
+
+            // Formulário de Contato
+            const form = document.getElementById('contact-form');
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+            const cityInput = document.getElementById('city');
+            const submitButton = document.getElementById('submit-button');
+            const formFeedback = document.getElementById('form-feedback');
+            const inputs = [nameInput, phoneInput, cityInput];
+
+            const validateInput = (input) => {
+                const errorMessage = input.nextElementSibling;
+                let isValid = (input.type === 'tel') ? /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/.test(input.value) : input.checkValidity();
+                input.classList.toggle('valid', isValid);
+                input.classList.toggle('invalid', !isValid);
+                errorMessage.classList.toggle('hidden', isValid);
+                return isValid;
+            };
+            
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    validateInput(input);
+                    const isFormValid = inputs.every(i => i.classList.contains('valid'));
+                    submitButton.disabled = !isFormValid;
+                });
+            });
+
+            phoneInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                e.target.value = value.slice(0, 15);
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (inputs.every(validateInput)) {
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Enviando...';
+                    formFeedback.style.display = 'none';
+                    try {
+                        await db.collection('leads').add({
+                            name: nameInput.value,
+                            phone: phoneInput.value,
+                            city: cityInput.value,
+                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                        formFeedback.textContent = 'Dados recebidos! Entraremos em contato em breve.';
+                        formFeedback.className = 'success';
+                        form.reset();
+                        inputs.forEach(input => input.classList.remove('valid', 'invalid'));
+                    } catch (error) {
+                        console.error("Erro ao enviar formulário: ", error);
+                        formFeedback.textContent = 'Erro ao enviar. Tente novamente.';
+                        formFeedback.className = 'error';
+                    } finally {
+                        formFeedback.style.display = 'block';
+                        submitButton.textContent = 'Agendar Agora';
+                        submitButton.disabled = true;
+                    }
+                }
             });
         });
 
-        // Phone Mask
-        phoneInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-            value = value.replace(/(\d{5})(\d)/, '$1-$2');
-            value = value.replace(/(\d{4})(\d)/, '$1-$2');
-            e.target.value = value.slice(0, 15);
-        });
-
-        // --- NOVA LÓGICA DE ENVIO DO FORMULÁRIO ---
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (inputs.every(input => validateInput(input))) {
-                // Desabilitar botão e mostrar estado de carregamento
-                submitButton.disabled = true;
-                submitButton.textContent = 'Enviando...';
-                formFeedback.style.display = 'none'; // Esconder feedback anterior
-
-                const formData = {
-                    name: nameInput.value,
-                    phone: phoneInput.value,
-                    city: cityInput.value,
-                };
-
-                try {
-                    // Usar fetch para enviar os dados para a nossa Cloud Function
-                    const response = await fetch('/api/submitForm', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(formData),
-                    });
-
-                    const result = await response.json();
-
-                    if (response.ok) {
-                        // Mostrar mensagem de sucesso
-                        formFeedback.textContent = result.message;
-                        formFeedback.className = 'success';
-                        formFeedback.style.display = 'block';
-                        form.reset();
-                        inputs.forEach(input => {
-                            input.classList.remove('valid', 'invalid');
-                        });
-                    } else {
-                        // Mostrar mensagem de erro vinda do backend
-                        throw new Error(result.message || 'Erro ao enviar o formulário.');
-                    }
-                } catch (error) {
-                    // Mostrar mensagem de erro de rede ou outros
-                    console.error('Fetch Error:', error);
-                    formFeedback.textContent = error.message;
-                    formFeedback.className = 'error';
-                    formFeedback.style.display = 'block';
-                } finally {
-                    // Reabilitar o botão após um tempo para o usuário ler a mensagem
-                    setTimeout(() => {
-                        submitButton.textContent = 'Agendar Agora';
-                        checkFormValidity();
-                    }, 3000);
+        async function fetchContent() {
+            try {
+                const doc = await db.collection('siteContent').doc('home').get();
+                if (doc.exists) {
+                    const content = doc.data();
+                    renderBenefits(content.benefits);
+                    renderProducts(content.products);
+                    renderTestimonials(content.testimonials);
+                } else {
+                    console.log("Documento de conteúdo não encontrado. O conteúdo estático será exibido.");
                 }
+            } catch (error) {
+                console.error("Erro ao carregar conteúdo dinâmico:", error);
             }
-        });
+        }
 
+        function renderBenefits(benefits) {
+            const container = document.getElementById('benefits-list');
+            if (!container || !benefits) return;
+            container.innerHTML = benefits.map((item, index) => `
+                <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift" data-aos="fade-up" data-aos-delay="${index * 100}">
+                    <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                        <i data-feather="${['droplet', 'shield', 'bar-chart-2', 'award'][index % 4]}" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">${item.title}</h3>
+                    <p class="text-secondary">${item.text}</p>
+                </div>
+            `).join('');
+            feather.replace();
+        }
+
+        function renderProducts(products) {
+            const container = document.getElementById('products-list');
+            if (!container || !products) return;
+            container.innerHTML = products.map((item, index) => `
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="${index * 150}">
+                    <div class="p-4 bg-gray-100 flex justify-center">
+                        <img src="https://placehold.co/300x300/E2E8F0/2D3748?text=${encodeURIComponent(item.name)}" alt="Ionizador ${item.name}" class="h-48 object-contain">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold text-primary">${item.name}</h3>
+                        <p class="text-secondary mt-2 mb-4 flex-grow">${item.description}</p>
+                        <a href="#contact" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTestimonials(testimonials) {
+            const container = document.getElementById('testimonials-list');
+            if (!container || !testimonials) return;
+            const colors = ['4299E1', '48BB78', '2C5282'];
+            container.innerHTML = testimonials.map((item, index) => `
+                 <div class="bg-neutral-light p-8 rounded-xl shadow-sm" data-aos="${['fade-right', 'fade-up', 'fade-left'][index % 3]}">
+                    <img src="https://placehold.co/80x80/${colors[index % 3]}/FFFFFF?text=${item.author.charAt(0)}" alt="Cliente ${item.author}" class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white">
+                    <p class="text-secondary italic mt-6">"${item.quote}"</p>
+                    <h4 class="font-bold text-primary mt-4 text-center">${item.author}</h4>
+                </div>
+            `).join('');
+        }
     </script>
 </body>
 </html>
