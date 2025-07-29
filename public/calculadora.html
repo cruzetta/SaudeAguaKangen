@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Hidratação - Saude Kangen Brasil</title>
+    <meta name="description" content="Calcule sua necessidade diária de ingestão de água com base no seu peso, idade, sexo e nível de atividade.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #2D3748; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .text-secondary { color: #718096; }
+        .bg-primary { background-color: #2C5282; }
+        .bg-secondary { background-color: #4299E1; }
+        .bg-accent { background-color: #48BB78; }
+        .bg-neutral-light { background-color: #F7FAFC; }
+        .text-primary { color: #2C5282; }
+        
+        /* Custom radio button styles */
+        .custom-radio input[type="radio"] { display: none; }
+        .custom-radio label {
+            cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #d1d5db;
+            border-radius: 9999px;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .custom-radio input[type="radio"]:checked + label {
+            background-color: #bfdbfe; /* blue-200 */
+            border-color: #3b82f6; /* blue-500 */
+            color: #1e40af; /* blue-800 */
+            font-weight: 600;
+        }
+        .custom-radio input[type="radio"]:checked + label .icon-radio {
+            color: #3b82f6;
+        }
+
+        /* Result animation */
+        #result-visual-fill {
+            transition: height 1s ease-in-out;
+        }
+        
+        /* Remove arrows from number input */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-neutral-light">
+
+    <!-- ===== Header ===== -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">
+                Saude Kangen Brasil
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
+                <a href="calculadora.html" class="text-primary font-semibold transition">Calculadora</a>
+                <a href="index.html#products" class="text-gray-600 hover:text-primary transition">Produtos</a>
+                <a href="index.html#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
+                <a href="index.html#contact" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Falar com Especialista</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-feather="menu" class="text-primary"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="index.html#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
+            <a href="calculadora.html" class="block py-2 px-6 text-primary bg-gray-100 font-semibold">Calculadora</a>
+            <a href="index.html#products" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Produtos</a>
+            <a href="index.html#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
+            <a href="index.html#contact" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
+        </div>
+    </header>
+
+    <main class="py-20">
+        <!-- ===== Calculator Section ===== -->
+        <section id="calculator" class="min-h-screen flex items-center justify-center p-4" style="background-color: #F0F7FF; background-image: radial-gradient(at 0% 0%, hsla(204, 100%, 90%, 0.3) 0px, transparent 50%), radial-gradient(at 100% 0%, hsla(210, 100%, 85%, 0.3) 0px, transparent 50%), radial-gradient(at 0% 100%, hsla(200, 100%, 88%, 0.3) 0px, transparent 50%), radial-gradient(at 100% 100%, hsla(190, 100%, 90%, 0.3) 0px, transparent 50%);">
+            <div class="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+                <!-- Input Panel -->
+                <div class="w-full md:w-1/2 p-8 md:p-10">
+                    <h1 class="text-3xl font-bold text-blue-800 mb-2">Hidratação Vital</h1>
+                    <p class="text-gray-500 mb-8">Descubra sua meta diária de água com base no seu perfil.</p>
+                    
+                    <form id="water-calculator-form" class="space-y-6">
+                        <!-- Weight Input -->
+                        <div>
+                            <label for="weight" class="font-medium text-gray-700">Qual é o seu peso (em kg)?</label>
+                            <input type="number" id="weight" name="weight" value="70" min="20" max="200" class="mt-2 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ex: 70">
+                        </div>
+
+                        <!-- Age Input -->
+                        <div>
+                            <label for="age" class="font-medium text-gray-700">Qual é a sua idade?</label>
+                            <input type="number" id="age" name="age" value="30" min="1" max="120" class="mt-2 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ex: 30">
+                        </div>
+
+                        <!-- Gender Input -->
+                        <div>
+                            <span class="font-medium text-gray-700 block mb-2">Qual é o seu sexo?</span>
+                            <div class="flex gap-4 custom-radio">
+                                <div class="flex-1">
+                                    <input type="radio" id="male" name="gender" value="male" checked>
+                                    <label for="male"><i data-feather="user" class="icon-radio"></i> Masculino</label>
+                                </div>
+                                <div class="flex-1">
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label for="female"><i data-feather="user" class="icon-radio"></i> Feminino</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Breastfeeding Checkbox -->
+                        <div id="breastfeeding-section" class="hidden">
+                            <label for="breastfeeding" class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                                <input type="checkbox" id="breastfeeding" name="breastfeeding" class="h-5 w-5 rounded text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <span class="font-medium text-gray-800">Você está amamentando?</span>
+                                <i data-feather="gift" class="text-blue-500"></i>
+                            </label>
+                        </div>
+
+                        <!-- Activity Level -->
+                        <div>
+                            <label for="activity" class="font-medium text-gray-700 block mb-2">Nível de atividade física diária:</label>
+                            <select id="activity" name="activity" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="light">Leve (caminhadas, pouca atividade)</option>
+                                <option value="moderate">Moderada (exercícios 3-5x por semana)</option>
+                                <option value="intense">Intensa (atleta, treinos diários pesados)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Result Panel -->
+                <div class="w-full md:w-1/2 bg-blue-600 text-white p-8 md:p-10 flex flex-col items-center justify-center text-center">
+                    <div id="initial-message">
+                        <i data-feather="droplet" class="w-20 h-20 mx-auto opacity-50 mb-4"></i>
+                        <h2 class="text-2xl font-bold mb-2">Sua meta de hidratação aparecerá aqui.</h2>
+                        <p class="text-blue-200">Preencha seus dados para calcular.</p>
+                    </div>
+                    
+                    <div id="result-display" class="hidden w-full">
+                        <h2 class="text-xl font-semibold text-blue-200 mb-4">Sua meta diária é:</h2>
+                        
+                        <div class="relative w-32 h-48 bg-blue-500/50 rounded-t-3xl rounded-b-lg mx-auto mb-4 border-4 border-blue-400/80">
+                            <div id="result-visual-fill" class="absolute bottom-0 left-0 w-full bg-white/90 rounded-t-2xl rounded-b-md" style="height: 0%;"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                 <i data-feather="droplet" class="w-10 h-10 text-blue-700 opacity-20"></i>
+                            </div>
+                        </div>
+
+                        <p class="text-5xl font-bold mb-2"><span id="result-liters">0.0</span> L</p>
+                        <p class="text-lg text-blue-200">equivalente a <span id="result-glasses">0</span> copos de 250ml</p>
+
+                        <div class="mt-8 text-left bg-blue-700/50 p-4 rounded-lg">
+                            <h3 class="font-bold mb-2 flex items-center gap-2"><i data-feather="info"></i>Como calculamos:</h3>
+                            <p class="text-sm text-blue-200">Este cálculo é baseado em recomendações científicas que consideram seu peso, idade e fatores do seu estilo de vida. É uma ótima referência para começar a se hidratar melhor!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">Saude Kangen Brasil</h3>
+            <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
+            <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
+            <div class="mt-6">
+                <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+                    <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-8">&copy; <span id="year"></span> Saude Kangen Brasil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const form = document.getElementById('water-calculator-form');
+            const weightInput = document.getElementById('weight');
+            const ageInput = document.getElementById('age');
+            const genderInputs = document.querySelectorAll('input[name="gender"]');
+            const breastfeedingSection = document.getElementById('breastfeeding-section');
+            const breastfeedingCheckbox = document.getElementById('breastfeeding');
+            const activitySelect = document.getElementById('activity');
+
+            const initialMessage = document.getElementById('initial-message');
+            const resultDisplay = document.getElementById('result-display');
+            const resultLiters = document.getElementById('result-liters');
+            const resultGlasses = document.getElementById('result-glasses');
+            const resultVisualFill = document.getElementById('result-visual-fill');
+            
+            form.addEventListener('input', calculateWaterIntake);
+            form.addEventListener('change', calculateWaterIntake);
+
+            genderInputs.forEach(input => {
+                input.addEventListener('change', (e) => {
+                    if (e.target.value === 'female') {
+                        breastfeedingSection.classList.remove('hidden');
+                    } else {
+                        breastfeedingSection.classList.add('hidden');
+                        breastfeedingCheckbox.checked = false;
+                    }
+                });
+            });
+
+            function calculateWaterIntake() {
+                const weight = parseInt(weightInput.value) || 0;
+                const age = parseInt(ageInput.value) || 0;
+                const gender = document.querySelector('input[name="gender"]:checked').value;
+                const isBreastfeeding = breastfeedingCheckbox.checked;
+                const activityLevel = activitySelect.value;
+
+                if (age <= 0 || weight <= 0) {
+                    initialMessage.classList.remove('hidden');
+                    resultDisplay.classList.add('hidden');
+                    return;
+                }
+
+                let mlPerKg = 35;
+                if (age <= 17) mlPerKg = 40;
+                else if (age >= 56 && age <= 65) mlPerKg = 30;
+                else if (age >= 66) mlPerKg = 25;
+
+                let totalMl = weight * mlPerKg;
+
+                switch (activityLevel) {
+                    case 'moderate': totalMl += 600; break;
+                    case 'intense': totalMl += 1000; break;
+                    default: totalMl += 350; break;
+                }
+
+                if (gender === 'male') totalMl += 200;
+                if (gender === 'female' && isBreastfeeding) totalMl += 700;
+
+                const totalLiters = totalMl / 1000;
+                const totalGlasses = Math.round(totalMl / 250);
+
+                updateResult(totalLiters, totalGlasses);
+            }
+
+            function updateResult(liters, glasses) {
+                initialMessage.classList.add('hidden');
+                resultDisplay.classList.remove('hidden');
+                resultLiters.textContent = liters.toFixed(1);
+                resultGlasses.textContent = glasses;
+                const fillPercentage = Math.min((liters / 6) * 100, 100);
+                resultVisualFill.style.height = `${fillPercentage}%`;
+            }
+
+            calculateWaterIntake();
+        });
+    </script>
+</body>
+</html>
