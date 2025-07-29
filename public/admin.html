@@ -149,9 +149,8 @@
                         populateForm('products', content.products);
                         populateForm('testimonials', content.testimonials);
                     } else {
-                        // Se o documento não existe, inicializa com valores padrão
                         await initializeContent();
-                        await loadContent(); // Tenta carregar novamente
+                        await loadContent(); 
                     }
                 } catch (error) {
                     console.error("Erro ao carregar conteúdo:", error);
@@ -169,9 +168,15 @@
                     if (section === 'benefits') {
                         itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Benefício ${index + 1}</label><input type="text" data-section="${section}" data-index="${index}" data-field="title" value="${item.title || ''}" class="w-full p-2 border rounded-md" placeholder="Título"><textarea data-section="${section}" data-index="${index}" data-field="text" class="w-full p-2 border rounded-md" rows="3" placeholder="Descrição">${item.text || ''}</textarea>`;
                     } else if (section === 'products') {
-                        itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Produto ${index + 1}</label><input type="text" data-section="${section}" data-index="${index}" data-field="name" value="${item.name || ''}" class="w-full p-2 border rounded-md" placeholder="Nome do Produto"><textarea data-section="${section}" data-index="${index}" data-field="description" class="w-full p-2 border rounded-md" rows="3" placeholder="Descrição">${item.description || ''}</textarea>`;
+                        itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Produto ${index + 1}</label>
+                                             <input type="text" data-section="${section}" data-index="${index}" data-field="name" value="${item.name || ''}" class="w-full p-2 border rounded-md" placeholder="Nome do Produto">
+                                             <textarea data-section="${section}" data-index="${index}" data-field="description" class="w-full p-2 border rounded-md" rows="3" placeholder="Descrição">${item.description || ''}</textarea>
+                                             <input type="url" data-section="${section}" data-index="${index}" data-field="imageUrl" value="${item.imageUrl || ''}" class="w-full p-2 border rounded-md" placeholder="URL da Imagem do Produto">`;
                     } else if (section === 'testimonials') {
-                        itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Depoimento ${index + 1}</label><textarea data-section="${section}" data-index="${index}" data-field="quote" class="w-full p-2 border rounded-md" rows="3" placeholder="Depoimento">${item.quote || ''}</textarea><input type="text" data-section="${section}" data-index="${index}" data-field="author" value="${item.author || ''}" class="w-full p-2 border rounded-md" placeholder="Autor">`;
+                        itemDiv.innerHTML = `<label class="block text-sm font-medium text-gray-600">Depoimento ${index + 1}</label>
+                                             <textarea data-section="${section}" data-index="${index}" data-field="quote" class="w-full p-2 border rounded-md" rows="3" placeholder="Depoimento">${item.quote || ''}</textarea>
+                                             <input type="text" data-section="${section}" data-index="${index}" data-field="author" value="${item.author || ''}" class="w-full p-2 border rounded-md" placeholder="Autor">
+                                             <input type="url" data-section="${section}" data-index="${index}" data-field="authorImageUrl" value="${item.authorImageUrl || ''}" class="w-full p-2 border rounded-md" placeholder="URL da Foto do Autor">`;
                     }
                     container.appendChild(itemDiv);
                 });
@@ -214,14 +219,14 @@
                         { title: "Certificações Globais", text: "A única no mercado com selo de Ouro da WQA e certificações ISO, garantindo a máxima qualidade e segurança." }
                     ],
                     products: [
-                        { name: "Leveluk K8", description: "O modelo mais poderoso e inteligente. 8 placas de titânio para um poder antioxidante superior e tela touch screen." },
-                        { name: "SD501 Platinum", description: "O best-seller mundial. 7 placas de titânio, design moderno e alta performance para toda a família." },
-                        { name: "Anespa DX", description: "Transforme seu banho em uma experiência de spa. Remove 100% do cloro e mineraliza a água para uma pele e cabelo saudáveis." }
+                        { name: "Leveluk K8", description: "O modelo mais poderoso e inteligente. 8 placas de titânio para um poder antioxidante superior e tela touch screen.", imageUrl: "" },
+                        { name: "SD501 Platinum", description: "O best-seller mundial. 7 placas de titânio, design moderno e alta performance para toda a família.", imageUrl: "" },
+                        { name: "Anespa DX", description: "Transforme seu banho em uma experiência de spa. Remove 100% do cloro e mineraliza a água para uma pele e cabelo saudáveis.", imageUrl: "" }
                     ],
                     testimonials: [
-                        { quote: "Desde que comecei a beber Água Kangen, minha energia e disposição mudaram completamente. Adeus enxaqueca e dores no corpo. Recomendo de olhos fechados!", author: "Maria S." },
-                        { quote: "Como atleta, a hidratação é fundamental. Com a Kangen, minha recuperação muscular é muito mais rápida e meu desempenho melhorou visivelmente. É outro nível!", author: "João P." },
-                        { quote: "Minha pele e cabelo nunca estiveram tão saudáveis. A ducha Anespa fez uma diferença incrível, e a água de beber melhorou minha digestão. Toda a família usa e ama.", author: "Ana L." }
+                        { quote: "Desde que comecei a beber Água Kangen, minha energia e disposição mudaram completamente. Adeus enxaqueca e dores no corpo. Recomendo de olhos fechados!", author: "Maria S.", authorImageUrl: "" },
+                        { quote: "Como atleta, a hidratação é fundamental. Com a Kangen, minha recuperação muscular é muito mais rápida e meu desempenho melhorou visivelmente. É outro nível!", author: "João P.", authorImageUrl: "" },
+                        { quote: "Minha pele e cabelo nunca estiveram tão saudáveis. A ducha Anespa fez uma diferença incrível, e a água de beber melhorou minha digestão. Toda a família usa e ama.", author: "Ana L.", authorImageUrl: "" }
                     ]
                 };
                 try {
