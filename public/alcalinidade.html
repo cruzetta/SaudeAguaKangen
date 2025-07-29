@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pH Alcalino Balanceado - Saude Kangen Brasil</title>
+    <meta name="description" content="Descubra como a Água Kangen® ajuda a combater a acidez do corpo e a promover um ambiente alcalino, essencial para a saúde e prevenção de doenças.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #2D3748; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .text-secondary { color: #718096; }
+        .bg-primary { background-color: #2C5282; }
+        .bg-secondary { background-color: #4299E1; }
+        .bg-accent { background-color: #48BB78; }
+        .bg-neutral-light { background-color: #F7FAFC; }
+        .text-primary { color: #2C5282; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .ph-scale-indicator { transition: left 0.8s ease-out; }
+    </style>
+</head>
+<body class="bg-neutral-light">
+
+    <!-- ===== Header ===== -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">
+                Saude Kangen Brasil
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
+                <a href="index.html#products" class="text-gray-600 hover:text-primary transition">Produtos</a>
+                <a href="index.html#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
+                <a href="index.html#contact" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Falar com Especialista</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-feather="menu" class="text-primary"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="index.html#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
+            <a href="index.html#products" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Produtos</a>
+            <a href="index.html#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
+            <a href="index.html#contact" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== Hero Section ===== -->
+        <section class="bg-secondary text-white pt-32 pb-20">
+            <div class="container mx-auto px-6 text-center">
+                <p class="breadcrumb text-blue-200 mb-2"><a href="index.html">Início</a> / <a href="index.html#benefits">Benefícios</a></p>
+                <h1 class="text-4xl md:text-5xl font-bold" data-aos="fade-up">pH Alcalino Balanceado</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mt-4" data-aos="fade-up" data-aos-delay="100">
+                    Restaure o equilíbrio natural do seu corpo e crie um ambiente onde as doenças não prosperam.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== Content Section ===== -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                
+                <!-- Introduction to Acidity -->
+                <div class="max-w-4xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-bold text-primary mb-4" data-aos="fade-up">Seu Corpo está em uma Batalha Constante contra a Acidez</h2>
+                    <p class="text-lg text-secondary" data-aos="fade-up" data-aos-delay="100">
+                        Nossa dieta moderna, rica em alimentos processados, refrigerantes e açúcares, juntamente com o estresse do dia a dia, cria um ambiente excessivamente ácido em nosso corpo. Um corpo ácido é um terreno fértil para fadiga, inflamação e doenças crônicas. Seu sangue precisa manter um pH ligeiramente alcalino (7.365), e para isso, ele "rouba" minerais alcalinos (como cálcio) dos seus ossos e órgãos, enfraquecendo seu corpo ao longo do tempo.
+                    </p>
+                </div>
+
+                <!-- pH Scale Interactive Section -->
+                <div class="max-w-5xl mx-auto mb-20">
+                    <h2 class="text-3xl font-bold text-primary text-center mb-10" data-aos="fade-up">A Escala de pH: Onde Você se Encaixa?</h2>
+                    <div id="ph-scale-container" class="relative p-4" data-aos="fade-up">
+                        <div class="h-8 w-full bg-gradient-to-r from-red-500 via-yellow-400 to-blue-600 rounded-full shadow-inner flex justify-between items-center px-4 text-white font-bold">
+                            <span>Ácido</span>
+                            <span>Neutro</span>
+                            <span>Alcalino</span>
+                        </div>
+                        <div id="ph-indicator-container" class="mt-2 h-16">
+                            <!-- Indicators will be placed here by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Body Balance Section -->
+                <div class="bg-neutral-light p-8 md:p-12 rounded-xl mb-20">
+                    <h2 class="text-3xl font-bold text-primary text-center mb-8" data-aos="fade-up">Restaurando o Equilíbrio</h2>
+                    <div class="flex flex-col md:flex-row justify-around items-center gap-8">
+                        <!-- Acidic Body -->
+                        <div class="text-center" data-aos="zoom-in">
+                            <i data-feather="trending-down" class="w-24 h-24 text-red-500 mx-auto mb-4"></i>
+                            <h4 class="text-xl font-bold text-primary mb-2">Corpo Ácido</h4>
+                            <p class="text-secondary max-w-xs mx-auto">Baixa energia, sistema imune fraco, dores, inflamação e maior risco de doenças crônicas.</p>
+                        </div>
+                        
+                        <!-- Arrow -->
+                        <div class="text-center hidden md:block" data-aos="fade-up" data-aos-delay="200">
+                             <i data-feather="arrow-right-circle" class="w-20 h-20 text-accent"></i>
+                             <p class="font-bold text-accent mt-2">Beba Água Kangen®</p>
+                        </div>
+                         <div class="text-center md:hidden" data-aos="fade-up" data-aos-delay="200">
+                             <i data-feather="arrow-down-circle" class="w-20 h-20 text-accent"></i>
+                             <p class="font-bold text-accent mt-2">Beba Água Kangen®</p>
+                        </div>
+
+                        <!-- Alkaline Body -->
+                        <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
+                            <i data-feather="trending-up" class="w-24 h-24 text-green-500 mx-auto mb-4"></i>
+                            <h4 class="text-xl font-bold text-primary mb-2">Corpo Alcalino</h4>
+                            <p class="text-secondary max-w-xs mx-auto">Mais energia, sistema imune forte, menos dores e um ambiente interno resistente a doenças.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits of Alkalinity -->
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-bold text-primary text-center mb-12" data-aos="fade-up">Benefícios de um corpo com pH balanceado:</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="flex items-start gap-4" data-aos="fade-up">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="bar-chart-2" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Resistência a Doenças</h4>
+                                <p class="text-secondary">Muitos vírus, bactérias e células cancerígenas prosperam em ambientes ácidos. Um corpo alcalino é a sua primeira linha de defesa.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="bone" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Ossos Mais Fortes</h4>
+                                <p class="text-secondary">Ao fornecer minerais alcalinos, a Água Kangen® ajuda a poupar o cálcio dos seus ossos, prevenindo a osteoporose.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="smile" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Mais Energia e Menos Fadiga</h4>
+                                <p class="text-secondary">A acidez corporal pode causar letargia. Neutralizá-la pode resultar em um aumento notável nos seus níveis de energia diários.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="heart" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Saúde do Coração</h4>
+                                <p class="text-secondary">A acidez crônica está ligada a problemas cardiovasculares. Manter um pH equilibrado apoia a saúde do coração e da circulação.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="activity" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Peso Saudável</h4>
+                                <p class="text-secondary">O corpo produz células de gordura para armazenar o excesso de ácidos. Ajudar a neutralizar esses ácidos pode apoiar a perda de peso.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="message-circle" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Melhora a Digestão</h4>
+                                <p class="text-secondary">A água alcalina pode ajudar a neutralizar o excesso de ácido estomacal, aliviando sintomas de refluxo ácido e má digestão.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- ===== CTA Section ===== -->
+        <section class="py-20 bg-neutral-light">
+            <div class="container mx-auto px-6">
+                <div class="bg-primary text-white rounded-xl shadow-2xl p-8 md:p-12 text-center" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold mb-4">Dê ao seu corpo a chance de se reequilibrar.</h2>
+                    <p class="text-lg text-blue-200 max-w-2xl mx-auto mb-8">Faça o teste de pH e veja como as bebidas que você consome diariamente estão acidificando seu corpo. Agende uma demonstração e veja a mágica da alcalinidade acontecer.</p>
+                    <a href="index.html#contact" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg">
+                        Agendar Demonstração de pH
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">Saude Kangen Brasil</h3>
+            <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
+            <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
+            <div class="mt-6">
+                <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+                    <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-8">&copy; <span id="year"></span> Saude Kangen Brasil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Feather Icons
+            feather.replace();
+
+            // AOS Initialization
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Dynamic Year in Footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // pH Scale Data
+            const phData = [
+                { name: 'Refrigerante', value: 2.5, icon: 'cup-soda' },
+                { name: 'Café', value: 5.0, icon: 'coffee' },
+                { name: 'Água Torneira', value: 7.0, icon: 'droplet' },
+                { name: 'Água Kangen®', value: 9.5, icon: 'star' },
+                { name: 'Brócolis', value: 8.5, icon: 'leaf' }
+            ];
+
+            const phIndicatorContainer = document.getElementById('ph-indicator-container');
+            
+            function phToPercentage(ph) {
+                // Scale from pH 2 to 12 for better visual distribution
+                return ((ph - 2) / 10) * 100;
+            }
+
+            phData.forEach(item => {
+                const percentage = phToPercentage(item.value);
+                const indicator = document.createElement('div');
+                indicator.className = 'absolute -top-2 transform -translate-x-1/2 text-center ph-scale-indicator';
+                indicator.style.left = '0%'; // Start at 0 for animation
+                indicator.dataset.left = `${percentage}%`;
+
+                let iconHtml = '';
+                // Simple icons with text as fallback
+                switch(item.icon) {
+                    case 'cup-soda': iconHtml = `<div class="w-8 h-8 rounded-full bg-red-200 flex items-center justify-center mx-auto"><i data-feather="coffee" class="w-5 h-5 text-red-600"></i></div>`; break;
+                    case 'coffee': iconHtml = `<div class="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center mx-auto"><i data-feather="coffee" class="w-5 h-5 text-yellow-800"></i></div>`; break;
+                    case 'droplet': iconHtml = `<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto"><i data-feather="droplet" class="w-5 h-5 text-gray-600"></i></div>`; break;
+                    case 'star': iconHtml = `<div class="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center mx-auto"><i data-feather="star" class="w-5 h-5 text-blue-600"></i></div>`; break;
+                    case 'leaf': iconHtml = `<div class="w-8 h-8 rounded-full bg-green-200 flex items-center justify-center mx-auto"><i data-feather="leaf" class="w-5 h-5 text-green-600"></i></div>`; break;
+                }
+
+                indicator.innerHTML = `
+                    ${iconHtml}
+                    <span class="text-xs font-bold text-gray-700">${item.name}</span>
+                    <span class="block text-xs text-gray-500">pH ${item.value.toFixed(1)}</span>
+                    <div class="w-px h-2 bg-gray-400 mx-auto"></div>
+                `;
+                phIndicatorContainer.appendChild(indicator);
+            });
+            feather.replace();
+
+            // Intersection Observer to animate indicators on scroll
+            const phScaleContainer = document.getElementById('ph-scale-container');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const indicators = entry.target.querySelectorAll('.ph-scale-indicator');
+                        indicators.forEach(indicator => {
+                            setTimeout(() => { // Stagger the animation
+                                indicator.style.left = indicator.dataset.left;
+                            }, Math.random() * 500);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(phScaleContainer);
+        });
+    </script>
+</body>
+</html>

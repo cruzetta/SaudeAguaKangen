@@ -125,7 +125,7 @@
                     <p class="text-lg text-secondary mt-2">Mais que hidratação, uma nova forma de viver.</p>
                 </div>
                 <div id="benefits-list" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Conteúdo dinâmico -->
+                    <!-- Conteúdo dinâmico será inserido aqui -->
                 </div>
             </div>
         </section>
@@ -495,15 +495,34 @@
         function renderBenefits(benefits) {
             const container = document.getElementById('benefits-list');
             if (!container || !benefits) return;
-            container.innerHTML = benefits.map((item, index) => `
-                <div class="bg-neutral-light p-8 rounded-xl shadow-sm text-center hover-lift" data-aos="fade-up" data-aos-delay="${index * 100}">
-                    <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                        <i data-feather="${['droplet', 'shield', 'bar-chart-2', 'award'][index % 4]}" class="w-8 h-8"></i>
+
+            const pageMap = {
+                "hidratação superior": "hidratacao.html",
+                "poder antioxidante": "antioxidante.html",
+                "ph alcalino balanceado": "alcalinidade.html",
+                "certificações globais": "certificacoes.html"
+            };
+
+            container.innerHTML = benefits.map((item, index) => {
+                const url = pageMap[item.title.toLowerCase()] || '#benefits'; // Fallback to section id
+                
+                return `
+                    <div data-aos="fade-up" data-aos-delay="${index * 100}">
+                        <a href="${url}" class="block bg-neutral-light p-8 rounded-xl shadow-sm text-center h-full flex flex-col hover-lift">
+                            <div class="flex-grow">
+                                <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                    <i data-feather="${['droplet', 'shield', 'bar-chart-2', 'award'][index % 4]}" class="w-8 h-8"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-primary mb-2">${item.title}</h3>
+                                <p class="text-secondary">${item.text}</p>
+                            </div>
+                            <span class="mt-4 inline-block font-semibold text-blue-600">
+                                Saiba Mais &rarr;
+                            </span>
+                        </a>
                     </div>
-                    <h3 class="text-xl font-bold text-primary mb-2">${item.title}</h3>
-                    <p class="text-secondary">${item.text}</p>
-                </div>
-            `).join('');
+                `;
+            }).join('');
             feather.replace();
         }
 

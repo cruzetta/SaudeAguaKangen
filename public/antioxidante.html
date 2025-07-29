@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poder Antioxidante - Saude Kangen Brasil</title>
+    <meta name="description" content="Aprenda como a Água Kangen® combate os radicais livres e o envelhecimento precoce com seu poderoso potencial antioxidante (ORP negativo).">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #2D3748; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .text-secondary { color: #718096; }
+        .bg-primary { background-color: #2C5282; }
+        .bg-secondary { background-color: #4299E1; }
+        .bg-accent { background-color: #48BB78; }
+        .bg-neutral-light { background-color: #F7FAFC; }
+        .text-primary { color: #2C5282; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .orp-bar { transition: width 0.8s ease-out; }
+    </style>
+</head>
+<body class="bg-neutral-light">
+
+    <!-- ===== Header ===== -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">
+                Saude Kangen Brasil
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
+                <a href="index.html#products" class="text-gray-600 hover:text-primary transition">Produtos</a>
+                <a href="index.html#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
+                <a href="index.html#contact" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Falar com Especialista</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-feather="menu" class="text-primary"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="index.html#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
+            <a href="index.html#products" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Produtos</a>
+            <a href="index.html#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
+            <a href="index.html#contact" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== Hero Section ===== -->
+        <section class="bg-secondary text-white pt-32 pb-20">
+            <div class="container mx-auto px-6 text-center">
+                <p class="breadcrumb text-blue-200 mb-2"><a href="index.html">Início</a> / <a href="index.html#benefits">Benefícios</a></p>
+                <h1 class="text-4xl md:text-5xl font-bold" data-aos="fade-up">Poder Antioxidante</h1>
+                <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mt-4" data-aos="fade-up" data-aos-delay="100">
+                    Proteja seu corpo contra o envelhecimento precoce e doenças com a água mais antioxidante que você pode beber.
+                </p>
+            </div>
+        </section>
+
+        <!-- ===== Content Section ===== -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                
+                <!-- Introduction to Free Radicals -->
+                <div class="max-w-4xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-bold text-primary mb-4" data-aos="fade-up">O Inimigo Invisível: Radicais Livres</h2>
+                    <p class="text-lg text-secondary" data-aos="fade-up" data-aos-delay="100">
+                        Todos os dias, nosso corpo é atacado por radicais livres – moléculas instáveis que "roubam" elétrons de células saudáveis, causando um processo chamado <strong class="text-primary">estresse oxidativo</strong>. Isso danifica nosso DNA, acelera o envelhecimento e é a causa raiz de inúmeras doenças crônicas. Poluição, má alimentação, estresse e até a respiração geram radicais livres.
+                    </p>
+                </div>
+
+                <!-- Interactive Section: Antioxidants neutralizing Free Radicals -->
+                <div class="bg-neutral-light p-8 md:p-12 rounded-xl mb-20">
+                    <h2 class="text-3xl font-bold text-primary text-center mb-8" data-aos="fade-up">O Escudo Protetor: Antioxidantes</h2>
+                    <div class="flex flex-col md:flex-row justify-around items-center gap-8">
+                        <!-- Damaged Cell -->
+                        <div class="text-center" data-aos="zoom-in">
+                            <div class="relative w-24 h-24 mx-auto mb-4">
+                                <i data-feather="shield-off" class="w-24 h-24 text-red-400"></i>
+                                <i data-feather="alert-triangle" class="absolute top-0 right-0 w-8 h-8 text-yellow-500 animate-ping"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-primary mb-2">Célula Atacada</h4>
+                            <p class="text-secondary max-w-xs mx-auto">Um radical livre rouba um elétron, desestabilizando a célula e iniciando uma reação em cadeia de danos.</p>
+                        </div>
+                        
+                        <!-- Arrow -->
+                        <div class="text-center hidden md:block" data-aos="fade-up" data-aos-delay="200">
+                             <i data-feather="arrow-right-circle" class="w-20 h-20 text-accent"></i>
+                             <p class="font-bold text-accent mt-2">Água Kangen® doa elétrons</p>
+                        </div>
+                         <div class="text-center md:hidden" data-aos="fade-up" data-aos-delay="200">
+                             <i data-feather="arrow-down-circle" class="w-20 h-20 text-accent"></i>
+                             <p class="font-bold text-accent mt-2">Água Kangen® doa elétrons</p>
+                        </div>
+
+                        <!-- Protected Cell -->
+                        <div class="text-center" data-aos="zoom-in" data-aos-delay="400">
+                            <div class="relative w-24 h-24 mx-auto mb-4">
+                                <i data-feather="shield" class="w-24 h-24 text-green-500"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-primary mb-2">Célula Protegida</h4>
+                            <p class="text-secondary max-w-xs mx-auto">A Água Kangen®, rica em antioxidantes, doa elétrons para neutralizar os radicais livres, protegendo a célula.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ORP Explanation Section -->
+                <div class="max-w-5xl mx-auto mb-20">
+                    <h2 class="text-3xl font-bold text-primary text-center mb-4" data-aos="fade-up">Medindo o Poder Antioxidante: ORP</h2>
+                    <p class="text-lg text-secondary text-center max-w-4xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="100">
+                        O Potencial de Oxi-Redução (ORP) mede a capacidade de uma substância de reduzir a oxidação. Um <strong class="text-red-600">ORP positivo (+) aumenta a oxidação</strong> (enferruja, envelhece). Um <strong class="text-green-600">ORP negativo (-) reduz a oxidação</strong> (é antioxidante). Quanto mais negativo o ORP, mais poderoso é o antioxidante.
+                    </p>
+                    <div id="orp-chart" class="space-y-4" data-aos="fade-up">
+                        <!-- Chart will be generated by JS -->
+                    </div>
+                </div>
+
+                <!-- Benefits of Antioxidants -->
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-bold text-primary text-center mb-12" data-aos="fade-up">Benefícios de um corpo protegido do estresse oxidativo:</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="flex items-start gap-4" data-aos="fade-up">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="clock" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Retarda o Envelhecimento</h4>
+                                <p class="text-secondary">Combate os danos celulares que causam rugas, perda de elasticidade da pele e envelhecimento dos órgãos internos.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="heart" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Fortalece a Imunidade</h4>
+                                <p class="text-secondary">Protege as células do sistema imunológico, tornando seu corpo mais resistente a infecções e doenças.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="trending-up" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Aumenta a Energia</h4>
+                                <p class="text-secondary">Ao proteger as mitocôndrias (usinas de energia das células), os antioxidantes ajudam a manter seus níveis de energia elevados.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="zap" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Reduz a Inflamação</h4>
+                                <p class="text-secondary">O estresse oxidativo crônico leva à inflamação. Antioxidantes ajudam a acalmar a resposta inflamatória do corpo.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="eye" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Saúde da Visão e Cérebro</h4>
+                                <p class="text-secondary">Protege os tecidos delicados dos olhos e do cérebro contra danos oxidativos, auxiliando na prevenção de doenças degenerativas.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="award" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-primary">Prevenção de Doenças</h4>
+                                <p class="text-secondary">O estresse oxidativo está ligado a mais de 70 doenças, incluindo câncer e diabetes. A proteção antioxidante é fundamental.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- ===== CTA Section ===== -->
+        <section class="py-20 bg-neutral-light">
+            <div class="container mx-auto px-6">
+                <div class="bg-primary text-white rounded-xl shadow-2xl p-8 md:p-12 text-center" data-aos="fade-up">
+                    <h2 class="text-3xl font-bold mb-4">Arme seu corpo com o mais poderoso antioxidante.</h2>
+                    <p class="text-lg text-blue-200 max-w-2xl mx-auto mb-8">Veja com seus próprios olhos a medição do ORP da Água Kangen® em comparação com outras bebidas. Agende uma demonstração e entenda o poder que você pode beber.</p>
+                    <a href="index.html#contact" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg">
+                        Solicitar Demonstração de ORP
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">Saude Kangen Brasil</h3>
+            <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
+            <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
+            <div class="mt-6">
+                <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+                    <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-8">&copy; <span id="year"></span> Saude Kangen Brasil. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Feather Icons
+            feather.replace();
+
+            // AOS Initialization
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Dynamic Year in Footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // ORP Chart Data
+            const orpData = [
+                { name: 'Refrigerante', value: 400, color: 'bg-red-500' },
+                { name: 'Água de Torneira', value: 250, color: 'bg-orange-500' },
+                { name: 'Água Engarrafada', value: 200, color: 'bg-yellow-500' },
+                { name: 'Chá Verde', value: -100, color: 'bg-lime-500' },
+                { name: 'Óleo de Fígado de Bacalhau', value: -200, color: 'bg-green-500' },
+                { name: 'Água Kangen® (Exemplo)', value: -400, color: 'bg-blue-500' },
+            ];
+
+            const orpChartContainer = document.getElementById('orp-chart');
+            const maxOrp = 500; // Max value for scaling the bars
+
+            let chartHtml = `
+                <div class="flex items-center text-sm font-bold text-gray-500">
+                    <div class="w-1/4 text-right pr-4">Oxidante (Envelhece)</div>
+                    <div class="w-1/2 h-px bg-gray-300 relative">
+                        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-500 rounded-full"></div>
+                        <div class="absolute left-1/2 -ml-4 -top-5 text-gray-700 font-bold">0</div>
+                    </div>
+                    <div class="w-1/4 text-left pl-4">Antioxidante (Rejuvenesce)</div>
+                </div>
+                <div class="mt-4 space-y-3">
+            `;
+
+            orpData.forEach(item => {
+                const isNegative = item.value < 0;
+                const barWidth = (Math.abs(item.value) / maxOrp) * 100;
+
+                chartHtml += `
+                    <div class="flex items-center">
+                        <div class="w-1/4 text-right pr-4 font-medium text-gray-600">${item.name}</div>
+                        <div class="w-1/2">
+                            <div class="flex items-center ${isNegative ? 'justify-end' : 'justify-start'}">
+                                ${isNegative ? `<div class="font-bold text-green-600 pr-2">${item.value}</div>` : ''}
+                                <div class="h-6 ${item.color} orp-bar" style="width: 0%;" data-width="${barWidth}%"></div>
+                                ${!isNegative ? `<div class="font-bold text-red-600 pl-2">+${item.value}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            chartHtml += `</div>`;
+            orpChartContainer.innerHTML = chartHtml;
+
+            // Intersection Observer to animate bars on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bars = entry.target.querySelectorAll('.orp-bar');
+                        bars.forEach(bar => {
+                            bar.style.width = bar.dataset.width;
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(orpChartContainer);
+        });
+    </script>
+</body>
+</html>
