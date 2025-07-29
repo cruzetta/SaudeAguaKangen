@@ -231,7 +231,7 @@
             <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
             <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
             <div class="mt-6">
-                <a href="https://wa.me/55XXXXXXXXXXX" target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+                <a href="https://wa.me/5567991842525" target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
                     <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
                 </a>
             </div>
@@ -531,7 +531,14 @@
         function renderProducts(products) {
             const container = document.getElementById('products-list');
             if (!container || !products) return;
-            container.innerHTML = products.map((item, index) => `
+            // **IMPORTANTE**: Coloque o seu número de WhatsApp aqui, com o código do país.
+            const whatsappNumber = '5567991842525'; 
+
+            container.innerHTML = products.map((item, index) => {
+                const message = encodeURIComponent(`Olá! Tenho interesse no ionizador ${item.name}. Poderia me dar mais informações?`);
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+                
+                return `
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="${index * 150}">
                     <div class="p-4 bg-gray-100 flex justify-center">
                         <img src="${item.imageUrl || `https://placehold.co/300x300/E2E8F0/2D3748?text=${encodeURIComponent(item.name)}`}" alt="Ionizador ${item.name}" class="h-48 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/300x300/E2E8F0/2D3748?text=Imagem+Indisponível';">
@@ -539,10 +546,14 @@
                     <div class="p-6 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-primary">${item.name}</h3>
                         <p class="text-secondary mt-2 mb-4 flex-grow">${item.description}</p>
-                        <a href="#contact" class="mt-auto bg-transparent border-2 border-primary text-primary font-semibold py-2 px-6 rounded-full text-center hover:bg-primary hover:text-white transition">Ver Detalhes</a>
+                        <a href="${whatsappUrl}" target="_blank" class="mt-auto bg-accent border-2 border-accent text-white font-semibold text-sm py-2 px-4 rounded-full text-center hover:bg-green-600 transition inline-flex items-center justify-center gap-2 whitespace-nowrap">
+                            <i data-feather="message-circle" class="w-5 h-5"></i>
+                            Falar com Representante
+                        </a>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
+            feather.replace();
         }
 
         function renderTestimonials(testimonials) {
