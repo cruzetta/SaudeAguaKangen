@@ -100,8 +100,14 @@
                     </a>
                 </div>
                 <div class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 font-medium" data-aos="fade-up" data-aos-delay="600" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
-                    <span class="flex items-center gap-2"><i data-feather="award" class="w-5 h-5 text-accent"></i>Certificado Inmetro</span>
-                    <span class="flex items-center gap-2"><i data-feather="cpu" class="w-5 h-5 text-accent"></i>Tecnologia Japonesa</span>
+                    <!-- CERTIFICADO INMETRO - ATUALIZAÇÃO -->
+                    <span id="inmetro-info" class="flex items-center gap-2 cursor-pointer">
+                        <i data-feather="award" class="w-5 h-5 text-accent"></i>Certificado Inmetro
+                    </span>
+                    <!-- TECNOLOGIA JAPONESA - ATUALIZAÇÃO -->
+                    <span id="tech-info" class="flex items-center gap-2 cursor-pointer">
+                        <i data-feather="cpu" class="w-5 h-5 text-accent"></i>Tecnologia Japonesa
+                    </span>
                     <!-- ANOS DE EXPERIÊNCIA - ATUALIZAÇÃO -->
                     <span id="experience-info" class="flex items-center gap-2 cursor-pointer">
                         <i data-feather="calendar" class="w-5 h-5 text-accent"></i>
@@ -237,7 +243,7 @@
     </button>
     
     <!-- Toast para data de fundação -->
-    <div id="info-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50"></div>
+    <div id="info-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50 text-center"></div>
 
     <!-- Scripts do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
@@ -316,7 +322,9 @@
                 }
             });
 
-            // --- LÓGICA PARA ANOS DE EXPERIÊNCIA E TOAST ---
+            // --- LÓGICA PARA INFORMAÇÕES CLICÁVEIS E TOAST ---
+            const inmetroInfo = document.getElementById('inmetro-info');
+            const techInfo = document.getElementById('tech-info');
             const experienceInfo = document.getElementById('experience-info');
             const experienceText = document.getElementById('experience-text');
             const experienceStats = document.getElementById('experience-stats');
@@ -338,15 +346,31 @@
                 experienceStats.setAttribute('data-target', yearsOfExperience);
             }
 
-            // Add click listener to show founding date
-            if (experienceInfo && infoToast) {
-                experienceInfo.addEventListener('click', () => {
-                    infoToast.textContent = 'Fundada em 21 de junho de 1974';
+            // Função para mostrar o toast
+            const showToast = (message) => {
+                if(infoToast) {
+                    infoToast.textContent = message;
                     infoToast.classList.remove('opacity-0');
-                    // Hide after 3 seconds
                     setTimeout(() => {
                         infoToast.classList.add('opacity-0');
-                    }, 3000); 
+                    }, 3500); // Aumentei um pouco o tempo para dar tempo de ler
+                }
+            };
+
+            // Adiciona listeners para os cliques
+            if (inmetroInfo) {
+                inmetroInfo.addEventListener('click', () => {
+                    showToast('Produtos certificados pelo INMETRO, garantindo máxima segurança e qualidade.');
+                });
+            }
+            if (techInfo) {
+                techInfo.addEventListener('click', () => {
+                    showToast('Tecnologia da Enagic®, empresa japonesa de Osaka, líder mundial desde 1974.');
+                });
+            }
+            if (experienceInfo) {
+                experienceInfo.addEventListener('click', () => {
+                    showToast('Fundada em 21 de junho de 1974');
                 });
             }
 
