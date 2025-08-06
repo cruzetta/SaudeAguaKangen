@@ -43,8 +43,27 @@
         #form-feedback { display: none; padding: 1rem; margin-top: 1rem; border-radius: 0.5rem; font-weight: 500; text-align: center; }
         #form-feedback.success { background-color: #C6F6D5; color: #2F855A; }
         #form-feedback.error { background-color: #FED7D7; color: #C53030; }
-        /* Adicionado para garantir que o conteúdo fique sobre os fundos dinâmicos */
-        section { position: relative; }
+        
+        /* Adicionado para destacar texto sobre fundos dinâmicos */
+        .has-dynamic-bg {
+            position: relative; 
+        }
+        .has-dynamic-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro consistente */
+            z-index: 0;
+        }
+        .has-dynamic-bg > .container { /* Garante que o conteúdo fique sobre o overlay */
+            position: relative;
+            z-index: 1;
+        }
+        .has-dynamic-bg .text-center h2,
+        .has-dynamic-bg .text-center p.text-secondary {
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
     </style>
 </head>
 <body class="bg-neutral-light overflow-x-hidden">
@@ -279,16 +298,18 @@
                     const bgData = backgrounds[sectionId];
 
                     if (element && bgData && bgData.mediaUrl) {
-                        // Remove qualquer fundo dinâmico anterior para evitar duplicatas
-                        element.querySelectorAll('.dynamic-bg').forEach(el => el.remove());
+                        element.classList.add('has-dynamic-bg'); // Add class for styling
+                        element.querySelectorAll('.dynamic-bg-video').forEach(el => el.remove());
 
-                        // Esconde o conteúdo original do fundo se for a seção 'home'
                         if (sectionId === 'home') {
                             const originalVideo = element.querySelector('#hero-video');
                             const originalOverlay = element.querySelector('.bg-black\\/50');
                             if (originalVideo) originalVideo.style.display = 'none';
                             if (originalOverlay) originalOverlay.style.display = 'none';
                         }
+
+                        // Remove a cor de fundo original para que o fundo da imagem/vídeo apareça
+                        element.classList.remove('bg-white', 'bg-neutral-light', 'bg-secondary', 'bg-primary');
 
                         if (bgData.mediaType === 'video') {
                             const video = document.createElement('video');
@@ -297,23 +318,15 @@
                             video.loop = true;
                             video.muted = true;
                             video.playsInline = true;
-                            video.className = 'dynamic-bg'; // Classe para fácil remoção
+                            video.className = 'dynamic-bg-video';
                             Object.assign(video.style, {
                                 position: 'absolute', top: '0', left: '0',
                                 width: '100%', height: '100%', objectFit: 'cover',
-                                zIndex: '-2' // Coloca o vídeo bem no fundo
+                                zIndex: '-1' // Video behind the CSS overlay
                             });
                             
-                            const overlay = document.createElement('div');
-                            overlay.className = 'dynamic-bg'; // Classe para fácil remoção
-                            Object.assign(overlay.style, {
-                                position: 'absolute', inset: '0',
-                                backgroundColor: 'rgba(0,0,0,0.5)', zIndex: '-1' // Overlay sobre o vídeo
-                            });
-                            
-                            element.prepend(overlay);
                             element.prepend(video);
-                            element.style.backgroundImage = ''; // Limpa qualquer imagem de fundo
+                            element.style.backgroundImage = ''; 
                         } else if (bgData.mediaType === 'image') {
                             element.style.backgroundImage = `url('${bgData.mediaUrl}')`;
                             element.style.backgroundSize = 'cover';
