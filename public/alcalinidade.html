@@ -30,7 +30,33 @@
         .bg-neutral-light { background-color: #F7FAFC; }
         .text-primary { color: #2C5282; }
         .breadcrumb a:hover { text-decoration: underline; }
-        .ph-scale-indicator { transition: left 0.8s ease-out; }
+        
+        /* Estilos para a escala de pH corrigida */
+        #ph-indicator-container {
+            margin-top: 8px; /* Espaço entre a barra e os indicadores */
+            height: 80px; /* Mais altura para os indicadores */
+            position: relative;
+        }
+
+        .ph-scale-indicator {
+            transition: left 0.8s ease-out;
+            position: absolute;
+            top: 28px; /* Posiciona todos os indicadores abaixo da barra */
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        /* Linha conectora que aponta para a barra de pH */
+        .ph-scale-indicator::before {
+            content: '';
+            position: absolute;
+            bottom: 100%; /* Começa na parte de cima do indicador */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 28px; /* Altura da linha para conectar à barra */
+            background-color: #cbd5e1; /* cinza-300 */
+        }
     </style>
 </head>
 <body class="bg-neutral-light">
@@ -62,7 +88,7 @@
 
     <main>
         <!-- ===== Hero Section ===== -->
-        <section class="bg-secondary text-white pt-32 pb-20">
+        <section id="alcalinidade-hero" class="bg-secondary text-white pt-32 pb-20">
             <div class="container mx-auto px-6 text-center">
                 <p class="breadcrumb text-blue-200 mb-2"><a href="index.html">Início</a> / <a href="index.html#benefits">Benefícios</a></p>
                 <h1 class="text-4xl md:text-5xl font-bold" data-aos="fade-up">pH Alcalino Balanceado</h1>
@@ -93,8 +119,8 @@
                             <span>Neutro</span>
                             <span>Alcalino</span>
                         </div>
-                        <div id="ph-indicator-container" class="mt-2 h-16">
-                            <!-- Indicators will be placed here by JS -->
+                        <div id="ph-indicator-container" class="mt-2 h-24 relative">
+                            <!-- Indicadores serão inseridos aqui pelo JavaScript -->
                         </div>
                     </div>
                 </div>
@@ -141,7 +167,7 @@
                             </div>
                         </div>
                         <div class="flex items-start gap-4" data-aos="fade-up" data-aos-delay="100">
-                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="bone" class="w-6 h-6"></i></div>
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mt-1"><i data-feather="shield" class="w-6 h-6"></i></div>
                             <div>
                                 <h4 class="font-bold text-lg text-primary">Ossos Mais Fortes</h4>
                                 <p class="text-secondary">Ao fornecer minerais alcalinos, a Água Kangen® ajuda a poupar o cálcio dos seus ossos, prevenindo a osteoporose.</p>
@@ -211,6 +237,10 @@
         </div>
     </footer>
 
+    <!-- Scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -234,66 +264,158 @@
             // Dynamic Year in Footer
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // pH Scale Data
+            // --- LÓGICA ATUALIZADA DA ESCALA DE PH ---
             const phData = [
-                { name: 'Refrigerante', value: 2.5, icon: 'cup-soda' },
-                { name: 'Café', value: 5.0, icon: 'coffee' },
-                { name: 'Água Torneira', value: 7.0, icon: 'droplet' },
-                { name: 'Água Kangen®', value: 9.5, icon: 'star' },
-                { name: 'Brócolis', value: 8.5, icon: 'leaf' }
+                { name: 'Refrigerante', value: 2.5, icon: 'coffee', color: 'red-600', bgColor: 'red-100' },
+                { name: 'Café', value: 5.0, icon: 'coffee', color: 'yellow-800', bgColor: 'yellow-100' },
+                { name: 'Água Torneira', value: 7.0, icon: 'droplet', color: 'gray-600', bgColor: 'gray-100' },
+                { name: 'Água Kangen®', value: 9.5, icon: 'star', color: 'blue-600', bgColor: 'blue-100' },
+                { name: 'Brócolis', value: 8.5, icon: 'leaf', color: 'green-600', bgColor: 'green-100' }
             ];
 
+            // 1. Ordena os dados por valor de pH
+            phData.sort((a, b) => a.value - b.value);
+
             const phIndicatorContainer = document.getElementById('ph-indicator-container');
-            
+            let lastPlacedPercentage = -15; // Inicia fora da tela para a primeira verificação
+            const minSpacing = 15; // Mínimo de 15% de espaço entre os centros dos indicadores
+
             function phToPercentage(ph) {
-                // Scale from pH 2 to 12 for better visual distribution
-                return ((ph - 2) / 10) * 100;
+                // Escala de pH de 2 a 12 para melhor distribuição visual
+                const scaleMin = 2;
+                const scaleMax = 12;
+                // Garante que o valor está dentro da escala
+                const clampedPh = Math.max(scaleMin, Math.min(ph, scaleMax));
+                return ((clampedPh - scaleMin) / (scaleMax - scaleMin)) * 100;
             }
 
             phData.forEach(item => {
-                const percentage = phToPercentage(item.value);
-                const indicator = document.createElement('div');
-                indicator.className = 'absolute -top-2 transform -translate-x-1/2 text-center ph-scale-indicator';
-                indicator.style.left = '0%'; // Start at 0 for animation
-                indicator.dataset.left = `${percentage}%`;
+                const idealPercentage = phToPercentage(item.value);
+                
+                // 2. Lógica para evitar sobreposição
+                // Se a posição ideal estiver muito perto da última posição, empurra para a direita
+                let finalPercentage = Math.max(idealPercentage, lastPlacedPercentage + minSpacing);
 
-                let iconHtml = '';
-                // Simple icons with text as fallback
-                switch(item.icon) {
-                    case 'cup-soda': iconHtml = `<div class="w-8 h-8 rounded-full bg-red-200 flex items-center justify-center mx-auto"><i data-feather="coffee" class="w-5 h-5 text-red-600"></i></div>`; break;
-                    case 'coffee': iconHtml = `<div class="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center mx-auto"><i data-feather="coffee" class="w-5 h-5 text-yellow-800"></i></div>`; break;
-                    case 'droplet': iconHtml = `<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto"><i data-feather="droplet" class="w-5 h-5 text-gray-600"></i></div>`; break;
-                    case 'star': iconHtml = `<div class="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center mx-auto"><i data-feather="star" class="w-5 h-5 text-blue-600"></i></div>`; break;
-                    case 'leaf': iconHtml = `<div class="w-8 h-8 rounded-full bg-green-200 flex items-center justify-center mx-auto"><i data-feather="leaf" class="w-5 h-5 text-green-600"></i></div>`; break;
-                }
+                // Limita a posição final a no máximo 99% para não sair da tela
+                finalPercentage = Math.min(finalPercentage, 99);
+
+                const indicator = document.createElement('div');
+                
+                indicator.className = 'ph-scale-indicator';
+                indicator.style.left = '0%'; // Posição inicial para animação
+                indicator.dataset.left = `${finalPercentage}%`;
+
+                const iconHtml = `<div class="w-8 h-8 rounded-full bg-${item.bgColor} flex items-center justify-center mx-auto mb-1"><i data-feather="${item.icon}" class="w-5 h-5 text-${item.color}"></i></div>`;
 
                 indicator.innerHTML = `
                     ${iconHtml}
-                    <span class="text-xs font-bold text-gray-700">${item.name}</span>
+                    <span class="text-sm font-bold text-gray-700 whitespace-nowrap">${item.name}</span>
                     <span class="block text-xs text-gray-500">pH ${item.value.toFixed(1)}</span>
-                    <div class="w-px h-2 bg-gray-400 mx-auto"></div>
                 `;
                 phIndicatorContainer.appendChild(indicator);
+
+                // 3. Atualiza a última posição colocada
+                lastPlacedPercentage = finalPercentage;
             });
+
             feather.replace();
 
-            // Intersection Observer to animate indicators on scroll
+            // Anima os indicadores quando eles entram na tela
             const phScaleContainer = document.getElementById('ph-scale-container');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const indicators = entry.target.querySelectorAll('.ph-scale-indicator');
                         indicators.forEach(indicator => {
-                            setTimeout(() => { // Stagger the animation
+                            setTimeout(() => {
                                 indicator.style.left = indicator.dataset.left;
-                            }, Math.random() * 500);
+                            }, 200 + (Math.random() * 300)); // Pequeno delay para escalonar a animação
                         });
                         observer.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.5 });
 
-            observer.observe(phScaleContainer);
+            if (phScaleContainer) {
+                observer.observe(phScaleContainer);
+            }
+
+
+            // --- INÍCIO DO CÓDIGO DE FUNDO DINÂMICO ---
+            const firebaseConfig = {
+                apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
+                authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
+                projectId: "saudekangenbrasil-e96ff",
+                storageBucket: "saudekangenbrasil-e96ff.firebasestorage.app",
+                messagingSenderId: "854664871239",
+                appId: "1:854664871239:web:a41935181e1b7092c56062",
+                measurementId: "G-KXEP25LRF8"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            async function applyCustomBackgrounds() {
+                try {
+                    const doc = await db.collection('siteContent').doc('backgrounds').get();
+                    if (!doc.exists) return;
+                    
+                    const backgrounds = doc.data();
+                    
+                    for (const sectionId in backgrounds) {
+                        const element = document.getElementById(sectionId);
+                        const bgData = backgrounds[sectionId];
+
+                        if (element && bgData && bgData.mediaUrl) {
+                            element.classList.add('has-dynamic-bg');
+                            element.style.backgroundImage = ''; 
+                            element.classList.remove('bg-secondary');
+                            
+                            element.querySelectorAll('.dynamic-bg-video').forEach(el => el.remove());
+
+                            if (bgData.mediaType === 'video') {
+                                const video = document.createElement('video');
+                                video.src = bgData.mediaUrl;
+                                video.autoplay = true;
+                                video.loop = true;
+                                video.muted = true;
+                                video.playsInline = true;
+                                video.className = 'dynamic-bg-video';
+                                element.prepend(video);
+                            } else if (bgData.mediaType === 'image') {
+                                element.style.backgroundImage = `url('${bgData.mediaUrl}')`;
+                                element.style.backgroundSize = 'cover';
+                                element.style.backgroundPosition = 'center';
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error("Erro ao aplicar fundos:", error);
+                }
+            }
+
+            function addDynamicBgStyling() {
+                const style = document.createElement('style');
+                style.textContent = `
+                    .has-dynamic-bg { position: relative; overflow: hidden; }
+                    .dynamic-bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+                    #alcalinidade-hero.has-dynamic-bg::before {
+                        content: ''; position: absolute; inset: 0;
+                        background-color: rgba(0, 0, 0, 0.5); z-index: 0;
+                    }
+                    .has-dynamic-bg > .container { position: relative; z-index: 1; }
+                    #alcalinidade-hero.has-dynamic-bg h1, 
+                    #alcalinidade-hero.has-dynamic-bg p {
+                        color: white; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+                    }
+                    #alcalinidade-hero.has-dynamic-bg .breadcrumb a { color: #E2E8F0; }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            addDynamicBgStyling();
+            applyCustomBackgrounds();
+            // --- FIM DO CÓDIGO DE FUNDO DINÂMICO ---
         });
     </script>
 </body>

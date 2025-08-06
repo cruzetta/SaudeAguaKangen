@@ -198,6 +198,10 @@
         </div>
     </footer>
 
+    <!-- Scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             feather.replace();
@@ -283,6 +287,68 @@
             }
 
             calculateWaterIntake();
+
+            // --- INÍCIO DO CÓDIGO DE FUNDO DINÂMICO ---
+            const firebaseConfig = {
+                apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
+                authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
+                projectId: "saudekangenbrasil-e96ff",
+                storageBucket: "saudekangenbrasil-e96ff.firebasestorage.app",
+                messagingSenderId: "854664871239",
+                appId: "1:854664871239:web:a41935181e1b7092c56062",
+                measurementId: "G-KXEP25LRF8"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            async function applyCustomBackgrounds() {
+                try {
+                    const doc = await db.collection('siteContent').doc('backgrounds').get();
+                    if (!doc.exists) return;
+                    
+                    const backgrounds = doc.data();
+                    
+                    for (const sectionId in backgrounds) {
+                        const element = document.getElementById(sectionId);
+                        const bgData = backgrounds[sectionId];
+
+                        if (element && bgData && bgData.mediaUrl) {
+                            element.style.backgroundImage = ''; 
+                            element.style.backgroundColor = 'transparent';
+                            
+                            element.querySelectorAll('.dynamic-bg-video').forEach(el => el.remove());
+
+                            if (bgData.mediaType === 'video') {
+                                const video = document.createElement('video');
+                                video.src = bgData.mediaUrl;
+                                video.autoplay = true;
+                                video.loop = true;
+                                video.muted = true;
+                                video.playsInline = true;
+                                video.className = 'dynamic-bg-video';
+                                 Object.assign(video.style, {
+                                    position: 'absolute', top: '0', left: '0',
+                                    width: '100%', height: '100%', objectFit: 'cover',
+                                    zIndex: '0' // Behind content
+                                });
+                                element.style.position = 'relative';
+                                element.style.overflow = 'hidden';
+                                element.prepend(video);
+                            } else if (bgData.mediaType === 'image') {
+                                element.style.backgroundImage = `url('${bgData.mediaUrl}')`;
+                                element.style.backgroundSize = 'cover';
+                                element.style.backgroundPosition = 'center';
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error("Erro ao aplicar fundos:", error);
+                }
+            }
+            
+            applyCustomBackgrounds();
+            // --- FIM DO CÓDIGO DE FUNDO DINÂMICO ---
         });
     </script>
 </body>
