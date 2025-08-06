@@ -43,6 +43,8 @@
         #form-feedback { display: none; padding: 1rem; margin-top: 1rem; border-radius: 0.5rem; font-weight: 500; text-align: center; }
         #form-feedback.success { background-color: #C6F6D5; color: #2F855A; }
         #form-feedback.error { background-color: #FED7D7; color: #C53030; }
+        /* Adicionado para garantir que o conteúdo fique sobre os fundos dinâmicos */
+        section { position: relative; }
     </style>
 </head>
 <body class="bg-neutral-light overflow-x-hidden">
@@ -77,12 +79,12 @@
     <main>
         <!-- ===== Hero Section ===== -->
         <section id="home" class="relative h-screen flex items-center justify-center text-white overflow-hidden">
-            <!-- Vídeo de Fundo -->
+            <!-- Vídeo de Fundo Original -->
             <video autoplay muted loop playsinline id="hero-video">
                 <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/saude%20kangen%20brasil%2FV%C3%ADdeo%20sem%20t%C3%ADtulo.mp4?alt=media&token=78e9f776-133d-4e18-be82-556a4700bd5d" type="video/mp4">
                 O seu navegador não suporta a tag de vídeo.
             </video>
-            <!-- Overlay Escuro -->
+            <!-- Overlay Escuro Original -->
             <div class="absolute inset-0 bg-black/50 z-0"></div>
             
             <!-- Conteúdo da Secção -->
@@ -102,15 +104,12 @@
                     </a>
                 </div>
                 <div class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 font-medium" data-aos="fade-up" data-aos-delay="600" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
-                    <!-- CERTIFICADO INMETRO - ATUALIZAÇÃO -->
                     <span id="inmetro-info" class="flex items-center gap-2 cursor-pointer">
                         <i data-feather="award" class="w-5 h-5 text-accent"></i>Certificado Inmetro
                     </span>
-                    <!-- TECNOLOGIA JAPONESA - ATUALIZAÇÃO -->
                     <span id="tech-info" class="flex items-center gap-2 cursor-pointer">
                         <i data-feather="cpu" class="w-5 h-5 text-accent"></i>Tecnologia Japonesa
                     </span>
-                    <!-- ANOS DE EXPERIÊNCIA - ATUALIZAÇÃO -->
                     <span id="experience-info" class="flex items-center gap-2 cursor-pointer">
                         <i data-feather="calendar" class="w-5 h-5 text-accent"></i>
                         <span id="experience-text"></span>
@@ -154,7 +153,6 @@
                         <p class="mt-2 text-blue-200">Famílias Transformadas no Mundo</p>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="100">
-                        <!-- ANOS DE MERCADO - ATUALIZAÇÃO -->
                         <h3 id="experience-stats" class="text-4xl md:text-5xl font-bold stat-number" data-target="51">0</h3>
                         <p class="mt-2 text-blue-200">Anos de Mercado</p>
                     </div>
@@ -268,9 +266,71 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        // --- LÓGICA PARA FUNDOS DINÂMICOS ---
+        async function applyCustomBackgrounds() {
+            try {
+                const doc = await db.collection('siteContent').doc('backgrounds').get();
+                if (!doc.exists) return;
+                
+                const backgrounds = doc.data();
+                
+                for (const sectionId in backgrounds) {
+                    const element = document.getElementById(sectionId);
+                    const bgData = backgrounds[sectionId];
+
+                    if (element && bgData && bgData.mediaUrl) {
+                        // Remove qualquer fundo dinâmico anterior para evitar duplicatas
+                        element.querySelectorAll('.dynamic-bg').forEach(el => el.remove());
+
+                        // Esconde o conteúdo original do fundo se for a seção 'home'
+                        if (sectionId === 'home') {
+                            const originalVideo = element.querySelector('#hero-video');
+                            const originalOverlay = element.querySelector('.bg-black\\/50');
+                            if (originalVideo) originalVideo.style.display = 'none';
+                            if (originalOverlay) originalOverlay.style.display = 'none';
+                        }
+
+                        if (bgData.mediaType === 'video') {
+                            const video = document.createElement('video');
+                            video.src = bgData.mediaUrl;
+                            video.autoplay = true;
+                            video.loop = true;
+                            video.muted = true;
+                            video.playsInline = true;
+                            video.className = 'dynamic-bg'; // Classe para fácil remoção
+                            Object.assign(video.style, {
+                                position: 'absolute', top: '0', left: '0',
+                                width: '100%', height: '100%', objectFit: 'cover',
+                                zIndex: '-2' // Coloca o vídeo bem no fundo
+                            });
+                            
+                            const overlay = document.createElement('div');
+                            overlay.className = 'dynamic-bg'; // Classe para fácil remoção
+                            Object.assign(overlay.style, {
+                                position: 'absolute', inset: '0',
+                                backgroundColor: 'rgba(0,0,0,0.5)', zIndex: '-1' // Overlay sobre o vídeo
+                            });
+                            
+                            element.prepend(overlay);
+                            element.prepend(video);
+                            element.style.backgroundImage = ''; // Limpa qualquer imagem de fundo
+                        } else if (bgData.mediaType === 'image') {
+                            element.style.backgroundImage = `url('${bgData.mediaUrl}')`;
+                            element.style.backgroundSize = 'cover';
+                            element.style.backgroundPosition = 'center';
+                            element.style.backgroundRepeat = 'no-repeat';
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Erro ao aplicar fundos personalizados:", error);
+            }
+        }
+
         // --- LÓGICA PARA CONTEÚDO DINÂMICO ---
         document.addEventListener('DOMContentLoaded', () => {
             fetchContent();
+            applyCustomBackgrounds(); // Aplica os fundos dinâmicos
             
             // Feather Icons
             feather.replace();
@@ -412,7 +472,9 @@
                 });
             }, { threshold: 0.5 });
 
-            observer.observe(statsSection);
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
 
             // Formulário de Contato
             const form = document.getElementById('contact-form');
@@ -433,49 +495,55 @@
             };
             
             inputs.forEach(input => {
-                input.addEventListener('input', () => {
-                    validateInput(input);
-                    const isFormValid = inputs.every(i => i.classList.contains('valid'));
-                    submitButton.disabled = !isFormValid;
-                });
-            });
-
-            phoneInput.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-                value = value.replace(/(\d{5})(\d)/, '$1-$2');
-                value = value.replace(/(\d{4})(\d)/, '$1-$2');
-                e.target.value = value.slice(0, 15);
-            });
-
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                if (inputs.every(validateInput)) {
-                    submitButton.disabled = true;
-                    submitButton.textContent = 'Enviando...';
-                    formFeedback.style.display = 'none';
-                    try {
-                        await db.collection('leads').add({
-                            name: nameInput.value,
-                            phone: phoneInput.value,
-                            city: cityInput.value,
-                            timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                        });
-                        formFeedback.textContent = 'Dados recebidos! Entraremos em contato em breve.';
-                        formFeedback.className = 'success';
-                        form.reset();
-                        inputs.forEach(input => input.classList.remove('valid', 'invalid'));
-                    } catch (error) {
-                        console.error("Erro ao enviar formulário: ", error);
-                        formFeedback.textContent = 'Erro ao enviar. Tente novamente.';
-                        formFeedback.className = 'error';
-                    } finally {
-                        formFeedback.style.display = 'block';
-                        submitButton.textContent = 'Agendar Agora';
-                        submitButton.disabled = true;
-                    }
+                if(input) {
+                    input.addEventListener('input', () => {
+                        validateInput(input);
+                        const isFormValid = inputs.every(i => i.classList.contains('valid'));
+                        submitButton.disabled = !isFormValid;
+                    });
                 }
             });
+
+            if(phoneInput) {
+                phoneInput.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                    e.target.value = value.slice(0, 15);
+                });
+            }
+
+            if(form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    if (inputs.every(validateInput)) {
+                        submitButton.disabled = true;
+                        submitButton.textContent = 'Enviando...';
+                        formFeedback.style.display = 'none';
+                        try {
+                            await db.collection('leads').add({
+                                name: nameInput.value,
+                                phone: phoneInput.value,
+                                city: cityInput.value,
+                                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                            });
+                            formFeedback.textContent = 'Dados recebidos! Entraremos em contato em breve.';
+                            formFeedback.className = 'success';
+                            form.reset();
+                            inputs.forEach(input => input.classList.remove('valid', 'invalid'));
+                        } catch (error) {
+                            console.error("Erro ao enviar formulário: ", error);
+                            formFeedback.textContent = 'Erro ao enviar. Tente novamente.';
+                            formFeedback.className = 'error';
+                        } finally {
+                            formFeedback.style.display = 'block';
+                            submitButton.textContent = 'Agendar Agora';
+                            submitButton.disabled = true;
+                        }
+                    }
+                });
+            }
         });
 
         async function fetchContent() {
