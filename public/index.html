@@ -36,14 +36,52 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-        .form-input.invalid { border-color: #E53E3E; ring-color: #E53E3E; }
-        .form-input.valid { border-color: #48BB78; ring-color: #48BB78; }
-        .error-message { color: #E53E3E; font-size: 0.875rem; margin-top: 0.25rem; }
         #hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translateX(-50%) translateY(-50%); object-fit: cover; }
-        #form-feedback { display: none; padding: 1rem; margin-top: 1rem; border-radius: 0.5rem; font-weight: 500; text-align: center; }
-        #form-feedback.success { background-color: #C6F6D5; color: #2F855A; }
-        #form-feedback.error { background-color: #FED7D7; color: #C53030; }
         
+        /* Estilos para o novo questionário */
+        .wizard-step {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .wizard-step.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            transition: ring 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: #4299E1;
+        }
+        .radio-label {
+            display: block;
+            cursor: pointer;
+            padding: 1rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .radio-label:hover {
+            border-color: #4299E1;
+        }
+        input[type="radio"]:checked + .radio-label {
+            background-color: #EBF8FF;
+            border-color: #4299E1;
+            font-weight: 600;
+        }
+        input[type="radio"] {
+            display: none;
+        }
+
         /* Adicionado para destacar texto sobre fundos dinâmicos */
         .has-dynamic-bg {
             position: relative; 
@@ -115,7 +153,7 @@
                     Descubra como a tecnologia japonesa Kangen pode revolucionar sua saúde e bem-estar.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="fade-up" data-aos-delay="400">
-                    <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%81GUA%20KANGEN." target="_blank" class="w-full sm:w-auto bg-primary text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-blue-900 transition shadow-lg">
+                    <a href="#contact" class="w-full sm:w-auto bg-primary text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-blue-900 transition shadow-lg">
                         Solicitar Demonstração Gratuita
                     </a>
                     <a href="#benefits" class="w-full sm:w-auto text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/20 transition border-2 border-white">
@@ -200,41 +238,108 @@
             </div>
         </section>
 
-        <!-- ===== Final CTA Section ===== -->
+        <!-- ===== Final CTA Section (NOVO QUESTIONÁRIO) ===== -->
         <section id="contact" class="py-20 bg-primary text-white">
             <div class="container mx-auto px-6">
                 <div class="bg-secondary rounded-xl p-8 md:p-12 lg:p-16 shadow-2xl flex flex-col lg:flex-row items-center gap-8" data-aos="flip-up">
                     <div class="lg:w-1/2 text-center lg:text-left">
                         <h2 class="text-3xl md:text-4xl font-bold mb-4">Veja a diferença na prática.</h2>
-                        <p class="text-lg text-blue-100 mb-6">Agende uma demonstração gratuita em sua casa ou online e descubra, sem compromisso, o poder da Água Kangen.</p>
+                        <p class="text-lg text-blue-100 mb-6">Responda algumas perguntas rápidas e agende uma demonstração gratuita, sem compromisso, para descobrir o poder da Água Kangen.</p>
                         <div class="flex items-center justify-center lg:justify-start gap-2 text-lg font-semibold">
                             <i data-feather="zap" class="text-green-300"></i>
                             <span>Resultados imediatos e comprovados.</span>
                         </div>
                     </div>
                     <div class="lg:w-1/2 w-full">
-                        <form id="contact-form" class="bg-white p-8 rounded-lg shadow-lg w-full" novalidate>
-                            <h3 class="text-2xl font-bold text-primary mb-6 text-center">Quero minha demonstração!</h3>
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-medium mb-1">Nome Completo</label>
-                                <input type="text" id="name" name="name" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" required minlength="3">
-                                <p class="error-message hidden">Por favor, insira um nome válido.</p>
-                            </div>
-                            <div class="mb-4">
-                                <label for="phone" class="block text-gray-700 font-medium mb-1">WhatsApp (com DDD)</label>
-                                <input type="tel" id="phone" name="phone" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" required placeholder="(XX) XXXXX-XXXX">
-                                <p class="error-message hidden">Por favor, insira um telefone válido.</p>
-                            </div>
+                        <div id="demo-wizard" class="bg-white p-8 rounded-lg shadow-lg w-full text-gray-800">
+                            <!-- Progress Bar -->
                             <div class="mb-6">
-                                <label for="city" class="block text-gray-700 font-medium mb-1">Cidade / Estado</label>
-                                <input type="text" id="city" name="city" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2" required minlength="3">
-                                <p class="error-message hidden">Por favor, insira sua cidade e estado.</p>
+                                <div class="bg-gray-200 rounded-full h-2.5">
+                                    <div id="progress-bar" class="bg-green-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div>
+                                </div>
                             </div>
-                            <button id="submit-button" type="submit" class="w-full bg-accent text-white font-bold py-3 px-8 rounded-full text-lg transition shadow-lg disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>
-                                Agendar Agora
-                            </button>
-                            <div id="form-feedback"></div>
-                        </form>
+
+                            <!-- Step 1: Name -->
+                            <div class="wizard-step active" data-step="1">
+                                <label for="name" class="block text-xl font-bold mb-4">Olá! Para começar, qual é o seu nome?</label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Digite seu nome completo" required>
+                            </div>
+
+                            <!-- Step 2: Conhece Enagic -->
+                            <div class="wizard-step" data-step="2">
+                                <label class="block text-xl font-bold mb-4">Você já conhece os produtos da Enagic®?</label>
+                                <div class="space-y-3">
+                                    <div>
+                                        <input type="radio" id="conhece-sim" name="conhece" value="Sim">
+                                        <label for="conhece-sim" class="radio-label">Sim, já conheço</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="conhece-nao" name="conhece" value="Não">
+                                        <label for="conhece-nao" class="radio-label">Não, é a primeira vez</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3: Viu Demo -->
+                            <div class="wizard-step" data-step="3">
+                                <label class="block text-xl font-bold mb-4">Você já assistiu a uma demonstração da Água Kangen® alguma vez?</label>
+                                 <div class="space-y-3">
+                                    <div>
+                                        <input type="radio" id="demo-sim" name="viuDemo" value="Sim">
+                                        <label for="demo-sim" class="radio-label">Sim, já assisti</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="demo-nao" name="viuDemo" value="Não">
+                                        <label for="demo-nao" class="radio-label">Não, nunca vi</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Interesse Produto -->
+                            <div class="wizard-step" data-step="4">
+                                <label class="block text-xl font-bold mb-4">Você tem interesse em algum produto específico?</label>
+                                <div class="space-y-3">
+                                    <div>
+                                        <input type="radio" id="interesse-sim" name="interesseProduto" value="Sim">
+                                        <label for="interesse-sim" class="radio-label">Sim</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="interesse-nao" name="interesseProduto" value="Não">
+                                        <label for="interesse-nao" class="radio-label">Não, quero conhecer</label>
+                                    </div>
+                                </div>
+                                <input type="text" id="produto-especifico" name="produtoEspecifico" class="form-input mt-4 hidden" placeholder="Qual produto? Ex: K8, SD501...">
+                            </div>
+                            
+                            <!-- Step 5: Data e Hora -->
+                            <div class="wizard-step" data-step="5">
+                                <label class="block text-xl font-bold mb-4">Qual a melhor data e horário para a demonstração?</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <input type="date" id="data-demo" name="dataDemo" class="form-input">
+                                    <input type="time" id="hora-demo" name="horaDemo" class="form-input">
+                                </div>
+                            </div>
+                            
+                            <!-- Step 6: Final -->
+                            <div class="wizard-step text-center" data-step="6">
+                                <i data-feather="check-circle" class="w-16 h-16 text-green-500 mx-auto mb-4"></i>
+                                <h3 class="text-2xl font-bold text-primary mb-4">Tudo pronto!</h3>
+                                <p class="text-secondary mb-6">Suas informações estão prontas. Clique no botão abaixo para nos enviar uma mensagem no WhatsApp e confirmar seu agendamento.</p>
+                                <button id="send-whatsapp" class="w-full bg-green-500 text-white font-bold py-4 px-8 rounded-full text-lg transition shadow-lg hover:bg-green-600 flex items-center justify-center gap-3">
+                                    <i data-feather="send"></i> Enviar e Agendar via WhatsApp
+                                </button>
+                            </div>
+                            
+                            <!-- Navigation -->
+                            <div class="mt-8 flex justify-between items-center">
+                                <button id="prev-step" class="text-gray-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition">
+                                    &larr; Voltar
+                                </button>
+                                <button id="next-step" class="bg-accent text-white font-bold py-2 px-6 rounded-full transition shadow-lg hover:bg-green-600">
+                                    Próximo &rarr;
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -413,41 +518,19 @@
                 yearsOfExperience--;
             }
 
-            // Update text content
-            if (experienceText) {
-                experienceText.textContent = `${yearsOfExperience} anos de experiência`;
-            }
-            if (experienceStats) {
-                experienceStats.setAttribute('data-target', yearsOfExperience);
-            }
-
-            // Função para mostrar o toast
+            if (experienceText) experienceText.textContent = `${yearsOfExperience} anos de experiência`;
+            if (experienceStats) experienceStats.setAttribute('data-target', yearsOfExperience);
+            
             const showToast = (message) => {
                 if(infoToast) {
                     infoToast.textContent = message;
                     infoToast.classList.remove('opacity-0');
-                    setTimeout(() => {
-                        infoToast.classList.add('opacity-0');
-                    }, 3500); 
+                    setTimeout(() => { infoToast.classList.add('opacity-0'); }, 3500); 
                 }
             };
-
-            // Adiciona listeners para os cliques
-            if (inmetroInfo) {
-                inmetroInfo.addEventListener('click', () => {
-                    showToast('Produtos certificados pelo INMETRO, garantindo máxima segurança e qualidade.');
-                });
-            }
-            if (techInfo) {
-                techInfo.addEventListener('click', () => {
-                    showToast('Tecnologia da Enagic®, empresa japonesa de Osaka, líder mundial desde 1974.');
-                });
-            }
-            if (experienceInfo) {
-                experienceInfo.addEventListener('click', () => {
-                    showToast('Fundada em 21 de junho de 1974');
-                });
-            }
+            if (inmetroInfo) inmetroInfo.addEventListener('click', () => showToast('Produtos certificados pelo INMETRO, garantindo máxima segurança e qualidade.'));
+            if (techInfo) techInfo.addEventListener('click', () => showToast('Tecnologia da Enagic®, empresa japonesa de Osaka, líder mundial desde 1974.'));
+            if (experienceInfo) experienceInfo.addEventListener('click', () => showToast('Fundada em 21 de junho de 1974'));
 
             // Animated Stats Counter
             const statsSection = document.getElementById('stats');
@@ -485,77 +568,115 @@
                 });
             }, { threshold: 0.5 });
 
-            if (statsSection) {
-                observer.observe(statsSection);
-            }
+            if (statsSection) observer.observe(statsSection);
 
-            // Formulário de Contato
-            const form = document.getElementById('contact-form');
-            const nameInput = document.getElementById('name');
-            const phoneInput = document.getElementById('phone');
-            const cityInput = document.getElementById('city');
-            const submitButton = document.getElementById('submit-button');
-            const formFeedback = document.getElementById('form-feedback');
-            const inputs = [nameInput, phoneInput, cityInput];
+            // --- LÓGICA DO NOVO QUESTIONÁRIO (WIZARD) ---
+            const wizard = document.getElementById('demo-wizard');
+            if (wizard) {
+                const steps = wizard.querySelectorAll('.wizard-step');
+                const prevBtn = wizard.querySelector('#prev-step');
+                const nextBtn = wizard.querySelector('#next-step');
+                const sendBtn = wizard.querySelector('#send-whatsapp');
+                const progressBar = wizard.querySelector('#progress-bar');
+                const totalSteps = steps.length;
+                let currentStep = 1;
+                const formData = {};
 
-            const validateInput = (input) => {
-                const errorMessage = input.nextElementSibling;
-                let isValid = (input.type === 'tel') ? /^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/.test(input.value) : input.checkValidity();
-                input.classList.toggle('valid', isValid);
-                input.classList.toggle('invalid', !isValid);
-                errorMessage.classList.toggle('hidden', isValid);
-                return isValid;
-            };
-            
-            inputs.forEach(input => {
-                if(input) {
-                    input.addEventListener('input', () => {
-                        validateInput(input);
-                        const isFormValid = inputs.every(i => i.classList.contains('valid'));
-                        submitButton.disabled = !isFormValid;
+                const updateWizard = () => {
+                    steps.forEach(step => {
+                        step.classList.toggle('active', parseInt(step.dataset.step) === currentStep);
                     });
-                }
-            });
+                    
+                    progressBar.style.width = `${((currentStep - 1) / (totalSteps - 1)) * 100}%`;
+                    
+                    prevBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
+                    nextBtn.style.display = currentStep === totalSteps ? 'none' : 'inline-block';
+                };
 
-            if(phoneInput) {
-                phoneInput.addEventListener('input', (e) => {
-                    let value = e.target.value.replace(/\D/g, '');
-                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
-                    value = value.replace(/(\d{4})(\d)/, '$1-$2');
-                    e.target.value = value.slice(0, 15);
-                });
-            }
+                const validateStep = () => {
+                    const activeStep = wizard.querySelector(`.wizard-step.active`);
+                    const inputs = activeStep.querySelectorAll('input[required], input[type="radio"]');
+                    if (inputs.length === 0) return true;
 
-            if(form) {
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    if (inputs.every(validateInput)) {
-                        submitButton.disabled = true;
-                        submitButton.textContent = 'Enviando...';
-                        formFeedback.style.display = 'none';
-                        try {
-                            await db.collection('leads').add({
-                                name: nameInput.value,
-                                phone: phoneInput.value,
-                                city: cityInput.value,
-                                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                            });
-                            formFeedback.textContent = 'Dados recebidos! Entraremos em contato em breve.';
-                            formFeedback.className = 'success';
-                            form.reset();
-                            inputs.forEach(input => input.classList.remove('valid', 'invalid'));
-                        } catch (error) {
-                            console.error("Erro ao enviar formulário: ", error);
-                            formFeedback.textContent = 'Erro ao enviar. Tente novamente.';
-                            formFeedback.className = 'error';
-                        } finally {
-                            formFeedback.style.display = 'block';
-                            submitButton.textContent = 'Agendar Agora';
-                            submitButton.disabled = true;
+                    if (inputs[0].type === 'radio') {
+                        const isChecked = activeStep.querySelector('input[type="radio"]:checked');
+                        return !!isChecked;
+                    } else {
+                        return inputs[0].value.trim() !== '';
+                    }
+                };
+                
+                nextBtn.addEventListener('click', () => {
+                    if (validateStep()) {
+                        const activeStep = wizard.querySelector(`.wizard-step.active`);
+                        const stepInputs = activeStep.querySelectorAll('input');
+                        stepInputs.forEach(input => {
+                            if (input.type === 'radio' && input.checked) {
+                                formData[input.name] = input.value;
+                            } else if (input.type !== 'radio') {
+                                formData[input.name] = input.value;
+                            }
+                        });
+
+                        if (currentStep < totalSteps) {
+                            currentStep++;
+                            updateWizard();
                         }
+                    } else {
+                        alert('Por favor, preencha o campo para continuar.');
                     }
                 });
+
+                prevBtn.addEventListener('click', () => {
+                    if (currentStep > 1) {
+                        currentStep--;
+                        updateWizard();
+                    }
+                });
+
+                // Lógica para mostrar/ocultar campo de produto específico
+                const interesseRadios = document.querySelectorAll('input[name="interesseProduto"]');
+                const produtoEspecificoInput = document.getElementById('produto-especifico');
+                interesseRadios.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        produtoEspecificoInput.classList.toggle('hidden', e.target.value !== 'Sim');
+                    });
+                });
+
+                sendBtn.addEventListener('click', () => {
+                    // Coleta dados do último passo
+                    formData.dataDemo = document.getElementById('data-demo').value;
+                    formData.horaDemo = document.getElementById('hora-demo').value;
+
+                    // Formata a data para o padrão brasileiro
+                    let dataFormatada = "Não especificada";
+                    if (formData.dataDemo) {
+                        const [ano, mes, dia] = formData.dataDemo.split('-');
+                        dataFormatada = `${dia}/${mes}/${ano}`;
+                    }
+
+                    let mensagem = `Olá! Gostaria de agendar uma demonstração da Água Kangen®.\n\n*Resumo do meu perfil:*\n\n`;
+                    mensagem += `👤 *Nome:* ${formData.name || 'Não preenchido'}\n`;
+                    mensagem += `💡 *Já conhece a Enagic®?* ${formData.conhece || 'Não preenchido'}\n`;
+                    mensagem += `👀 *Já viu uma demonstração?* ${formData.viuDemo || 'Não preenchido'}\n`;
+                    
+                    if (formData.interesseProduto === 'Sim') {
+                        mensagem += `💧 *Interesse específico:* ${formData.produtoEspecifico || 'Sim, mas não especificou qual'}\n`;
+                    } else {
+                        mensagem += `💧 *Tem interesse específico?* ${formData.interesseProduto || 'Não'}\n`;
+                    }
+                    
+                    mensagem += `\n*Sugestão de agendamento:*\n`;
+                    mensagem += `🗓️ *Data:* ${dataFormatada}\n`;
+                    mensagem += `⏰ *Horário:* ${formData.horaDemo || 'Não especificado'}`;
+                    
+                    const whatsappNumber = '5567984533785';
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
+                    
+                    window.open(whatsappUrl, '_blank');
+                });
+
+                updateWizard();
             }
         });
 
@@ -568,7 +689,7 @@
                     renderProducts(content.products);
                     renderTestimonials(content.testimonials);
                 } else {
-                    console.log("Documento de conteúdo não encontrado. O conteúdo estático será exibido.");
+                    console.log("Documento de conteúdo não encontrado.");
                 }
             } catch (error) {
                 console.error("Erro ao carregar conteúdo dinâmico:", error);
@@ -578,17 +699,14 @@
         function renderBenefits(benefits) {
             const container = document.getElementById('benefits-list');
             if (!container || !benefits) return;
-
             const pageMap = {
                 "hidratação superior": "hidratacao.html",
                 "poder antioxidante": "antioxidante.html",
                 "ph alcalino balanceado": "alcalinidade.html",
                 "certificações globais": "certificacoes.html"
             };
-
             container.innerHTML = benefits.map((item, index) => {
-                const url = pageMap[item.title.toLowerCase()] || '#benefits'; // Fallback to section id
-                
+                const url = pageMap[item.title.toLowerCase()] || '#benefits';
                 return `
                     <div data-aos="fade-up" data-aos-delay="${index * 100}">
                         <a href="${url}" class="block bg-neutral-light p-8 rounded-xl shadow-sm text-center h-full flex flex-col hover-lift">
@@ -612,13 +730,10 @@
         function renderProducts(products) {
             const container = document.getElementById('products-list');
             if (!container || !products) return;
-            // **NÚMERO DE WHATSAPP ATUALIZADO AQUI**
             const whatsappNumber = '5567984533785'; 
-
             container.innerHTML = products.map((item, index) => {
                 const message = encodeURIComponent(`Olá! Tenho interesse no ionizador ${item.name}. Poderia me dar mais informações?`);
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
-                
                 return `
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="${index * 150}">
                     <div class="p-4 bg-gray-100 flex justify-center">
