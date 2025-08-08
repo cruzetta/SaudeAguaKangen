@@ -54,22 +54,21 @@
                 </div>
             </div>
 
-            <!-- INÍCIO: Gerenciamento de Mídia das Páginas de Produto -->
+            <!-- Gerenciamento de Mídia das Páginas de Produto -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Mídia das Páginas de Produto</h2>
-                <p class="text-sm text-gray-500 mb-4">Gerencie as imagens ou vídeos que aparecem nas abas de cada página de produto.</p>
+                <p class="text-sm text-gray-500 mb-4">Gerencie a imagem principal e as mídias das abas de cada página de produto.</p>
                 <div id="product-media-container" class="space-y-6">
                     <!-- Conteúdo dinâmico da mídia dos produtos será carregado aqui -->
                 </div>
             </div>
-            <!-- FIM: Gerenciamento de Mídia das Páginas de Produto -->
 
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Benefícios</h2>
                 <div id="benefits-container" class="space-y-4"></div>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Produtos</h2>
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Produtos (Página Inicial)</h2>
                 <div id="products-container" class="space-y-4"></div>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-md">
@@ -109,7 +108,7 @@
         const db = firebase.firestore();
         const contentRef = db.collection('siteContent').doc('home');
         const backgroundsRef = db.collection('siteContent').doc('backgrounds');
-        const productMediaRef = db.collection('siteContent').doc('productMedia'); // Nova referência para mídia de produtos
+        const productMediaRef = db.collection('siteContent').doc('productMedia');
 
         document.addEventListener('DOMContentLoaded', () => {
             const loginSection = document.getElementById('login-section');
@@ -159,12 +158,9 @@
                         populateForm('benefits', content.benefits);
                         populateForm('products', content.products);
                         populateForm('testimonials', content.testimonials);
-                    } else {
-                        // Se o documento principal não existir, você pode querer inicializá-lo
-                        console.log("Documento 'home' não encontrado. Considere inicializá-lo.");
                     }
                     loadBackgrounds();
-                    loadProductMedia(); // Carrega os dados da mídia dos produtos
+                    loadProductMedia();
                 } catch (error) {
                     console.error("Erro ao carregar conteúdo:", error);
                     showToast("Erro ao carregar conteúdo.", "error");
@@ -196,35 +192,18 @@
                 }
             };
             
-            // --- INÍCIO: Funções para Mídia de Produto ---
             const productMediaConfig = {
                 k8: {
                     name: "Kangen 8 (K8)",
-                    tabs: {
-                        kangen: "Água Kangen®",
-                        neutra: "Água Neutra",
-                        beleza: "Água de Beleza",
-                        acida: "Água Ácida Forte",
-                        kangen_forte: "Água Kangen Forte"
-                    }
+                    tabs: { kangen: "Água Kangen®", neutra: "Água Neutra", beleza: "Água de Beleza", acida: "Água Ácida Forte", kangen_forte: "Água Kangen Forte" }
                 },
                 sd501_platinum: {
                     name: "SD501 Platinum",
-                    tabs: {
-                        kangen: "Água Kangen®",
-                        neutra: "Água Neutra",
-                        beleza: "Água de Beleza",
-                        acida: "Água Ácida Forte",
-                        kangen_forte: "Água Kangen Forte"
-                    }
+                    tabs: { kangen: "Água Kangen®", neutra: "Água Neutra", beleza: "Água de Beleza", acida: "Água Ácida Forte", kangen_forte: "Água Kangen Forte" }
                 },
                 anespa_dx: {
                     name: "Anespa DX",
-                    tabs: {
-                        cloro: "Remove 100% do Cloro",
-                        mineral: "Água Mineral Ionizada",
-                        relax: "Massagem Relaxante"
-                    }
+                    tabs: { cloro: "Remove 100% do Cloro", mineral: "Água Mineral Ionizada", relax: "Massagem Relaxante" }
                 }
             };
 
@@ -247,7 +226,19 @@
                     const product = productMediaConfig[productId];
                     const productDiv = document.createElement('div');
                     productDiv.className = 'border p-4 rounded-lg bg-gray-50';
-                    let productHTML = `<h3 class="text-xl font-semibold text-gray-800 mb-3">${product.name}</h3><div class="space-y-3">`;
+                    
+                    const mainImage = (mediaData[productId] && mediaData[productId].mainImage) ? mediaData[productId].mainImage : '';
+
+                    let productHTML = `
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">${product.name}</h3>
+                        <div class="space-y-3">
+                            <!-- CAMPO PARA IMAGEM PRINCIPAL -->
+                            <div class="border-b pb-3 mb-3">
+                                <label class="block text-base font-medium text-gray-700">Imagem Principal (Hero)</label>
+                                <input type="url" data-section="productMedia" data-product-id="${productId}" data-field="mainImage" value="${mainImage}" class="w-full mt-1 p-2 border rounded-md" placeholder="URL da Imagem Principal">
+                            </div>
+                            <!-- FIM DO CAMPO -->
+                    `;
 
                     Object.keys(product.tabs).forEach(tabId => {
                         const tabName = product.tabs[tabId];
@@ -270,8 +261,6 @@
                     container.appendChild(productDiv);
                 });
             };
-            // --- FIM: Funções para Mídia de Produto ---
-
 
             const populateBackgroundsForm = (backgrounds) => {
                 const container = document.getElementById('backgrounds-container');
@@ -321,7 +310,6 @@
                 saveButton.disabled = true;
                 saveButton.textContent = 'Salvando...';
 
-                // Salvar conteúdo principal (benefícios, produtos, etc.)
                 const newContent = { benefits: [], products: [], testimonials: [] };
                 document.querySelectorAll('#content-form [data-section][data-index]').forEach(input => {
                     const { section, index, field } = input.dataset;
@@ -331,7 +319,6 @@
                     newContent[section][parseInt(index)][field] = input.value;
                 });
                 
-                // Salvar fundos
                 const newBackgrounds = {};
                 document.querySelectorAll('#backgrounds-container [data-id]').forEach(input => {
                     const { id, field } = input.dataset;
@@ -341,25 +328,24 @@
                     newBackgrounds[id][field] = input.value;
                 });
 
-                // Salvar mídia dos produtos
                 const newProductMedia = {};
                 document.querySelectorAll('#product-media-container [data-product-id]').forEach(input => {
                     const { productId, tabId, field } = input.dataset;
-                    if (!newProductMedia[productId]) {
-                        newProductMedia[productId] = {};
+                    if (!newProductMedia[productId]) newProductMedia[productId] = {};
+                    
+                    if (tabId) { // Se for um campo de uma aba
+                        if (!newProductMedia[productId][tabId]) newProductMedia[productId][tabId] = {};
+                        newProductMedia[productId][tabId][field] = input.value;
+                    } else { // Se for o campo da imagem principal
+                        newProductMedia[productId][field] = input.value;
                     }
-                    if (!newProductMedia[productId][tabId]) {
-                        newProductMedia[productId][tabId] = {};
-                    }
-                    newProductMedia[productId][tabId][field] = input.value;
                 });
 
                 try {
-                    // Executa todas as operações de escrita em paralelo para mais eficiência
                     await Promise.all([
                         contentRef.set(newContent, { merge: true }),
                         backgroundsRef.set(newBackgrounds, { merge: true }),
-                        productMediaRef.set(newProductMedia, { merge: true }) // Salva a nova estrutura
+                        productMediaRef.set(newProductMedia, { merge: true })
                     ]);
                     showToast("Conteúdo atualizado com sucesso!", 'success');
                 } catch (error) {
