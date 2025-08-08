@@ -94,7 +94,7 @@
                 <p class="breadcrumb text-sm text-gray-500 mb-4"><a href="index.html">Início</a> / <a href="index.html#products">Produtos</a> / SD501 Platinum</p>
                 <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div data-aos="fade-right">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/saudekangenbrasil-e96ff.appspot.com/o/products%2Fsd501-platinum.png?alt=media&token=355f3258-2e11-47d3-8f0a-810931818274" alt="Ionizador LeveLuk SD501 Platinum" class="rounded-lg shadow-xl w-full">
+                        <img id="main-product-image" src="https://firebasestorage.googleapis.com/v0/b/saudekangenbrasil-e96ff.appspot.com/o/products%2Fsd501-platinum.png?alt=media&token=355f3258-2e11-47d3-8f0a-810931818274" alt="Ionizador LeveLuk SD501 Platinum" class="rounded-lg shadow-xl w-full">
                     </div>
                     <div data-aos="fade-left">
                         <h1 class="text-4xl md:text-5xl font-bold text-primary">SD501 Platinum</h1>
@@ -363,15 +363,24 @@
                     }
                     
                     const allMedia = doc.data();
-                    const productMedia = allMedia.sd501_platinum; // Pega apenas os dados do SD501 Platinum
+                    const productMedia = allMedia.sd501_platinum; 
                     if (!productMedia) return;
 
+                    // Carregar imagem principal
+                    const mainImageElement = document.getElementById('main-product-image');
+                    if (mainImageElement && productMedia.mainImage) {
+                        mainImageElement.src = productMedia.mainImage;
+                    }
+
+                    // Carregar mídias das abas
                     Object.keys(productMedia).forEach(tabId => {
+                        if (tabId === 'mainImage') return;
+
                         const mediaData = productMedia[tabId];
                         const container = document.getElementById(`media-container-${tabId.replace('-', '_')}`);
                         
                         if (container && mediaData && mediaData.mediaUrl) {
-                            container.innerHTML = ''; // Limpa o conteúdo placeholder
+                            container.innerHTML = ''; 
 
                             if (mediaData.mediaType === 'video') {
                                 const video = document.createElement('video');
@@ -381,7 +390,7 @@
                                 video.muted = true;
                                 video.playsInline = true;
                                 container.appendChild(video);
-                            } else { // 'image'
+                            } else { 
                                 const img = document.createElement('img');
                                 img.src = mediaData.mediaUrl;
                                 img.alt = `Mídia para ${tabId}`;
