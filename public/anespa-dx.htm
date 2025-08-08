@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anespa DX - Seu Spa Particular em Casa - Saude Kangen Brasil</title>
+    <meta name="description" content="Transforme seu banho em uma experiência de spa com o Anespa DX. Remova 100% do cloro e desfrute de uma água mineral ionizada para uma pele e cabelo mais saudáveis.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #2D3748; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .text-secondary { color: #718096; }
+        .bg-primary { background-color: #2C5282; }
+        .bg-secondary { background-color: #4299E1; }
+        .bg-accent { background-color: #48BB78; }
+        .bg-neutral-light { background-color: #F7FAFC; }
+        .text-primary { color: #2C5282; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* Estilos para abas interativas */
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        .tab-button.active {
+            border-bottom-color: #4299E1; /* bg-secondary */
+            color: #2C5282; /* text-primary */
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- ===== Header ===== -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">
+                Saude Kangen Brasil
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
+                <a href="index.html#products" class="text-primary font-semibold transition">Produtos</a>
+                <a href="index.html#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20SISTEMA%20DE%20SPA%20ANESPA%20DX" target="_blank" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Quero meu Anespa DX</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-feather="menu" class="text-primary"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="index.html#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
+            <a href="index.html#products" class="block py-2 px-6 text-primary bg-gray-100 font-semibold">Produtos</a>
+            <a href="index.html#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
+            <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20SISTEMA%20DE%20SPA%20ANESPA%20DX" target="_blank" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Quero meu Anespa DX</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== Hero Section ===== -->
+        <section class="bg-neutral-light pt-24 pb-16">
+            <div class="container mx-auto px-6">
+                <p class="breadcrumb text-sm text-gray-500 mb-4"><a href="index.html">Início</a> / <a href="index.html#products">Produtos</a> / Anespa DX</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div data-aos="fade-right">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/saudekangenbrasil-e96ff.appspot.com/o/products%2Fanespa.png?alt=media&token=c1935817-68b6-4c4f-9e7f-b88301710924" alt="Sistema de Spa Anespa DX" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div data-aos="fade-left">
+                        <h1 class="text-4xl md:text-5xl font-bold text-primary">Anespa DX</h1>
+                        <p class="text-xl text-secondary mt-2 mb-6">Transforme seu banho em uma experiência de spa.</p>
+                        <p class="mb-4">O Anespa DX produz um fluxo contínuo de água mineral ionizada e saudável. Com um sistema de filtro duplo, remove 100% do cloro e outras substâncias nocivas da água da sua torneira, e adiciona minerais hidratantes de fontes termais para uma pele e cabelo radiantes.</p>
+                        <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20SISTEMA%20DE%20SPA%20ANESPA%20DX.%20Poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg inline-flex items-center gap-2">
+                            <i data-feather="droplet"></i> Quero essa experiência
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Interactive Benefits Section ===== -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Benefícios do seu Spa Particular</h2>
+                    <p class="text-lg text-secondary mt-2">Mais que um banho, um tratamento de beleza e relaxamento.</p>
+                </div>
+
+                <!-- Tab Buttons -->
+                <div id="tabs-container" class="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 border-b border-gray-200" data-aos="fade-up">
+                    <button class="tab-button active text-lg font-semibold py-4 px-2" data-tab="cloro">Remove 100% do Cloro</button>
+                    <button class="tab-button text-lg font-semibold py-4 px-2" data-tab="mineral">Água Mineral Ionizada</button>
+                    <button class="tab-button text-lg font-semibold py-4 px-2" data-tab="relax">Massagem Relaxante</button>
+                </div>
+
+                <!-- Tab Content Panels -->
+                <div id="tab-contents" class="max-w-4xl mx-auto">
+                    <!-- Chlorine Removal -->
+                    <div id="tab-cloro" class="tab-content active">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/FEE2E2/991B1B?text=Pele+e+Cabelo+Protegidos" alt="Pele e cabelo protegidos do cloro" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="shield"></i>Proteção Total Contra o Cloro</h3>
+                                <p class="text-secondary mb-4">Um banho de 15 minutos pode expor seu corpo ao cloro equivalente a beber 1 litro de água. O Anespa DX remove o cloro, bactérias e resíduos, protegendo sua pele e cabelo do ressecamento, irritação e de substâncias tóxicas como o trialometano.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Previne o ressecamento da pele e do cabelo.</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Protege a pele sensível de irritações.</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Mantém a cor de cabelos tingidos por mais tempo.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mineral Water -->
+                    <div id="tab-mineral" class="tab-content">
+                         <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/D1FAE5/065F46?text=Água+Rica+em+Minerais" alt="Água rica em minerais" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="gem"></i>Fonte de Água Mineral</h3>
+                                <p class="text-secondary mb-4">O sistema contém uma mistura de rochas da fonte termal de Futamata e cerâmica de Chikutan (carvão de bambu). Essa combinação gera uma água levemente alcalina, rica em minerais e íons negativos, que relaxa e hidrata profundamente.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Pele mais macia, hidratada e com mais brilho.</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Cabelo mais sedoso e maleável.</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Sensação de conforto e aquecimento.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Relaxing Massage -->
+                    <div id="tab-relax" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/E0E7FF/3730A3?text=Chuveiro+com+Massagem" alt="Chuveiro com massagem relaxante" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="smile"></i>Massagem e Relaxamento</h3>
+                                <p class="text-secondary mb-4">O chuveiro do Anespa DX foi projetado para proporcionar uma massagem relaxante, aliviando a tensão do dia a dia e transformando seu banho em um momento de puro prazer.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Jato de água vigoroso e relaxante.</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Alivia o estresse e a tensão muscular.</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Comece e termine seu dia revigorado.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Features Section ===== -->
+        <section class="py-20 bg-neutral-light">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Engenharia Japonesa para seu Banho</h2>
+                    <p class="text-lg text-secondary mt-2">Componentes de alta qualidade para uma experiência única.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="text-center p-6" data-aos="fade-up">
+                        <div class="bg-blue-100 text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i data-feather="cpu" class="w-10 h-10"></i></div>
+                        <h3 class="font-bold text-lg text-primary">Filtro de Carvão Ativado</h3>
+                        <p class="text-secondary text-sm">O primeiro estágio do filtro duplo, com fibra de carbono ativado e turmalina, garante a remoção de cloro e resíduos.</p>
+                    </div>
+                    <div class="text-center p-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-blue-100 text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i data-feather="award" class="w-10 h-10"></i></div>
+                        <h3 class="font-bold text-lg text-primary">Cartucho de Cerâmica</h3>
+                        <p class="text-secondary text-sm">Contém rochas da fonte termal de Futamata e carvão de bambu (Chikutan) para mineralizar e relaxar.</p>
+                    </div>
+                    <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-blue-100 text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i data-feather="magnet" class="w-10 h-10"></i></div>
+                        <h3 class="font-bold text-lg text-primary">Ímã de Neodímio</h3>
+                        <p class="text-secondary text-sm">Decompõe as moléculas de água em agrupamentos menores para ativar a água e melhorar a absorção dos minerais pela pele.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== Specifications Section ===== -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Especificações Técnicas</h2>
+                </div>
+                <div class="max-w-2xl mx-auto bg-neutral-light p-8 rounded-lg shadow-md" data-aos="fade-up">
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Dimensões:</span> <span>34.6cm (Altura) x 13cm (Diâmetro)</span></li>
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Peso:</span> <span>Aproximadamente 1.9 kg</span></li>
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Capacidade de Filtragem:</span> <span>Máximo 15 L/min</span></li>
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Temperatura Máxima:</span> <span>60°C</span></li>
+                        <li class="flex justify-between"><span class="font-semibold text-primary">Sistema Elétrico:</span> <span>Não requer eletricidade</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== CTA Section ===== -->
+        <section class="py-20 bg-primary">
+            <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-white mb-4">Sinta na pele a diferença de um banho Kangen.</h2>
+                <p class="text-lg text-blue-200 max-w-2xl mx-auto mb-8">Dê a si mesmo e à sua família o presente de uma pele saudável e um relaxamento diário. Fale com um especialista e saiba mais sobre o Anespa DX.</p>
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20QUERO%20MAIS%20INFORMA%C3%87%C3%95ES%20SOBRE%20O%20SISTEMA%20DE%20SPA%20ANESPA%20DX!" target="_blank" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg">
+                    Quero um Orçamento
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">Saude Kangen Brasil</h3>
+            <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
+            <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
+            <div class="mt-6">
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20MAIS%20INFORMA%C3%87%C3%95ES." target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+                    <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-8">&copy; <span id="year"></span> Saude Kangen Brasil. Todos os direitos reservados.</p>
+            <div class="mt-8 border-t border-gray-700 pt-6">
+                <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-400 hover:text-white transition-colors">
+                    Desenvolvido por <span class="font-semibold">Conecta Web Digital</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Feather Icons
+            feather.replace();
+
+            // AOS Initialization
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Dynamic Year in Footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Interactive Tabs Logic
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to the clicked button
+                    button.classList.add('active');
+                    
+                    // Show the corresponding content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                    
+                    // Re-initialize feather icons if they are inside the new active tab
+                    feather.replace();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

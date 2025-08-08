@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SD501 Platinum - Design e Tecnologia - Saude Kangen Brasil</title>
+    <meta name="description" content="Conheça o ionizador LeveLuk SD501 Platinum. O mesmo poder do SD501 em um design moderno e com suporte para 5 idiomas.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #2D3748; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        .text-secondary { color: #718096; }
+        .bg-primary { background-color: #2C5282; }
+        .bg-secondary { background-color: #4299E1; }
+        .bg-accent { background-color: #48BB78; }
+        .bg-neutral-light { background-color: #F7FAFC; }
+        .text-primary { color: #2C5282; }
+        .breadcrumb a:hover { text-decoration: underline; }
+
+        /* Estilos para abas interativas */
+        .tab-button {
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        .tab-button.active {
+            border-bottom-color: #4299E1; /* bg-secondary */
+            color: #2C5282; /* text-primary */
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- ===== Header ===== -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">
+                Saude Kangen Brasil
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
+                <a href="index.html#products" class="text-primary font-semibold transition">Produtos</a>
+                <a href="index.html#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20IONIZADOR%20SD501%20PLATINUM" target="_blank" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Quero meu SD501 Platinum</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-feather="menu" class="text-primary"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="index.html#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
+            <a href="index.html#products" class="block py-2 px-6 text-primary bg-gray-100 font-semibold">Produtos</a>
+            <a href="index.html#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
+            <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20IONIZADOR%20SD501%20PLATINUM" target="_blank" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Quero meu SD501 Platinum</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===== Hero Section ===== -->
+        <section class="bg-neutral-light pt-24 pb-16">
+            <div class="container mx-auto px-6">
+                <p class="breadcrumb text-sm text-gray-500 mb-4"><a href="index.html">Início</a> / <a href="index.html#products">Produtos</a> / SD501 Platinum</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div data-aos="fade-right">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/saudekangenbrasil-e96ff.appspot.com/o/products%2Fsd501-platinum.png?alt=media&token=355f3258-2e11-47d3-8f0a-810931818274" alt="Ionizador LeveLuk SD501 Platinum" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div data-aos="fade-left">
+                        <h1 class="text-4xl md:text-5xl font-bold text-primary">SD501 Platinum</h1>
+                        <p class="text-xl text-secondary mt-2 mb-6">Performance de Ouro, Design de Platina.</p>
+                        <p class="mb-4">O LeveLuk SD501 Platinum apresenta um design moderno reestilizado, perfeito para cozinhas de luxo. Com a mesma performance poderosa do SD501, ele se destaca pela comunicação em 5 idiomas e um visual elegante de platina.</p>
+                        <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20IONIZADOR%20SD501%20PLATINUM.%20Poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg inline-flex items-center gap-2">
+                            <i data-feather="message-circle"></i> Falar com Especialista
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Interactive Water Types Section ===== -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">5 Tipos de Água ao seu Alcance</h2>
+                    <p class="text-lg text-secondary mt-2">Versatilidade para cada necessidade da sua casa e família.</p>
+                </div>
+
+                <!-- Tab Buttons -->
+                <div id="tabs-container" class="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 border-b border-gray-200" data-aos="fade-up">
+                    <button class="tab-button active text-lg font-semibold py-4 px-2" data-tab="kangen">Água Kangen®</button>
+                    <button class="tab-button text-lg font-semibold py-4 px-2" data-tab="neutra">Água Neutra</button>
+                    <button class="tab-button text-lg font-semibold py-4 px-2" data-tab="beleza">Água de Beleza</button>
+                    <button class="tab-button text-lg font-semibold py-4 px-2" data-tab="acida">Água Ácida Forte</button>
+                    <button class="tab-button text-lg font-semibold py-4 px-2" data-tab="kangen-forte">Água Kangen Forte</button>
+                </div>
+
+                <!-- Tab Content Panels -->
+                <div id="tab-contents" class="max-w-4xl mx-auto">
+                    <!-- Kangen Water -->
+                    <div id="tab-kangen" class="tab-content active">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/BFDBFE/1E40AF?text=Bebendo+Água+Kangen" alt="Pessoa bebendo água" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="droplet"></i>Água Kangen® (pH 8.5-9.5)</h3>
+                                <p class="text-secondary mb-4">Ideal para beber e cozinhar. Ajuda a equilibrar o pH do corpo, combatendo resíduos ácidos dos alimentos. Deixa o café mais aromático e as carnes mais tenras.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Beber diariamente</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Cozinhar arroz, sopas e ensopados</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Preparar café e chá</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Neutral Water -->
+                    <div id="tab-neutra" class="tab-content">
+                         <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/D1FAE5/065F46?text=Preparando+Fórmula+Infantil" alt="Preparando fórmula infantil" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="shield"></i>Água Neutra (pH 7.0)</h3>
+                                <p class="text-secondary mb-4">Água limpa, simplesmente filtrada, livre de cloro e impurezas, mas com os minerais preservados. Perfeita para os momentos mais delicados.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Preparar fórmula infantil</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Tomar medicamentos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Beauty Water -->
+                    <div id="tab-beleza" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/FEF3C7/92400E?text=Cuidados+com+a+Pele" alt="Cuidados com a pele" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="smile"></i>Água de Beleza (pH 4.0-6.0)</h3>
+                                <p class="text-secondary mb-4">Não potável. Com propriedades adstringentes, é ideal para tonificar a pele, contrair os poros e dar brilho aos cabelos. Também é ótima para limpeza leve.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Tonificar a pele do rosto</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Cuidar dos cabelos</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Polir espelhos e vidros</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Strong Acidic Water -->
+                    <div id="tab-acida" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/FEE2E2/991B1B?text=Higienizando+Superfícies" alt="Higienizando superfícies" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="alert-triangle"></i>Água Ácida Forte (pH 2.5)</h3>
+                                <p class="text-secondary mb-4">Não potável. Com um ORP de +1.100mV, tem um poder desinfetante excepcional. Use para higienizar utensílios de cozinha, mãos e superfícies.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Higienizar facas e tábuas de cortar</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Desinfetar superfícies na cozinha e banheiro</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Higienização bucal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Strong Kangen Water -->
+                    <div id="tab-kangen-forte" class="tab-content">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <img src="https://placehold.co/500x400/E0E7FF/3730A3?text=Lavando+Frutas+e+Verduras" alt="Lavando frutas e verduras" class="rounded-lg shadow-md">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="zap"></i>Água Kangen Forte (pH 11.5)</h3>
+                                <p class="text-secondary mb-4">Não potável. Com poder desengordurante, dissolve e limpa de forma eficaz. Remove agrotóxicos e pesticidas de frutas e vegetais, potencializando o sabor.</p>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Limpeza de frutas e verduras</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Remover manchas de gordura</li>
+                                    <li class="flex items-center gap-2"><i data-feather="check" class="text-accent"></i>Limpeza geral na cozinha</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== Features Section ===== -->
+        <section class="py-20 bg-neutral-light">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Tecnologia e Elegância</h2>
+                    <p class="text-lg text-secondary mt-2">Recursos que fazem da SD501 Platinum uma máquina excepcional.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <div class="text-center p-6" data-aos="fade-up">
+                        <div class="bg-blue-100 text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i data-feather="layers" class="w-10 h-10"></i></div>
+                        <h3 class="font-bold text-lg text-primary">7 Placas de Titânio</h3>
+                        <p class="text-secondary text-sm">Câmara de eletrólise potente para produzir água antioxidante com ORP de até -850mV.</p>
+                    </div>
+                    <div class="text-center p-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-blue-100 text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i data-feather="monitor" class="w-10 h-10"></i></div>
+                        <h3 class="font-bold text-lg text-primary">Painel LCD e Voz</h3>
+                        <p class="text-secondary text-sm">Operação simples com um toque de botão, com confirmações visuais e por voz.</p>
+                    </div>
+                    <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-blue-100 text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i data-feather="globe" class="w-10 h-10"></i></div>
+                        <h3 class="font-bold text-lg text-primary">5 Idiomas</h3>
+                        <p class="text-secondary text-sm">Comunicação clara em Inglês, Alemão, Francês, Italiano e Espanhol.</p>
+                    </div>
+                    <div class="text-center p-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-blue-100 text-primary rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4"><i data-feather="refresh-cw" class="w-10 h-10"></i></div>
+                        <h3 class="font-bold text-lg text-primary">Limpeza Automática</h3>
+                        <p class="text-secondary text-sm">Controlada por microcomputador para garantir a durabilidade e o desempenho do aparelho.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== Specifications Section ===== -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Especificações Técnicas</h2>
+                </div>
+                <div class="max-w-2xl mx-auto bg-neutral-light p-8 rounded-lg shadow-md" data-aos="fade-up">
+                    <ul class="space-y-4 text-lg">
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Dimensões:</span> <span>26.4cm (L) x 33.8cm (A) x 17.1cm (P)</span></li>
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Placas de Eletrodo:</span> <span>7 placas de Titânio revestido com Platina</span></li>
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Capacidade de Produção:</span> <span>Água Kangen®: 2 a 3,5 L/min</span></li>
+                        <li class="flex justify-between border-b pb-2"><span class="font-semibold text-primary">Faixa de ORP:</span> <span>+1.130 mV a -850 mV</span></li>
+                        <li class="flex justify-between"><span class="font-semibold text-primary">Uso Contínuo:</span> <span>Aproximadamente 30 minutos</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CTA Section ===== -->
+        <section class="py-20 bg-primary">
+            <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-white mb-4">Adicione um toque de classe e saúde à sua cozinha.</h2>
+                <p class="text-lg text-blue-200 max-w-2xl mx-auto mb-8">A SD501 Platinum combina perfeitamente com cozinhas modernas e oferece a melhor tecnologia de ionização de água. Fale conosco e saiba mais.</p>
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20QUERO%20MAIS%20INFORMA%C3%87%C3%95ES%20SOBRE%20O%20IONIZADOR%20SD501%20PLATINUM!" target="_blank" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg">
+                    Quero um Orçamento
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">Saude Kangen Brasil</h3>
+            <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
+            <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
+            <div class="mt-6">
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20MAIS%20INFORMA%C3%87%C3%95ES." target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+                    <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
+                </a>
+            </div>
+            <p class="text-sm text-gray-500 mt-8">&copy; <span id="year"></span> Saude Kangen Brasil. Todos os direitos reservados.</p>
+            <div class="mt-8 border-t border-gray-700 pt-6">
+                <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-400 hover:text-white transition-colors">
+                    Desenvolvido por <span class="font-semibold">Conecta Web Digital</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Feather Icons
+            feather.replace();
+
+            // AOS Initialization
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Dynamic Year in Footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Interactive Tabs Logic
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add active class to the clicked button
+                    button.classList.add('active');
+                    
+                    // Show the corresponding content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                    
+                    // Re-initialize feather icons if they are inside the new active tab
+                    feather.replace();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
