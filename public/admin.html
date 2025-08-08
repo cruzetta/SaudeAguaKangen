@@ -62,6 +62,26 @@
                     <!-- Conteúdo dinâmico da mídia dos produtos será carregado aqui -->
                 </div>
             </div>
+            
+            <!-- NOVA SEÇÃO: Gerenciamento da Página "Abra seu Negócio" -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Página "Abra seu Negócio"</h2>
+                <p class="text-sm text-gray-500 mb-4">Gerencie as imagens da página e da seção de oportunidade de negócio.</p>
+                <div class="space-y-4">
+                    <!-- Campo para a imagem de fundo da página AbraseuNegocio.html -->
+                    <div class="border p-4 rounded-md bg-gray-50">
+                        <label for="business-hero-image" class="block text-base font-medium text-gray-700">Imagem de Fundo (Topo da Página)</label>
+                        <p class="text-xs text-gray-500 mb-2">Imagem principal da página "Abra seu Negócio".</p>
+                        <input type="url" id="business-hero-image" class="w-full mt-1 p-2 border rounded-md" placeholder="URL da Imagem de Fundo">
+                    </div>
+                    <!-- Campo para a imagem da seção na index.html -->
+                    <div class="border p-4 rounded-md bg-gray-50">
+                        <label for="business-section-image" class="block text-base font-medium text-gray-700">Imagem da Seção (Página Inicial)</label>
+                        <p class="text-xs text-gray-500 mb-2">Imagem que aparece na seção "Vá Além da Saúde. Crie um Futuro." na página inicial.</p>
+                        <input type="url" id="business-section-image" class="w-full mt-1 p-2 border rounded-md" placeholder="URL da Imagem da Seção">
+                    </div>
+                </div>
+            </div>
 
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Benefícios</h2>
@@ -109,6 +129,7 @@
         const contentRef = db.collection('siteContent').doc('home');
         const backgroundsRef = db.collection('siteContent').doc('backgrounds');
         const productMediaRef = db.collection('siteContent').doc('productMedia');
+        const businessPageRef = db.collection('siteContent').doc('businessPage'); // Nova referência
 
         document.addEventListener('DOMContentLoaded', () => {
             const loginSection = document.getElementById('login-section');
@@ -161,6 +182,7 @@
                     }
                     loadBackgrounds();
                     loadProductMedia();
+                    loadBusinessPageContent(); // Carregar conteúdo da página de negócio
                 } catch (error) {
                     console.error("Erro ao carregar conteúdo:", error);
                     showToast("Erro ao carregar conteúdo.", "error");
@@ -215,6 +237,21 @@
                 } catch (error) {
                     console.error("Erro ao carregar mídia de produtos:", error);
                     showToast("Erro ao carregar mídia de produtos.", "error");
+                }
+            };
+            
+            // Nova função para carregar dados da página de negócio
+            const loadBusinessPageContent = async () => {
+                try {
+                    const doc = await businessPageRef.get();
+                    if (doc.exists) {
+                        const content = doc.data();
+                        document.getElementById('business-hero-image').value = content.heroImageUrl || '';
+                        document.getElementById('business-section-image').value = content.sectionImageUrl || '';
+                    }
+                } catch (error) {
+                    console.error("Erro ao carregar conteúdo da página de negócio:", error);
+                    showToast("Erro ao carregar conteúdo da página de negócio.", "error");
                 }
             };
             
@@ -341,11 +378,18 @@
                     }
                 });
 
+                // Coletar dados da página de negócio
+                const newBusinessContent = {
+                    heroImageUrl: document.getElementById('business-hero-image').value,
+                    sectionImageUrl: document.getElementById('business-section-image').value
+                };
+
                 try {
                     await Promise.all([
                         contentRef.set(newContent, { merge: true }),
                         backgroundsRef.set(newBackgrounds, { merge: true }),
-                        productMediaRef.set(newProductMedia, { merge: true })
+                        productMediaRef.set(newProductMedia, { merge: true }),
+                        businessPageRef.set(newBusinessContent, { merge: true }) // Salvar conteúdo da página de negócio
                     ]);
                     showToast("Conteúdo atualizado com sucesso!", 'success');
                 } catch (error) {

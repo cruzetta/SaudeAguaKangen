@@ -36,8 +36,9 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-        .hero-bg {
-            background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2574&auto=format&fit=crop');
+        /* Estilo de fallback para a seção hero */
+        #business-hero {
+            background-color: #333; /* Cor de fundo escura como fallback */
             background-size: cover;
             background-position: center;
         }
@@ -74,7 +75,7 @@
 
     <main>
         <!-- ===== Hero Section ===== -->
-        <section class="hero-bg relative text-white pt-40 pb-24">
+        <section id="business-hero" class="relative text-white pt-40 pb-24">
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="container mx-auto px-6 text-center relative z-10">
                 <h1 class="text-4xl md:text-6xl font-bold" data-aos="fade-up">Seja um Agente de Mudança.</h1>
@@ -203,6 +204,10 @@
         </div>
     </footer>
 
+    <!-- Scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -225,6 +230,39 @@
             
             // Dynamic Year in Footer
             document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- LÓGICA PARA CARREGAR IMAGEM DINÂMICA ---
+            const firebaseConfig = {
+                apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
+                authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
+                projectId: "saudekangenbrasil-e96ff",
+                storageBucket: "saudekangenbrasil-e96ff.appspot.com",
+                messagingSenderId: "854664871239",
+                appId: "1:854664871239:web:a41935181e1b7092c56062",
+                measurementId: "G-KXEP25LRF8"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            async function loadBusinessContent() {
+                const heroSection = document.getElementById('business-hero');
+                if (!heroSection) return;
+
+                try {
+                    const doc = await db.collection('siteContent').doc('businessPage').get();
+                    if (doc.exists) {
+                        const data = doc.data();
+                        if (data.heroImageUrl) {
+                            heroSection.style.backgroundImage = `url('${data.heroImageUrl}')`;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Erro ao carregar imagem da página de negócio:", error);
+                }
+            }
+
+            loadBusinessContent();
         });
     </script>
 </body>

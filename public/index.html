@@ -246,7 +246,7 @@
             <div class="container mx-auto px-6">
                 <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-12" data-aos="fade-up">
                     <div class="lg:w-1/2">
-                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2670&auto=format&fit=crop" alt="Pessoas em uma reunião de negócios colaborando" class="rounded-lg shadow-md w-full h-full object-cover">
+                        <img id="business-opportunity-image" src="https://placehold.co/600x400/E2E8F0/4A5568?text=Carregando+Imagem..." alt="Pessoas em uma reunião de negócios colaborando" class="rounded-lg shadow-md w-full h-full object-cover">
                     </div>
                     <div class="lg:w-1/2 text-center lg:text-left">
                         <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Vá Além da Saúde. Crie um Futuro.</h2>
@@ -712,15 +712,29 @@
 
         async function fetchContent() {
             try {
-                const doc = await db.collection('siteContent').doc('home').get();
-                if (doc.exists) {
-                    const content = doc.data();
+                // Carregar conteúdo principal
+                const homeDoc = await db.collection('siteContent').doc('home').get();
+                if (homeDoc.exists) {
+                    const content = homeDoc.data();
                     renderBenefits(content.benefits);
                     renderProducts(content.products);
                     renderTestimonials(content.testimonials);
                 } else {
-                    console.log("Documento de conteúdo não encontrado.");
+                    console.log("Documento de conteúdo 'home' não encontrado.");
                 }
+
+                // Carregar conteúdo da página de negócio
+                const businessDoc = await db.collection('siteContent').doc('businessPage').get();
+                if (businessDoc.exists) {
+                    const businessContent = businessDoc.data();
+                    const businessImageElem = document.getElementById('business-opportunity-image');
+                    if (businessImageElem && businessContent.sectionImageUrl) {
+                        businessImageElem.src = businessContent.sectionImageUrl;
+                    }
+                } else {
+                    console.log("Documento de conteúdo 'businessPage' não encontrado.");
+                }
+
             } catch (error) {
                 console.error("Erro ao carregar conteúdo dinâmico:", error);
             }
