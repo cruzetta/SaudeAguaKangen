@@ -118,7 +118,7 @@
                 <a href="calculadora.html" class="text-gray-600 hover:text-primary transition">Calculadora</a>
                 <a href="#products" class="text-gray-600 hover:text-primary transition">Produtos</a>
                 <a href="#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
-                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%8ÁGUA%20KANGEN." target="_blank" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Falar com Especialista</a>
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%81GUA%20KANGEN." target="_blank" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Falar com Especialista</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden">
                 <i data-feather="menu" class="text-primary"></i>
@@ -130,7 +130,7 @@
             <a href="calculadora.html" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Calculadora</a>
             <a href="#products" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Produtos</a>
             <a href="#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
-            <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%8ÁGUA%20KANGEN." target="_blank" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
+            <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%81GUA%20KANGEN." target="_blank" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
         </div>
     </header>
 
@@ -734,24 +734,24 @@
             }).join('');
             feather.replace();
         }
-
-        // Função para transformar texto em um formato de URL amigável (slug)
-        function slugify(text) {
-            if (!text) return '';
-            return text.toString().toLowerCase()
-                .replace(/\s+/g, '-')           // Substitui espaços por -
-                .replace(/[^\w\-]+/g, '')       // Remove todos os caracteres não-alfanuméricos
-                .replace(/\-\-+/g, '-')         // Substitui múltiplos - por um único -
-                .replace(/^-+/, '')             // Remove - do início do texto
-                .replace(/-+$/, '');            // Remove - do final do texto
-        }
-
-        // Função renderProducts MODIFICADA
+        
+        // Função renderProducts CORRIGIDA
         function renderProducts(products) {
             const container = document.getElementById('products-list');
             if (!container || !products) return;
+
+            // Mapeamento explícito dos nomes dos produtos para os nomes dos arquivos
+            const productUrlMap = {
+                'Leveluk K8': 'k8.html',
+                'SD501 Platinum': 'sd501-platinum.html',
+                'Anespa DX': 'anespa-dx.html',
+                'SD501': 'sd501.html' // Adicionando o SD501 padrão como exemplo
+            };
+
             container.innerHTML = products.map((item, index) => {
-                const productUrl = `${slugify(item.name)}.html`; // Cria a URL, ex: k8.html, sd501-platinum.html
+                // Usar o mapa para obter a URL correta. Se não encontrar, usa um link padrão.
+                const productUrl = productUrlMap[item.name] || '#';
+
                 return `
                 <a href="${productUrl}" class="block bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="${index * 150}">
                     <div class="p-4 bg-gray-100 flex justify-center">
