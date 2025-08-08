@@ -735,25 +735,24 @@
             feather.replace();
         }
         
-        // Função para transformar texto em um formato de URL amigável (slug)
-        function slugify(text) {
-            if (!text) return '';
-            return text.toString().toLowerCase()
-                .replace(/\s+/g, '-')           // Substitui espaços por -
-                .replace(/[^\w\-]+/g, '')       // Remove todos os caracteres não-alfanuméricos
-                .replace(/\-\-+/g, '-')         // Substitui múltiplos - por um único -
-                .replace(/^-+/, '')             // Remove - do início do texto
-                .replace(/-+$/, '');            // Remove - do final do texto
-        }
-
         // Função renderProducts CORRIGIDA FINAL
         function renderProducts(products) {
             const container = document.getElementById('products-list');
             if (!container || !products) return;
 
+            // Mapeamento explícito dos nomes dos produtos para os nomes dos arquivos
+            // Isso garante que os links sempre apontem para os arquivos corretos.
+            const productUrlMap = {
+                'Leveluk K8': 'k8.html',
+                'SD501 Platinum': 'sd501-platinum.html',
+                'Anespa DX': 'anespa-dx.html', // O link aponta para .html
+                'SD501': 'sd501.html'
+                // Adicione outros produtos aqui se necessário
+            };
+
             container.innerHTML = products.map((item, index) => {
-                // Gera a URL a partir do nome do produto, substituindo espaços por hífens
-                const productUrl = `${slugify(item.name)}.html`;
+                // Usar o mapa para obter a URL correta. 
+                const productUrl = productUrlMap[item.name] || '#'; 
 
                 return `
                 <a href="${productUrl}" class="block bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="${index * 150}">
