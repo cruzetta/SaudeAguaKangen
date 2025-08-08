@@ -51,6 +51,13 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Estilo para vídeos dinâmicos */
+        .tab-media-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -123,7 +130,9 @@
                     <!-- Kangen Water -->
                     <div id="tab-kangen" class="tab-content active">
                         <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <img src="https://placehold.co/500x400/BFDBFE/1E40AF?text=Bebendo+Água+Kangen" alt="Pessoa bebendo água" class="rounded-lg shadow-md">
+                            <div id="media-container-kangen" class="tab-media-container">
+                                <img src="https://placehold.co/500x400/BFDBFE/1E40AF?text=Bebendo+Água+Kangen" alt="Pessoa bebendo água" class="rounded-lg shadow-md w-full">
+                            </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="droplet"></i>Água Kangen® (pH 8.5-9.5)</h3>
                                 <p class="text-secondary mb-4">Ideal para beber e cozinhar. Ajuda a equilibrar o pH do corpo, combatendo resíduos ácidos dos alimentos. Deixa o café mais aromático e as carnes mais tenras.</p>
@@ -138,7 +147,9 @@
                     <!-- Neutral Water -->
                     <div id="tab-neutra" class="tab-content">
                          <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <img src="https://placehold.co/500x400/D1FAE5/065F46?text=Preparando+Fórmula+Infantil" alt="Preparando fórmula infantil" class="rounded-lg shadow-md">
+                            <div id="media-container-neutra" class="tab-media-container">
+                                <img src="https://placehold.co/500x400/D1FAE5/065F46?text=Preparando+Fórmula+Infantil" alt="Preparando fórmula infantil" class="rounded-lg shadow-md w-full">
+                            </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="shield"></i>Água Neutra (pH 7.0)</h3>
                                 <p class="text-secondary mb-4">Água limpa, simplesmente filtrada, livre de cloro e impurezas, mas com os minerais preservados. Perfeita para os momentos mais delicados.</p>
@@ -152,7 +163,9 @@
                     <!-- Beauty Water -->
                     <div id="tab-beleza" class="tab-content">
                         <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <img src="https://placehold.co/500x400/FEF3C7/92400E?text=Cuidados+com+a+Pele" alt="Cuidados com a pele" class="rounded-lg shadow-md">
+                            <div id="media-container-beleza" class="tab-media-container">
+                                <img src="https://placehold.co/500x400/FEF3C7/92400E?text=Cuidados+com+a+Pele" alt="Cuidados com a pele" class="rounded-lg shadow-md w-full">
+                            </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="smile"></i>Água de Beleza (pH 4.0-6.0)</h3>
                                 <p class="text-secondary mb-4">Não potável. Com propriedades adstringentes, é ideal para tonificar a pele, contrair os poros e dar brilho aos cabelos. Também é ótima para limpeza leve.</p>
@@ -167,7 +180,9 @@
                     <!-- Strong Acidic Water -->
                     <div id="tab-acida" class="tab-content">
                         <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <img src="https://placehold.co/500x400/FEE2E2/991B1B?text=Higienizando+Superfícies" alt="Higienizando superfícies" class="rounded-lg shadow-md">
+                            <div id="media-container-acida" class="tab-media-container">
+                                <img src="https://placehold.co/500x400/FEE2E2/991B1B?text=Higienizando+Superfícies" alt="Higienizando superfícies" class="rounded-lg shadow-md w-full">
+                            </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="alert-triangle"></i>Água Ácida Forte (pH 2.5)</h3>
                                 <p class="text-secondary mb-4">Não potável. Com um ORP de +1.100mV, tem um poder desinfetante excepcional. Use para higienizar utensílios de cozinha, mãos e superfícies.</p>
@@ -182,7 +197,9 @@
                      <!-- Strong Kangen Water -->
                     <div id="tab-kangen-forte" class="tab-content">
                         <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <img src="https://placehold.co/500x400/E0E7FF/3730A3?text=Lavando+Frutas+e+Verduras" alt="Lavando frutas e verduras" class="rounded-lg shadow-md">
+                            <div id="media-container-kangen_forte" class="tab-media-container">
+                                <img src="https://placehold.co/500x400/E0E7FF/3730A3?text=Lavando+Frutas+e+Verduras" alt="Lavando frutas e verduras" class="rounded-lg shadow-md w-full">
+                            </div>
                             <div>
                                 <h3 class="text-2xl font-bold text-primary mb-3 flex items-center gap-3"><i data-feather="zap"></i>Água Kangen Forte (pH 11.5)</h3>
                                 <p class="text-secondary mb-4">Não potável. Com poder desengordurante, dissolve e limpa de forma eficaz. Remove agrotóxicos e pesticidas de frutas e vegetais, potencializando o sabor.</p>
@@ -281,6 +298,10 @@
         </div>
     </footer>
 
+    <!-- Scripts do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -310,21 +331,74 @@
 
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Remove active class from all buttons and contents
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     tabContents.forEach(content => content.classList.remove('active'));
-
-                    // Add active class to the clicked button
                     button.classList.add('active');
-                    
-                    // Show the corresponding content
                     const tabId = button.getAttribute('data-tab');
                     document.getElementById(`tab-${tabId}`).classList.add('active');
-                    
-                    // Re-initialize feather icons if they are inside the new active tab
                     feather.replace();
                 });
             });
+
+             // --- INÍCIO: Lógica para carregar mídia dinâmica ---
+            const firebaseConfig = {
+                apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
+                authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
+                projectId: "saudekangenbrasil-e96ff",
+                storageBucket: "saudekangenbrasil-e96ff.appspot.com",
+                messagingSenderId: "854664871239",
+                appId: "1:854664871239:web:a41935181e1b7092c56062",
+                measurementId: "G-KXEP25LRF8"
+            };
+            
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            async function loadProductMedia() {
+                try {
+                    const doc = await db.collection('siteContent').doc('productMedia').get();
+                    if (!doc.exists) {
+                        console.log("Documento de mídia de produto não encontrado.");
+                        return;
+                    }
+                    
+                    const allMedia = doc.data();
+                    const productMedia = allMedia.sd501_platinum; // Pega apenas os dados do SD501 Platinum
+                    if (!productMedia) return;
+
+                    Object.keys(productMedia).forEach(tabId => {
+                        const mediaData = productMedia[tabId];
+                        const container = document.getElementById(`media-container-${tabId.replace('-', '_')}`);
+                        
+                        if (container && mediaData && mediaData.mediaUrl) {
+                            container.innerHTML = ''; // Limpa o conteúdo placeholder
+
+                            if (mediaData.mediaType === 'video') {
+                                const video = document.createElement('video');
+                                video.src = mediaData.mediaUrl;
+                                video.autoplay = true;
+                                video.loop = true;
+                                video.muted = true;
+                                video.playsInline = true;
+                                container.appendChild(video);
+                            } else { // 'image'
+                                const img = document.createElement('img');
+                                img.src = mediaData.mediaUrl;
+                                img.alt = `Mídia para ${tabId}`;
+                                img.className = 'rounded-lg shadow-md w-full';
+                                img.onerror = () => { img.src = 'https://placehold.co/500x400/cccccc/FFFFFF?text=Erro+ao+carregar'; };
+                                container.appendChild(img);
+                            }
+                        }
+                    });
+
+                } catch (error) {
+                    console.error("Erro ao carregar mídia do produto SD501 Platinum:", error);
+                }
+            }
+
+            loadProductMedia();
+            // --- FIM: Lógica para carregar mídia dinâmica ---
         });
     </script>
 </body>

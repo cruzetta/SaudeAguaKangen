@@ -53,6 +53,17 @@
                     <!-- Conteúdo dinâmico dos fundos será carregado aqui -->
                 </div>
             </div>
+
+            <!-- INÍCIO: Gerenciamento de Mídia das Páginas de Produto -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Mídia das Páginas de Produto</h2>
+                <p class="text-sm text-gray-500 mb-4">Gerencie as imagens ou vídeos que aparecem nas abas de cada página de produto.</p>
+                <div id="product-media-container" class="space-y-6">
+                    <!-- Conteúdo dinâmico da mídia dos produtos será carregado aqui -->
+                </div>
+            </div>
+            <!-- FIM: Gerenciamento de Mídia das Páginas de Produto -->
+
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Benefícios</h2>
                 <div id="benefits-container" class="space-y-4"></div>
@@ -86,7 +97,7 @@
             apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
             authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
             projectId: "saudekangenbrasil-e96ff",
-            storageBucket: "saudekangenbrasil-e96ff.firebasestorage.app",
+            storageBucket: "saudekangenbrasil-e96ff.appspot.com",
             messagingSenderId: "854664871239",
             appId: "1:854664871239:web:a41935181e1b7092c56062",
             measurementId: "G-KXEP25LRF8"
@@ -98,6 +109,7 @@
         const db = firebase.firestore();
         const contentRef = db.collection('siteContent').doc('home');
         const backgroundsRef = db.collection('siteContent').doc('backgrounds');
+        const productMediaRef = db.collection('siteContent').doc('productMedia'); // Nova referência para mídia de produtos
 
         document.addEventListener('DOMContentLoaded', () => {
             const loginSection = document.getElementById('login-section');
@@ -148,10 +160,11 @@
                         populateForm('products', content.products);
                         populateForm('testimonials', content.testimonials);
                     } else {
-                        await initializeContent();
-                        await loadContent(); 
+                        // Se o documento principal não existir, você pode querer inicializá-lo
+                        console.log("Documento 'home' não encontrado. Considere inicializá-lo.");
                     }
-                    loadBackgrounds(); // Carrega os dados dos fundos
+                    loadBackgrounds();
+                    loadProductMedia(); // Carrega os dados da mídia dos produtos
                 } catch (error) {
                     console.error("Erro ao carregar conteúdo:", error);
                     showToast("Erro ao carregar conteúdo.", "error");
@@ -182,6 +195,83 @@
                     showToast("Erro ao carregar fundos.", "error");
                 }
             };
+            
+            // --- INÍCIO: Funções para Mídia de Produto ---
+            const productMediaConfig = {
+                k8: {
+                    name: "Kangen 8 (K8)",
+                    tabs: {
+                        kangen: "Água Kangen®",
+                        neutra: "Água Neutra",
+                        beleza: "Água de Beleza",
+                        acida: "Água Ácida Forte",
+                        kangen_forte: "Água Kangen Forte"
+                    }
+                },
+                sd501_platinum: {
+                    name: "SD501 Platinum",
+                    tabs: {
+                        kangen: "Água Kangen®",
+                        neutra: "Água Neutra",
+                        beleza: "Água de Beleza",
+                        acida: "Água Ácida Forte",
+                        kangen_forte: "Água Kangen Forte"
+                    }
+                },
+                anespa_dx: {
+                    name: "Anespa DX",
+                    tabs: {
+                        cloro: "Remove 100% do Cloro",
+                        mineral: "Água Mineral Ionizada",
+                        relax: "Massagem Relaxante"
+                    }
+                }
+            };
+
+            const loadProductMedia = async () => {
+                try {
+                    const doc = await productMediaRef.get();
+                    const mediaData = doc.exists ? doc.data() : {};
+                    populateProductMediaForm(mediaData);
+                } catch (error) {
+                    console.error("Erro ao carregar mídia de produtos:", error);
+                    showToast("Erro ao carregar mídia de produtos.", "error");
+                }
+            };
+            
+            const populateProductMediaForm = (mediaData) => {
+                const container = document.getElementById('product-media-container');
+                container.innerHTML = ''; 
+
+                Object.keys(productMediaConfig).forEach(productId => {
+                    const product = productMediaConfig[productId];
+                    const productDiv = document.createElement('div');
+                    productDiv.className = 'border p-4 rounded-lg bg-gray-50';
+                    let productHTML = `<h3 class="text-xl font-semibold text-gray-800 mb-3">${product.name}</h3><div class="space-y-3">`;
+
+                    Object.keys(product.tabs).forEach(tabId => {
+                        const tabName = product.tabs[tabId];
+                        const currentMedia = (mediaData[productId] && mediaData[productId][tabId]) ? mediaData[productId][tabId] : { mediaUrl: '', mediaType: 'image' };
+                        
+                        productHTML += `
+                            <div class="border-t pt-3">
+                                <label class="block text-sm font-medium text-gray-700">Aba: ${tabName}</label>
+                                <input type="url" data-section="productMedia" data-product-id="${productId}" data-tab-id="${tabId}" data-field="mediaUrl" value="${currentMedia.mediaUrl || ''}" class="w-full mt-1 p-2 border rounded-md" placeholder="URL da Imagem ou Vídeo">
+                                <select data-section="productMedia" data-product-id="${productId}" data-tab-id="${tabId}" data-field="mediaType" class="w-full mt-1 p-2 border rounded-md">
+                                    <option value="image" ${currentMedia.mediaType === 'image' ? 'selected' : ''}>Imagem</option>
+                                    <option value="video" ${currentMedia.mediaType === 'video' ? 'selected' : ''}>Vídeo</option>
+                                </select>
+                            </div>
+                        `;
+                    });
+
+                    productHTML += `</div>`;
+                    productDiv.innerHTML = productHTML;
+                    container.appendChild(productDiv);
+                });
+            };
+            // --- FIM: Funções para Mídia de Produto ---
+
 
             const populateBackgroundsForm = (backgrounds) => {
                 const container = document.getElementById('backgrounds-container');
@@ -231,6 +321,7 @@
                 saveButton.disabled = true;
                 saveButton.textContent = 'Salvando...';
 
+                // Salvar conteúdo principal (benefícios, produtos, etc.)
                 const newContent = { benefits: [], products: [], testimonials: [] };
                 document.querySelectorAll('#content-form [data-section][data-index]').forEach(input => {
                     const { section, index, field } = input.dataset;
@@ -240,6 +331,7 @@
                     newContent[section][parseInt(index)][field] = input.value;
                 });
                 
+                // Salvar fundos
                 const newBackgrounds = {};
                 document.querySelectorAll('#backgrounds-container [data-id]').forEach(input => {
                     const { id, field } = input.dataset;
@@ -249,21 +341,35 @@
                     newBackgrounds[id][field] = input.value;
                 });
 
+                // Salvar mídia dos produtos
+                const newProductMedia = {};
+                document.querySelectorAll('#product-media-container [data-product-id]').forEach(input => {
+                    const { productId, tabId, field } = input.dataset;
+                    if (!newProductMedia[productId]) {
+                        newProductMedia[productId] = {};
+                    }
+                    if (!newProductMedia[productId][tabId]) {
+                        newProductMedia[productId][tabId] = {};
+                    }
+                    newProductMedia[productId][tabId][field] = input.value;
+                });
+
                 try {
-                    await contentRef.set(newContent, { merge: true });
-                    await backgroundsRef.set(newBackgrounds, { merge: true });
+                    // Executa todas as operações de escrita em paralelo para mais eficiência
+                    await Promise.all([
+                        contentRef.set(newContent, { merge: true }),
+                        backgroundsRef.set(newBackgrounds, { merge: true }),
+                        productMediaRef.set(newProductMedia, { merge: true }) // Salva a nova estrutura
+                    ]);
                     showToast("Conteúdo atualizado com sucesso!", 'success');
                 } catch (error) {
+                    console.error("Erro ao salvar dados:", error);
                     showToast("Erro ao salvar. Verifique as regras de segurança.", 'error');
                 } finally {
                     saveButton.disabled = false;
                     saveButton.textContent = 'Salvar Alterações';
                 }
             });
-
-            const initializeContent = async () => {
-                 // ... (código original para inicializar conteúdo, sem alterações)
-            };
         });
     </script>
 </body>
