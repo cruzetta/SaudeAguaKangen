@@ -411,7 +411,7 @@
             apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
             authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
             projectId: "saudekangenbrasil-e96ff",
-            storageBucket: "saudekangenbrasil-e96ff.firebasestorage.app",
+            storageBucket: "saudekangenbrasil-e96ff.appspot.com", // CORRIGIDO
             messagingSenderId: "854664871239",
             appId: "1:854664871239:web:a41935181e1b7092c56062",
             measurementId: "G-KXEP25LRF8"
@@ -420,7 +420,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // --- LÓGICA PARA FUNDOS DINÂMICOS ---
+        // --- LÓGICA PARA FUNDOS DINÂMICOS (CORRIGIDA) ---
         async function applyCustomBackgrounds() {
             try {
                 const doc = await db.collection('siteContent').doc('backgrounds').get();
@@ -433,40 +433,54 @@
                     const bgData = backgrounds[sectionId];
 
                     if (element && bgData && bgData.mediaUrl) {
-                        element.classList.add('has-dynamic-bg'); // Add class for styling
-                        element.querySelectorAll('.dynamic-bg-video').forEach(el => el.remove());
-
+                        // Tratamento especial para a seção 'home' que já tem uma estrutura de vídeo
                         if (sectionId === 'home') {
-                            const originalVideo = element.querySelector('#hero-video');
+                            const heroVideo = document.getElementById('hero-video');
+                            const videoSource = heroVideo ? heroVideo.querySelector('source') : null;
                             const originalOverlay = element.querySelector('.bg-black\\/50');
-                            if (originalVideo) originalVideo.style.display = 'none';
-                            if (originalOverlay) originalOverlay.style.display = 'none';
-                        }
 
-                        // Remove a cor de fundo original para que o fundo da imagem/vídeo apareça
-                        element.classList.remove('bg-white', 'bg-neutral-light', 'bg-secondary', 'bg-primary');
+                            if (bgData.mediaType === 'video') {
+                                if (heroVideo && videoSource) {
+                                    videoSource.src = bgData.mediaUrl;
+                                    heroVideo.load(); // Essencial para carregar a nova fonte
+                                    heroVideo.style.display = 'block';
+                                    element.style.backgroundImage = ''; // Limpa o fundo de imagem
+                                    if(originalOverlay) originalOverlay.style.display = 'block';
+                                }
+                            } else { // mediaType is 'image'
+                                if (heroVideo) heroVideo.style.display = 'none';
+                                element.style.backgroundImage = `url('${bgData.mediaUrl}')`;
+                                element.style.backgroundSize = 'cover';
+                                element.style.backgroundPosition = 'center';
+                                if(originalOverlay) originalOverlay.style.display = 'block';
+                            }
+                        } else {
+                            // Lógica original para outras seções (que não têm vídeo predefinido)
+                            element.classList.add('has-dynamic-bg');
+                            element.querySelectorAll('.dynamic-bg-video').forEach(el => el.remove());
+                            element.classList.remove('bg-white', 'bg-neutral-light', 'bg-secondary', 'bg-primary');
 
-                        if (bgData.mediaType === 'video') {
-                            const video = document.createElement('video');
-                            video.src = bgData.mediaUrl;
-                            video.autoplay = true;
-                            video.loop = true;
-                            video.muted = true;
-                            video.playsInline = true;
-                            video.className = 'dynamic-bg-video';
-                            Object.assign(video.style, {
-                                position: 'absolute', top: '0', left: '0',
-                                width: '100%', height: '100%', objectFit: 'cover',
-                                zIndex: '-1' // Video behind the CSS overlay
-                            });
-                            
-                            element.prepend(video);
-                            element.style.backgroundImage = ''; 
-                        } else if (bgData.mediaType === 'image') {
-                            element.style.backgroundImage = `url('${bgData.mediaUrl}')`;
-                            element.style.backgroundSize = 'cover';
-                            element.style.backgroundPosition = 'center';
-                            element.style.backgroundRepeat = 'no-repeat';
+                            if (bgData.mediaType === 'video') {
+                                const video = document.createElement('video');
+                                video.src = bgData.mediaUrl;
+                                video.autoplay = true;
+                                video.loop = true;
+                                video.muted = true;
+                                video.playsInline = true;
+                                video.className = 'dynamic-bg-video';
+                                Object.assign(video.style, {
+                                    position: 'absolute', top: '0', left: '0',
+                                    width: '100%', height: '100%', objectFit: 'cover',
+                                    zIndex: '-1'
+                                });
+                                element.prepend(video);
+                                element.style.backgroundImage = ''; 
+                            } else { // mediaType is 'image'
+                                element.style.backgroundImage = `url('${bgData.mediaUrl}')`;
+                                element.style.backgroundSize = 'cover';
+                                element.style.backgroundPosition = 'center';
+                                element.style.backgroundRepeat = 'no-repeat';
+                            }
                         }
                     }
                 }

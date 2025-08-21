@@ -21,6 +21,7 @@
 </head>
 <body class="bg-gray-100">
 
+    <!-- Seção de Login -->
     <div id="login-section" class="flex items-center justify-center h-screen">
         <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
             <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Acesso Restrito</h1>
@@ -39,18 +40,20 @@
         </div>
     </div>
 
+    <!-- Painel de Administração -->
     <div id="admin-panel" class="hidden container mx-auto p-6">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-3xl font-bold text-gray-800">Gerir Conteúdo do Site</h1>
             <button id="logout-button" class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-red-600 transition">Sair</button>
         </div>
+        
         <form id="content-form" class="space-y-8">
-            <!-- Gerenciamento de Fundos -->
+            <!-- Gerenciamento de Fundos de Seção -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Fundos de Seção</h2>
                 <p class="text-sm text-gray-500 mb-4">Cole o URL de uma imagem ou vídeo para alterar o fundo da seção correspondente no site. Deixe em branco para usar o fundo original.</p>
                 <div id="backgrounds-container" class="space-y-4">
-                    <!-- Conteúdo dinâmico dos fundos será carregado aqui -->
+                    <!-- Campos de fundo serão carregados dinamicamente aqui -->
                 </div>
             </div>
 
@@ -59,22 +62,20 @@
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Mídia das Páginas de Produto</h2>
                 <p class="text-sm text-gray-500 mb-4">Gerencie a imagem principal e as mídias das abas de cada página de produto.</p>
                 <div id="product-media-container" class="space-y-6">
-                    <!-- Conteúdo dinâmico da mídia dos produtos será carregado aqui -->
+                    <!-- Campos de mídia de produto serão carregados dinamicamente aqui -->
                 </div>
             </div>
             
-            <!-- NOVA SEÇÃO: Gerenciamento da Página "Abra seu Negócio" -->
+            <!-- Gerenciamento da Página "Abra seu Negócio" -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Página "Abra seu Negócio"</h2>
                 <p class="text-sm text-gray-500 mb-4">Gerencie as imagens da página e da seção de oportunidade de negócio.</p>
                 <div class="space-y-4">
-                    <!-- Campo para a imagem de fundo da página AbraseuNegocio.html -->
                     <div class="border p-4 rounded-md bg-gray-50">
                         <label for="business-hero-image" class="block text-base font-medium text-gray-700">Imagem de Fundo (Topo da Página)</label>
                         <p class="text-xs text-gray-500 mb-2">Imagem principal da página "Abra seu Negócio".</p>
                         <input type="url" id="business-hero-image" class="w-full mt-1 p-2 border rounded-md" placeholder="URL da Imagem de Fundo">
                     </div>
-                    <!-- Campo para a imagem da seção na index.html -->
                     <div class="border p-4 rounded-md bg-gray-50">
                         <label for="business-section-image" class="block text-base font-medium text-gray-700">Imagem da Seção (Página Inicial)</label>
                         <p class="text-xs text-gray-500 mb-2">Imagem que aparece na seção "Vá Além da Saúde. Crie um Futuro." na página inicial.</p>
@@ -83,18 +84,25 @@
                 </div>
             </div>
 
+            <!-- Gerenciamento de Benefícios -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Benefícios</h2>
                 <div id="benefits-container" class="space-y-4"></div>
             </div>
+
+            <!-- Gerenciamento de Produtos -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Produtos (Página Inicial)</h2>
                 <div id="products-container" class="space-y-4"></div>
             </div>
+
+            <!-- Gerenciamento de Depoimentos -->
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-semibold mb-4 text-gray-700">Depoimentos</h2>
                 <div id="testimonials-container" class="space-y-4"></div>
             </div>
+
+            <!-- Botão de Salvar -->
             <div class="flex justify-end">
                 <button type="submit" id="save-button" class="bg-green-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-green-700 transition text-lg">
                     Salvar Alterações
@@ -103,6 +111,7 @@
         </form>
     </div>
 
+    <!-- Notificação Toast -->
     <div id="toast-notification" class="toast"></div>
 
     <!-- Scripts do Firebase -->
@@ -126,12 +135,15 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
+
+        // Referências para as coleções no Firestore
         const contentRef = db.collection('siteContent').doc('home');
         const backgroundsRef = db.collection('siteContent').doc('backgrounds');
         const productMediaRef = db.collection('siteContent').doc('productMedia');
-        const businessPageRef = db.collection('siteContent').doc('businessPage'); // Nova referência
+        const businessPageRef = db.collection('siteContent').doc('businessPage');
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Elementos do DOM
             const loginSection = document.getElementById('login-section');
             const adminPanel = document.getElementById('admin-panel');
             const loginForm = document.getElementById('login-form');
@@ -143,12 +155,14 @@
             const saveButton = document.getElementById('save-button');
             const toast = document.getElementById('toast-notification');
 
+            // Função para exibir notificações
             const showToast = (message, type = 'success') => {
                 toast.textContent = message;
                 toast.className = `toast ${type} show`;
                 setTimeout(() => { toast.classList.remove('show'); }, 3000);
             };
 
+            // Gerencia o estado de autenticação
             auth.onAuthStateChanged(user => {
                 if (user) {
                     loginSection.classList.add('hidden');
@@ -160,6 +174,7 @@
                 }
             });
 
+            // Lógica de Login
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 auth.signInWithEmailAndPassword(emailInput.value, passwordInput.value)
@@ -169,8 +184,10 @@
                     });
             });
 
+            // Lógica de Logout
             logoutButton.addEventListener('click', () => auth.signOut());
 
+            // Carrega todo o conteúdo do Firestore para o formulário
             const loadContent = async () => {
                 try {
                     const doc = await contentRef.get();
@@ -182,13 +199,14 @@
                     }
                     loadBackgrounds();
                     loadProductMedia();
-                    loadBusinessPageContent(); // Carregar conteúdo da página de negócio
+                    loadBusinessPageContent();
                 } catch (error) {
                     console.error("Erro ao carregar conteúdo:", error);
                     showToast("Erro ao carregar conteúdo.", "error");
                 }
             };
             
+            // Mapeamento dos IDs das seções para nomes amigáveis
             const sectionNames = {
                 'home': 'Página Inicial (Topo)',
                 'benefits': 'Benefícios (Página Inicial)',
@@ -203,6 +221,7 @@
                 'calculator': 'Página Calculadora'
             };
 
+            // Carrega os dados de fundo
             const loadBackgrounds = async () => {
                 try {
                     const doc = await backgroundsRef.get();
@@ -214,6 +233,7 @@
                 }
             };
             
+            // Configuração das mídias de produtos
             const productMediaConfig = {
                 k8: {
                     name: "Kangen 8 (K8)",
@@ -229,6 +249,7 @@
                 }
             };
 
+            // Carrega as mídias dos produtos
             const loadProductMedia = async () => {
                 try {
                     const doc = await productMediaRef.get();
@@ -240,7 +261,7 @@
                 }
             };
             
-            // Nova função para carregar dados da página de negócio
+            // Carrega o conteúdo da página "Abra seu Negócio"
             const loadBusinessPageContent = async () => {
                 try {
                     const doc = await businessPageRef.get();
@@ -255,32 +276,26 @@
                 }
             };
             
+            // Cria dinamicamente os campos para mídias de produtos
             const populateProductMediaForm = (mediaData) => {
                 const container = document.getElementById('product-media-container');
                 container.innerHTML = ''; 
-
                 Object.keys(productMediaConfig).forEach(productId => {
                     const product = productMediaConfig[productId];
                     const productDiv = document.createElement('div');
                     productDiv.className = 'border p-4 rounded-lg bg-gray-50';
-                    
                     const mainImage = (mediaData[productId] && mediaData[productId].mainImage) ? mediaData[productId].mainImage : '';
-
                     let productHTML = `
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">${product.name}</h3>
                         <div class="space-y-3">
-                            <!-- CAMPO PARA IMAGEM PRINCIPAL -->
                             <div class="border-b pb-3 mb-3">
                                 <label class="block text-base font-medium text-gray-700">Imagem Principal (Hero)</label>
                                 <input type="url" data-section="productMedia" data-product-id="${productId}" data-field="mainImage" value="${mainImage}" class="w-full mt-1 p-2 border rounded-md" placeholder="URL da Imagem Principal">
                             </div>
-                            <!-- FIM DO CAMPO -->
                     `;
-
                     Object.keys(product.tabs).forEach(tabId => {
                         const tabName = product.tabs[tabId];
                         const currentMedia = (mediaData[productId] && mediaData[productId][tabId]) ? mediaData[productId][tabId] : { mediaUrl: '', mediaType: 'image' };
-                        
                         productHTML += `
                             <div class="border-t pt-3">
                                 <label class="block text-sm font-medium text-gray-700">Aba: ${tabName}</label>
@@ -292,13 +307,13 @@
                             </div>
                         `;
                     });
-
                     productHTML += `</div>`;
                     productDiv.innerHTML = productHTML;
                     container.appendChild(productDiv);
                 });
             };
 
+            // Cria dinamicamente os campos para fundos de seção
             const populateBackgroundsForm = (backgrounds) => {
                 const container = document.getElementById('backgrounds-container');
                 container.innerHTML = '';
@@ -318,6 +333,7 @@
                 });
             };
 
+            // Cria dinamicamente os campos para benefícios, produtos e depoimentos
             const populateForm = (section, data) => {
                 const container = document.getElementById(`${section}-container`);
                 container.innerHTML = '';
@@ -342,11 +358,13 @@
                 });
             };
 
+            // Lógica para salvar o formulário
             contentForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 saveButton.disabled = true;
                 saveButton.textContent = 'Salvando...';
 
+                // Coleta dados de benefícios, produtos e depoimentos
                 const newContent = { benefits: [], products: [], testimonials: [] };
                 document.querySelectorAll('#content-form [data-section][data-index]').forEach(input => {
                     const { section, index, field } = input.dataset;
@@ -356,6 +374,7 @@
                     newContent[section][parseInt(index)][field] = input.value;
                 });
                 
+                // Coleta dados dos fundos
                 const newBackgrounds = {};
                 document.querySelectorAll('#backgrounds-container [data-id]').forEach(input => {
                     const { id, field } = input.dataset;
@@ -365,31 +384,32 @@
                     newBackgrounds[id][field] = input.value;
                 });
 
+                // Coleta dados de mídia de produtos
                 const newProductMedia = {};
                 document.querySelectorAll('#product-media-container [data-product-id]').forEach(input => {
                     const { productId, tabId, field } = input.dataset;
                     if (!newProductMedia[productId]) newProductMedia[productId] = {};
-                    
-                    if (tabId) { // Se for um campo de uma aba
+                    if (tabId) {
                         if (!newProductMedia[productId][tabId]) newProductMedia[productId][tabId] = {};
                         newProductMedia[productId][tabId][field] = input.value;
-                    } else { // Se for o campo da imagem principal
+                    } else {
                         newProductMedia[productId][field] = input.value;
                     }
                 });
 
-                // Coletar dados da página de negócio
+                // Coleta dados da página de negócio
                 const newBusinessContent = {
                     heroImageUrl: document.getElementById('business-hero-image').value,
                     sectionImageUrl: document.getElementById('business-section-image').value
                 };
 
+                // Salva todos os dados no Firestore
                 try {
                     await Promise.all([
                         contentRef.set(newContent, { merge: true }),
                         backgroundsRef.set(newBackgrounds, { merge: true }),
                         productMediaRef.set(newProductMedia, { merge: true }),
-                        businessPageRef.set(newBusinessContent, { merge: true }) // Salvar conteúdo da página de negócio
+                        businessPageRef.set(newBusinessContent, { merge: true })
                     ]);
                     showToast("Conteúdo atualizado com sucesso!", 'success');
                 } catch (error) {
