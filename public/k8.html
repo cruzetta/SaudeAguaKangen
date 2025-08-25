@@ -58,28 +58,37 @@
             border-radius: 0.5rem; /* rounded-lg */
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
         }
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
     </style>
 </head>
 <body class="bg-white">
 
     <!-- ===== Header ===== -->
-    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 left-0 w-full z-50 shadow-md">
+    <header id="header" class="absolute top-0 left-0 w-full z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-primary">
+            <a href="index.html" class="text-2xl font-bold text-white">
                 Saude Kangen Brasil
             </a>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
-                <a href="index.html#products" class="text-primary font-semibold transition">Produtos</a>
-                <a href="index.html#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
+                <a href="index.html#benefits" class="text-gray-200 hover:text-white transition">Benefícios</a>
+                <a href="index.html#products" class="text-white font-semibold transition">Produtos</a>
+                <a href="index.html#testimonials" class="text-gray-200 hover:text-white transition">Depoimentos</a>
                 <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20IONIZADOR%20K8" target="_blank" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Quero o meu K8</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden">
-                <i data-feather="menu" class="text-primary"></i>
+                <i data-feather="menu" class="text-white"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white">
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 backdrop-blur-sm">
             <a href="index.html#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
             <a href="index.html#products" class="block py-2 px-6 text-primary bg-gray-100 font-semibold">Produtos</a>
             <a href="index.html#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
@@ -88,25 +97,41 @@
     </header>
 
     <main>
-        <!-- ===== Hero Section ===== -->
-        <section class="bg-neutral-light pt-24 pb-16">
-            <div class="container mx-auto px-6">
-                <p class="breadcrumb text-sm text-gray-500 mb-4"><a href="index.html">Início</a> / <a href="index.html#products">Produtos</a> / Kangen 8</p>
-                <div class="grid md:grid-cols-2 gap-8 items-center">
+        <!-- ===== Hero Section with Video Background ===== -->
+        <section class="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden">
+             <!-- Background Container -->
+             <div class="absolute top-0 left-0 w-full h-full">
+                <!-- Imagem estática de alta qualidade que carrega primeiro -->
+                <img src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/saude%20kangen%20brasil%2Fposter-sharp.jpg?alt=media&token=e1104e7c-867c-4a33-9118-2e0f808f9725" alt="Fundo de água" class="hero-background">
+                <!-- O vídeo começa invisível e aparece com uma transição suave -->
+                <video loop muted playsinline preload="metadata" id="hero-video-bg" class="hero-background opacity-0 transition-opacity duration-1000">
+                    <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/saude%20kangen%20brasil%2Fcachoeira%20k8.mp4?alt=media&token=aabcb334-f4d2-4568-855e-5cfe593df822" type="video/mp4">
+                    Seu navegador não suporta a tag de vídeo.
+                </video>
+            </div>
+            
+            <!-- Overlay -->
+            <div class="absolute top-0 left-0 w-full h-full bg-black/20 z-10"></div>
+
+            <!-- Content -->
+            <div class="container mx-auto px-6 relative z-20">
+                <p class="breadcrumb text-sm text-gray-200 mb-4"><a href="index.html" class="hover:text-white">Início</a> / <a href="index.html#products" class="hover:text-white">Produtos</a> / Kangen 8</p>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div data-aos="fade-right">
-                        <img id="main-product-image" src="https://firebasestorage.googleapis.com/v0/b/saudekangenbrasil-e96ff.appspot.com/o/products%2Fk8.png?alt=media&token=c4538441-2a13-40e1-8848-18e001c40217" alt="Ionizador Kangen 8" class="rounded-lg shadow-xl w-full">
+                        <img id="main-product-image" src="https://firebasestorage.googleapis.com/v0/b/saudekangenbrasil-e96ff.appspot.com/o/products%2Fk8.png?alt=media&token=c4538441-2a13-40e1-8848-18e001c40217" alt="Ionizador Kangen 8" class="w-full">
                     </div>
-                    <div data-aos="fade-left">
-                        <h1 class="text-4xl md:text-5xl font-bold text-primary">Kangen 8 (K8)</h1>
-                        <p class="text-xl text-secondary mt-2 mb-6">O mais poderoso e luxuoso ionizador da Enagic®.</p>
-                        <p class="mb-4">O K8 é uma máquina de alta performance com 8 placas de titânio banhadas a platina, que melhoram a ionização da água, aumentam o potencial de produção de antioxidantes e garantem uma operação estável e contínua.</p>
-                        <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20IONIZADOR%20K8.%20Poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg inline-flex items-center gap-2">
+                    <div data-aos="fade-left" class="bg-blue-900/50 backdrop-blur-sm p-8 rounded-lg">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white">Kangen 8 (K8)</h1>
+                        <p class="text-xl text-gray-200 mt-2 mb-6">O mais poderoso e luxuoso ionizador da Enagic®.</p>
+                        <p class="mb-6 text-gray-100">O K8 é uma máquina de alta performance com 8 placas de titânio banhadas a platina, que melhoram a ionização da água e aumentam o potencial de produção de antioxidantes.</p>
+                        <a href="https://wa.me/5567984533785?text=OL%C3%81!%20TENHO%20INTERESSE%20NO%20IONIZADOR%20K8.%20Poderia%20me%20dar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="bg-accent text-white font-bold py-3 px-6 rounded-full text-lg hover:bg-green-600 transition shadow-lg inline-flex items-center gap-2">
                             <i data-feather="message-circle"></i> Falar com Especialista
                         </a>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <!-- ===== Interactive Water Types Section ===== -->
         <section class="py-20">
@@ -323,6 +348,14 @@
                     feather.replace();
                 });
             });
+            
+            // --- INÍCIO: Lógica para transição suave do vídeo de fundo ---
+            const video = document.getElementById('hero-video-bg');
+            video.addEventListener('canplaythrough', () => {
+                video.classList.remove('opacity-0');
+                video.play();
+            }, { once: true });
+            // --- FIM: Lógica da transição ---
 
             // --- INÍCIO: Lógica para carregar mídia dinâmica ---
             const firebaseConfig = {
