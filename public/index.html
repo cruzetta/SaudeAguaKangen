@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saude Kangen Brasil - Transforme sua Vida</title>
-    <meta name="description" content="Descubra como a tecnologia japonesa Kangen pode revolucionar sua saúde e bem-estar com água ionizada, alcalina e antioxidante.">
+    <title>Saude Kangen Brasil - O Seu Spa Natural em Casa</title>
+    <meta name="description" content="Transforme sua casa em um oásis de saúde. Descubra a pureza da Água Kangen, tecnologia japonesa para rejuvenescimento e bem-estar.">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Poppins & Inter -->
+    <!-- Google Fonts: Playfair Display (Serif for Luxury) & Montserrat (Sans-serif for modernity) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -21,24 +21,81 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        body { font-family: 'Inter', sans-serif; color: #2D3748; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
-        .text-secondary { color: #718096; }
-        .bg-primary { background-color: #2C5282; }
-        .bg-secondary { background-color: #4299E1; }
-        .bg-accent { background-color: #48BB78; }
-        .bg-neutral-light { background-color: #F7FAFC; }
-        .text-primary { color: #2C5282; }
+        /* --- Redefinição de Paleta e Fontes (Conceito Spa Natural) --- */
+        :root {
+            --color-primary: #1A365D; /* Azul Profundo do Oceano */
+            --color-secondary: #3B82F6; /* Azul Claro do Céu */
+            --color-accent: #10B981; /* Verde Esmeralda Rejuvenescedor */
+            --color-neutral-light: #F0F9FF; /* Branco com leve toque azulado */
+            --color-text-main: #374151;
+            --color-text-secondary: #6B7280;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; color: var(--color-text-main); background-color: var(--color-neutral-light); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--color-primary); }
+        
+        .text-secondary { color: var(--color-text-secondary); }
+        .bg-primary { background-color: var(--color-primary); }
+        .bg-secondary { background-color: var(--color-secondary); }
+        .bg-accent { background-color: var(--color-accent); }
+        .bg-neutral-light { background-color: var(--color-neutral-light); }
+        .text-primary { color: var(--color-primary); }
+        .text-accent { color: var(--color-accent); }
+
+        /* --- Efeitos Visuais Premium --- */
         .hover-lift {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, box-shadow;
         }
         .hover-lift:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
         }
-        #hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; transform: translateX(-50%) translateY(-50%); object-fit: cover; }
+
+        /* Efeito de Vidro Fosco (Glassmorphism) para cartões */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1rem;
+        }
+
+        /* --- Hero Section (Entrada Triunfal) --- */
+        #hero-video { 
+            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; 
+            transform: translateX(-50%) translateY(-50%); object-fit: cover; 
+        }
+
+        /* Overlay Gradiente (Mais sofisticado que o preto sólido) */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 50, 0.4) 0%, rgba(0, 0, 50, 0.7) 100%);
+        }
         
-        /* Estilos para o novo questionário */
+        /* Efeito de Onda Sutil na base do Hero */
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(130% + 1.3px); /* Largura maior para evitar cortes em telas largas */
+            height: 110px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: var(--color-neutral-light); /* Deve corresponder ao fundo da próxima seção */
+        }
+
+        /* --- Estilos para o Questionário (Wizard) --- */
         .wizard-step {
             display: none;
             animation: fadeIn 0.5s ease-in-out;
@@ -51,209 +108,281 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .form-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #D1D5DB;
-            border-radius: 0.5rem;
-            transition: ring 0.2s;
+            width: 100%; padding: 0.75rem 1rem; border: 1px solid #D1D5DB; border-radius: 0.5rem; transition: ring 0.2s;
         }
         .form-input:focus {
-            outline: none;
-            ring: 2px;
-            ring-color: #4299E1;
+            outline: none; ring: 2px; ring-color: var(--color-secondary);
         }
         .radio-label {
-            display: block;
-            cursor: pointer;
-            padding: 1rem;
-            border: 2px solid #E2E8F0;
-            border-radius: 0.5rem;
-            transition: all 0.2s;
+            display: block; cursor: pointer; padding: 1rem; border: 2px solid #E2E8F0; border-radius: 0.5rem; transition: all 0.2s;
         }
         .radio-label:hover {
-            border-color: #4299E1;
+            border-color: var(--color-secondary);
         }
         input[type="radio"]:checked + .radio-label {
             background-color: #EBF8FF;
-            border-color: #4299E1;
+            border-color: var(--color-secondary);
             font-weight: 600;
         }
         input[type="radio"] {
             display: none;
         }
 
-        /* Adicionado para destacar texto sobre fundos dinâmicos */
+        /* --- Fundos Dinâmicos (Mantido e ajustado) --- */
         .has-dynamic-bg {
             position: relative; 
         }
         .has-dynamic-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro consistente */
+            content: ''; position: absolute; inset: 0;
+            background-color: rgba(0, 0, 50, 0.5); /* Overlay ajustado para o novo azul escuro */
             z-index: 0;
         }
-        .has-dynamic-bg > .container { /* Garante que o conteúdo fique sobre o overlay */
-            position: relative;
-            z-index: 1;
+        .has-dynamic-bg > .container {
+            position: relative; z-index: 1;
         }
-        /* Regra de CSS corrigida para ser mais específica */
-        .has-dynamic-bg > .container > .text-center h2,
-        .has-dynamic-bg > .container > .text-center p.text-lg.text-secondary {
-            color: white;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        /* Garantindo legibilidade do texto sobre fundos dinâmicos */
+        .has-dynamic-bg h2,
+        .has-dynamic-bg p {
+            color: white !important;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
         }
+
+        /* Header Transparente Inicialmente */
+        #header {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+        }
+        #header.scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        #header.scrolled .text-header-dynamic {
+            color: var(--color-primary);
+            text-shadow: none;
+        }
+        #header.scrolled .nav-link-dynamic {
+             color: #4B5563;
+        }
+        #header.scrolled .nav-link-dynamic:hover {
+             color: var(--color-primary);
+        }
+
     </style>
 </head>
-<body class="bg-neutral-light overflow-x-hidden">
+<body class="bg-neutral-light overflow-x-hidden antialiased">
 
-    <!-- ===== Header ===== -->
-    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 w-full z-50 shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-primary">
+    <!-- ===== Header (Transparente Inicialmente) ===== -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white text-header-dynamic transition-colors duration-300" style="font-family: 'Playfair Display', serif; text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
                 Saude Kangen Brasil
             </a>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="#benefits" class="text-gray-600 hover:text-primary transition">Benefícios</a>
-                <a href="calculadora.html" class="text-gray-600 hover:text-primary transition">Calculadora</a>
-                <a href="#products" class="text-gray-600 hover:text-primary transition">Produtos</a>
-                <a href="AbraseuNegocio.html" class="text-gray-600 hover:text-primary transition">Abra seu Negócio</a>
-                <a href="#testimonials" class="text-gray-600 hover:text-primary transition">Depoimentos</a>
-                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%81GUA%20KANGEN." target="_blank" class="bg-accent text-white px-5 py-2 rounded-full font-semibold hover:bg-green-600 transition shadow">Falar com Especialista</a>
+                <a href="#benefits" class="text-white nav-link-dynamic hover:text-accent transition-colors duration-300 font-medium">Benefícios</a>
+                <a href="calculadora.html" class="text-white nav-link-dynamic hover:text-accent transition-colors duration-300 font-medium">Calculadora</a>
+                <a href="#products" class="text-white nav-link-dynamic hover:text-accent transition-colors duration-300 font-medium">Produtos</a>
+                <a href="AbraseuNegocio.html" class="text-white nav-link-dynamic hover:text-accent transition-colors duration-300 font-medium">Abra seu Negócio</a>
+                <a href="#testimonials" class="text-white nav-link-dynamic hover:text-accent transition-colors duration-300 font-medium">Depoimentos</a>
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%8ÁGUA%20KANGEN." target="_blank" class="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition shadow-lg transform hover:scale-105">Falar com Especialista</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden">
-                <i data-feather="menu" class="text-primary"></i>
+            <button id="mobile-menu-button" class="md:hidden text-white text-header-dynamic">
+                <i data-feather="menu" class="w-6 h-6"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white">
-            <a href="#benefits" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
-            <a href="calculadora.html" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Calculadora</a>
-            <a href="#products" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Produtos</a>
-            <a href="AbraseuNegocio.html" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Abra seu Negócio</a>
-            <a href="#testimonials" class="block py-2 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
-            <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%81GUA%20KANGEN." target="_blank" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#benefits" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Benefícios</a>
+            <a href="calculadora.html" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Calculadora</a>
+            <a href="#products" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Produtos</a>
+            <a href="AbraseuNegocio.html" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Abra seu Negócio</a>
+            <a href="#testimonials" class="block py-3 px-6 text-gray-600 hover:bg-gray-100">Depoimentos</a>
+            <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%8ÁGUA%20KANGEN." target="_blank" class="block py-4 px-6 bg-accent text-white text-center font-semibold">Falar com Especialista</a>
         </div>
     </header>
 
     <main>
-        <!-- ===== Hero Section ===== -->
+        <!-- ===== Hero Section (Entrada Triunfal) ===== -->
         <section id="home" class="relative h-screen flex items-center justify-center text-white overflow-hidden">
-            <!-- Vídeo de Fundo com a nova URL -->
+            <!-- Vídeo de Fundo -->
             <video autoplay muted loop playsinline id="hero-video">
                 <source src="https://firebasestorage.googleapis.com/v0/b/platamais.firebasestorage.app/o/saude%20kangen%20brasil%2Fengenharia%20video.mp4?alt=media&token=98791496-f099-4953-bd51-03bda967bd42" type="video/mp4">
+                <!-- Fallback se o vídeo principal falhar (Vídeo de água pura) -->
+                <source src="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4" type="video/mp4">
                 O seu navegador não suporta a tag de vídeo.
             </video>
-            <!-- Overlay Escuro Original -->
-            <div class="absolute inset-0 bg-black/50 z-0"></div>
+            
+            <!-- Overlay Gradiente Sofisticado -->
+            <div class="hero-overlay"></div>
             
             <!-- Conteúdo da Secção -->
             <div class="container mx-auto px-6 text-center relative z-10">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4" data-aos="fade-up" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
-                    Transforme Sua Vida com a <br class="hidden md:block"> Água Mais Pura do Mundo
+                <!-- Título Impactante e Elegante -->
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight mb-6 text-white" data-aos="fade-up" data-aos-duration="1000" style="text-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                    A Fonte da Vitalidade.<br> Redescubra a Pureza.
                 </h1>
-                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
-                    Descubra como a tecnologia japonesa Kangen pode revolucionar sua saúde e bem-estar.
+                <p class="text-lg md:text-2xl font-light text-gray-100 max-w-4xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
+                    Transforme sua casa em um Spa Natural com a tecnologia japonesa Kangen. Hidratação superior para uma vida revolucionária.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="fade-up" data-aos-delay="400">
-                    <a href="#contact" class="w-full sm:w-auto bg-primary text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-blue-900 transition shadow-lg">
-                        Solicitar Demonstração Gratuita
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                    <a href="#contact" class="w-full sm:w-auto bg-accent text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-xl hover:bg-green-600 transform hover:scale-105">
+                        Agendar Demonstração Gratuita
                     </a>
-                    <a href="#benefits" class="w-full sm:w-auto text-white font-semibold py-4 px-8 rounded-full text-lg hover:bg-white/20 transition border-2 border-white">
-                        Conhecer os Benefícios
+                    <a href="#experience" class="w-full sm:w-auto text-white font-semibold py-4 px-10 rounded-full text-lg transition duration-300 hover:bg-white/20 border-2 border-white transform hover:scale-105">
+                        A Experiência Kangen
                     </a>
                 </div>
-                <div class="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-4 font-medium" data-aos="fade-up" data-aos-delay="600" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
-                    <span id="inmetro-info" class="flex items-center gap-2 cursor-pointer">
-                        <i data-feather="award" class="w-5 h-5 text-accent"></i>Certificado Inmetro
+                
+                <!-- Selos de Qualidade -->
+                <div class="mt-16 flex flex-wrap justify-center gap-x-10 gap-y-4 font-medium text-gray-200" data-aos="fade-in" data-aos-delay="1000" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">
+                    <span id="inmetro-info" class="flex items-center gap-3 cursor-pointer hover:text-white transition">
+                        <i data-feather="award" class="w-6 h-6 text-accent"></i>Certificado Inmetro
                     </span>
-                    <span id="tech-info" class="flex items-center gap-2 cursor-pointer">
-                        <i data-feather="cpu" class="w-5 h-5 text-accent"></i>Tecnologia Japonesa
+                    <span id="tech-info" class="flex items-center gap-3 cursor-pointer hover:text-white transition">
+                        <i data-feather="cpu" class="w-6 h-6 text-accent"></i>Tecnologia Japonesa
                     </span>
-                    <span id="experience-info" class="flex items-center gap-2 cursor-pointer">
-                        <i data-feather="calendar" class="w-5 h-5 text-accent"></i>
-                        <span id="experience-text"></span>
+                    <span id="experience-info" class="flex items-center gap-3 cursor-pointer hover:text-white transition">
+                        <i data-feather="calendar" class="w-6 h-6 text-accent"></i>
+                        <span id="experience-text"></span> de Experiência
                     </span>
+                </div>
+            </div>
+
+            <!-- Divisor de Onda Sutil -->
+            <div class="wave-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- ===== Benefits Section (Cartões Glassmorphism) ===== -->
+        <section id="benefits" class="pt-16 pb-24 bg-neutral-light">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold">Por que a Água Kangen é incomparável?</h2>
+                    <p class="text-xl text-secondary mt-4">Mais que hidratação, um pilar para o seu bem-estar.</p>
+                </div>
+                <div id="benefits-list" class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <!-- Conteúdo dinâmico (JS modificado para usar glass-card) -->
                 </div>
             </div>
         </section>
 
-        <!-- ===== Benefits Section ===== -->
-        <section id="benefits" class="py-20 bg-white">
+         <!-- ===== NOVA SEÇÃO: A Experiência Kangen (Visual Impact - Dá água na boca) ===== -->
+         <section id="experience" class="py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Por que escolher a Água Kangen?</h2>
-                    <p class="text-lg text-secondary mt-2">Mais que hidratação, uma nova forma de viver.</p>
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Uma Máquina. Múltiplas Experiências.</h2>
+                    <p class="text-xl text-secondary mt-4">Descubra os diferentes tipos de água que a tecnologia Enagic produz para o seu dia a dia.</p>
                 </div>
-                <div id="benefits-list" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Conteúdo dinâmico será inserido aqui -->
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1: Hidratação -->
+                    <div class="rounded-xl overflow-hidden shadow-lg flex flex-col hover-lift" data-aos="zoom-in">
+                        <div class="h-48">
+                            <img src="https://images.pexels.com/photos/3428499/pexels-photo-3428499.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pessoa bebendo água refrescante e pura" class="w-full h-full object-cover">
+                        </div>
+                        <div class="bg-white p-6 flex-grow flex flex-col">
+                            <span class="text-sm bg-blue-100 text-blue-800 font-semibold px-3 py-1 rounded-full mb-4 inline-block self-start">pH 8.5 - 9.5</span>
+                            <h3 class="text-2xl font-bold" style="color: var(--color-primary);">Hidratação Superior</h3>
+                            <p class="text-secondary mt-2 flex-grow">Perfeita para beber, cozinhar e preparar bebidas. Equilíbrio e sabor inigualáveis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Beleza -->
+                    <div class="rounded-xl overflow-hidden shadow-lg flex flex-col hover-lift" data-aos="zoom-in" data-aos-delay="150">
+                        <div class="h-48">
+                           <img src="https://images.pexels.com/photos/3768129/pexels-photo-3768129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Mulher lavando o rosto com água da beleza" class="w-full h-full object-cover">
+                        </div>
+                        <div class="bg-white p-6 flex-grow flex flex-col">
+                            <span class="text-sm bg-pink-100 text-pink-800 font-semibold px-3 py-1 rounded-full mb-4 inline-block self-start">pH 4.0 - 6.0</span>
+                            <h3 class="text-2xl font-bold" style="color: var(--color-primary);">Água da Beleza</h3>
+                            <p class="text-secondary mt-2 flex-grow">Tonifica e firma a pele, dá brilho aos cabelos. Seu spa pessoal diário.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Higienização -->
+                    <div class="rounded-xl overflow-hidden shadow-lg flex flex-col hover-lift" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="h-48">
+                            <img src="https://images.pexels.com/photos/4198115/pexels-photo-4198115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Frutas frescas sendo lavadas com água Kangen" class="w-full h-full object-cover">
+                        </div>
+                        <div class="bg-white p-6 flex-grow flex flex-col">
+                            <span class="text-sm bg-green-100 text-green-800 font-semibold px-3 py-1 rounded-full mb-4 inline-block self-start">pH 2.5 & 11.5</span>
+                            <h3 class="text-2xl font-bold" style="color: var(--color-primary);">Limpeza e Higienização</h3>
+                            <p class="text-secondary mt-2 flex-grow">Elimine pesticidas dos alimentos e desinfete sua casa sem produtos químicos.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- ===== Products Section ===== -->
-        <section id="products" class="py-20 bg-neutral-light">
+        <!-- ===== Products Section (Design Limpo) ===== -->
+        <section id="products" class="py-24 bg-neutral-light">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Nossos Ionizadores</h2>
-                    <p class="text-lg text-secondary mt-2">Tecnologia de ponta para a saúde da sua família.</p>
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold">Ionizadores de Elite</h2>
+                    <p class="text-xl text-secondary mt-4">Tecnologia japonesa de ponta, certificada para sua família.</p>
                 </div>
-                <div id="products-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id="products-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     <!-- Conteúdo dinâmico -->
                 </div>
             </div>
         </section>
         
-        <!-- ===== Animated Stats Section ===== -->
-        <section id="stats" class="py-20 bg-secondary text-white">
+        <!-- ===== Animated Stats Section (Gradiente Atraente) ===== -->
+        <section id="stats" class="py-20 text-white" style="background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div data-aos="fade-up">
-                        <h3 class="text-4xl md:text-5xl font-bold stat-number" data-target="1600000">0</h3>
-                        <p class="mt-2 text-blue-200">Famílias Transformadas no Mundo</p>
+                    <div data-aos="zoom-in" data-aos-delay="0">
+                        <h3 class="text-5xl md:text-6xl font-bold stat-number" data-target="1600000">0</h3>
+                        <p class="mt-3 text-blue-100 font-light">Famílias Transformadas no Mundo</p>
                     </div>
-                    <div data-aos="fade-up" data-aos-delay="100">
-                        <h3 id="experience-stats" class="text-4xl md:text-5xl font-bold stat-number" data-target="51">0</h3>
-                        <p class="mt-2 text-blue-200">Anos de Mercado</p>
+                    <div data-aos="zoom-in" data-aos-delay="150">
+                        <h3 id="experience-stats" class="text-5xl md:text-6xl font-bold stat-number" data-target="51">0</h3>
+                        <p class="mt-3 text-blue-100 font-light">Anos de Liderança no Mercado</p>
                     </div>
-                    <div data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-4xl md:text-5xl font-bold stat-number" data-target="40">0</h3>
-                        <p class="mt-2 text-blue-200">Países Presentes</p>
+                    <div data-aos="zoom-in" data-aos-delay="300">
+                        <h3 class="text-5xl md:text-6xl font-bold stat-number" data-target="40">0</h3>
+                        <p class="mt-3 text-blue-100 font-light">Países Presentes</p>
                     </div>
-                    <div data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="text-4xl md:text-5xl font-bold stat-number" data-target="100">0</h3>
-                        <p class="mt-2 text-blue-200">% Satisfação</p>
+                    <div data-aos="zoom-in" data-aos-delay="450">
+                        <h3 class="text-5xl md:text-6xl font-bold stat-number" data-target="100">0</h3>
+                        <p class="mt-3 text-blue-100 font-light">% Satisfação Garantida</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ===== Testimonials Section ===== -->
-        <section id="testimonials" class="py-20 bg-white">
+        <!-- ===== Testimonials Section (Design Elegante) ===== -->
+        <section id="testimonials" class="py-24 bg-neutral-light">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl font-bold text-primary">Vidas Transformadas</h2>
-                    <p class="text-lg text-secondary mt-2">Veja o que nossos clientes dizem.</p>
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold">Vidas Rejuvenescidas</h2>
+                    <p class="text-xl text-secondary mt-4">A experiência real de nossos clientes.</p>
                 </div>
-                <div id="testimonials-list" class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-                    <!-- Conteúdo dinâmico -->
+                <div id="testimonials-list" class="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
+                    <!-- Conteúdo dinâmico (JS modificado para cartões elegantes) -->
                 </div>
             </div>
         </section>
 
-        <!-- ===== NOVA SEÇÃO: OPORTUNIDADE DE NEGÓCIO ===== -->
-        <section id="business-opportunity" class="py-20 bg-neutral-light">
+        <!-- ===== OPORTUNIDADE DE NEGÓCIO ===== -->
+        <section id="business-opportunity" class="py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-12" data-aos="fade-up">
+                <div class="bg-neutral-light rounded-xl shadow-xl p-8 md:p-16 flex flex-col lg:flex-row items-center gap-10 lg:gap-16" data-aos="fade-up">
                     <div class="lg:w-1/2">
-                        <img id="business-opportunity-image" src="https://placehold.co/600x400/E2E8F0/4A5568?text=Carregando+Imagem..." alt="Pessoas em uma reunião de negócios colaborando" class="rounded-lg shadow-md w-full h-full object-cover">
+                        <img id="business-opportunity-image" src="https://placehold.co/600x400/E2E8F0/4A5568?text=Carregando+Imagem..." alt="Pessoas colaborando em um ambiente profissional e saudável" class="rounded-lg shadow-lg w-full h-full object-cover">
                     </div>
                     <div class="lg:w-1/2 text-center lg:text-left">
-                        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Vá Além da Saúde. Crie um Futuro.</h2>
-                        <p class="text-lg text-secondary mb-6">
-                            E se o seu próximo passo profissional fosse em um dos mercados que mais crescem no mundo: o de bem-estar? Existe uma oportunidade inovadora para você representar uma tecnologia japonesa pioneira em hidratação. Convidamos você a conhecer um modelo de negócio que une saúde, propósito e um potencial de transformar sua vida financeira.
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">Crie um Futuro com Propósito.</h2>
+                        <p class="text-lg text-secondary mb-8">
+                            Junte-se ao mercado global de bem-estar. Represente a tecnologia japonesa pioneira em hidratação e transforme sua saúde física e financeira. Conheça um modelo de negócio inovador que une propósito e potencial ilimitado.
                         </p>
-                        <a href="AbraseuNegocio.html" class="bg-accent text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-green-600 transition shadow-lg inline-flex items-center gap-2">
+                        <a href="AbraseuNegocio.html" class="bg-accent text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 shadow-lg hover:bg-green-600 inline-flex items-center gap-3 transform hover:scale-105">
                             <i data-feather="zap"></i> Descubra a Oportunidade
                         </a>
                     </div>
@@ -262,35 +391,36 @@
         </section>
         
         <!-- ===== Final CTA Section (QUESTIONÁRIO) ===== -->
-        <section id="contact" class="py-20 bg-primary text-white">
+        <section id="contact" class="py-24 bg-primary text-white">
             <div class="container mx-auto px-6">
-                <div class="bg-secondary rounded-xl p-8 md:p-12 lg:p-16 shadow-2xl flex flex-col lg:flex-row items-center gap-8" data-aos="flip-up">
+                <div class="rounded-xl p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row items-center gap-10" data-aos="flip-up" style="background: linear-gradient(135deg, var(--color-secondary) 0%, #2563EB 100%);">
                     <div class="lg:w-1/2 text-center lg:text-left">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Veja a diferença na prática.</h2>
-                        <p class="text-lg text-blue-100 mb-6">Responda algumas perguntas rápidas e agende uma demonstração gratuita, sem compromisso, para descobrir o poder da Água Kangen.</p>
-                        <div class="flex items-center justify-center lg:justify-start gap-2 text-lg font-semibold">
-                            <i data-feather="zap" class="text-green-300"></i>
-                            <span>Resultados imediatos e comprovados.</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">Sinta o Poder da Kangen na Prática.</h2>
+                        <p class="text-xl text-blue-100 mb-6 font-light">Agende uma demonstração gratuita e sem compromisso. Responda algumas perguntas rápidas e descubra como revolucionar sua saúde hoje mesmo.</p>
+                        <div class="flex items-center justify-center lg:justify-start gap-3 text-lg font-semibold">
+                            <i data-feather="check-circle" class="text-accent w-6 h-6"></i>
+                            <span>Resultados imediatos e cientificamente comprovados.</span>
                         </div>
                     </div>
                     <div class="lg:w-1/2 w-full">
-                        <div id="demo-wizard" class="bg-white p-8 rounded-lg shadow-lg w-full text-gray-800">
+                        <!-- Formulário -->
+                        <div id="demo-wizard" class="bg-white p-8 rounded-lg shadow-2xl w-full text-gray-800">
                             <!-- Progress Bar -->
                             <div class="mb-6">
                                 <div class="bg-gray-200 rounded-full h-2.5">
-                                    <div id="progress-bar" class="bg-green-500 h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div>
+                                    <div id="progress-bar" class="bg-accent h-2.5 rounded-full" style="width: 0%; transition: width 0.3s ease;"></div>
                                 </div>
                             </div>
 
                             <!-- Step 1: Name -->
                             <div class="wizard-step active" data-step="1">
-                                <label for="name" class="block text-xl font-bold mb-4">Olá! Para começar, qual é o seu nome?</label>
+                                <label for="name" class="block text-xl font-bold mb-4 text-primary">Olá! Para começar, qual é o seu nome?</label>
                                 <input type="text" id="name" name="name" class="form-input" placeholder="Digite seu nome completo" required>
                             </div>
 
                             <!-- Step 2: Conhece Enagic -->
                             <div class="wizard-step" data-step="2">
-                                <label class="block text-xl font-bold mb-4">Você já conhece os produtos da Enagic®?</label>
+                                <label class="block text-xl font-bold mb-4 text-primary">Você já conhece os produtos da Enagic®?</label>
                                 <div class="space-y-3">
                                     <div>
                                         <input type="radio" id="conhece-sim" name="conhece" value="Sim">
@@ -305,8 +435,8 @@
                             
                             <!-- Step 3: Viu Demo -->
                             <div class="wizard-step" data-step="3">
-                                <label class="block text-xl font-bold mb-4">Você já assistiu a uma demonstração da Água Kangen® alguma vez?</label>
-                                 <div class="space-y-3">
+                                <label class="block text-xl font-bold mb-4 text-primary">Você já assistiu a uma demonstração da Água Kangen®?</label>
+                                <div class="space-y-3">
                                     <div>
                                         <input type="radio" id="demo-sim" name="viuDemo" value="Sim">
                                         <label for="demo-sim" class="radio-label">Sim, já assisti</label>
@@ -320,7 +450,7 @@
 
                             <!-- Step 4: Interesse Produto -->
                             <div class="wizard-step" data-step="4">
-                                <label class="block text-xl font-bold mb-4">Você tem interesse em algum produto específico?</label>
+                                <label class="block text-xl font-bold mb-4 text-primary">Você tem interesse em algum produto específico?</label>
                                 <div class="space-y-3">
                                     <div>
                                         <input type="radio" id="interesse-sim" name="interesseProduto" value="Sim">
@@ -336,7 +466,8 @@
                             
                             <!-- Step 5: Data e Hora -->
                             <div class="wizard-step" data-step="5">
-                                <label class="block text-xl font-bold mb-4">Qual a melhor data e horário para a demonstração?</label>
+                                <label class="block text-xl font-bold mb-4 text-primary">Qual a melhor data e horário para a demonstração?</label>
+                                 <p class="text-sm text-gray-500 mb-4">Selecione abaixo (Opcional). Avançaremos automaticamente após a seleção.</p>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <input type="date" id="data-demo" name="dataDemo" class="form-input">
                                     <input type="time" id="hora-demo" name="horaDemo" class="form-input">
@@ -345,11 +476,12 @@
                             
                             <!-- Step 6: Final -->
                             <div class="wizard-step text-center" data-step="6">
-                                <i data-feather="check-circle" class="w-16 h-16 text-green-500 mx-auto mb-4"></i>
+                                <i data-feather="check-circle" class="w-16 h-16 text-accent mx-auto mb-4"></i>
                                 <h3 class="text-2xl font-bold text-primary mb-4">Tudo pronto!</h3>
                                 <p class="text-secondary mb-6">Suas informações estão prontas. Clique no botão abaixo para nos enviar uma mensagem no WhatsApp e confirmar seu agendamento.</p>
-                                <button id="send-whatsapp" class="w-full bg-green-500 text-white font-bold py-4 px-8 rounded-full text-lg transition shadow-lg hover:bg-green-600 flex items-center justify-center gap-3">
-                                    <i data-feather="send"></i> Enviar e Agendar via WhatsApp
+                                <button id="send-whatsapp" class="w-full bg-green-600 text-white font-bold py-4 px-8 rounded-full text-lg transition shadow-lg hover:bg-green-700 flex items-center justify-center gap-3">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12.04 2C6.58 2 2.04 6.48 2.04 11.94c0 2.18.6 4.24 1.72 5.98L2.04 22l4.24-1.68c1.66 1 3.54 1.54 5.52 1.54h.24c5.46 0 10-4.48 10-9.94s-4.54-9.94-10-9.94zm3.72 13.68c-.54.94-1.88 1.48-3.22 1.48-1.42 0-2.8-.54-4.06-1.64-1.34-1.1-2.1-2.52-2.3-4.08-.18-1.48.28-2.82 1.24-3.64.9-.78 2.04-.92 2.76-.6.66.3 1.16 1.18 1.32 1.9.18.7-.04 1.36-.3 1.92-.28.56-.64 1.04-1.04 1.48-.4.46-.74.72-.48 1.2.26.48.8 1.38 1.78 2.16.98.78 1.88 1.02 2.44.8.56-.22.98-.88 1.28-1.48.3-.6.58-.98.96-.98.38 0 .88.18 1.4.48.52.3 1.02.66 1.12 1.3.1.64-.16 1.3-.7 1.98z"/></svg>
+                                    Agendar via WhatsApp
                                 </button>
                             </div>
                             
@@ -358,7 +490,7 @@
                                 <button id="prev-step" class="text-gray-600 font-semibold py-2 px-4 rounded-lg hover:bg-gray-100 transition">
                                     &larr; Voltar
                                 </button>
-                                <button id="next-step" class="bg-accent text-white font-bold py-2 px-6 rounded-full transition shadow-lg hover:bg-green-600">
+                                <button id="next-step" class="bg-accent text-white font-bold py-3 px-8 rounded-full transition shadow-lg hover:bg-green-600">
                                     Próximo &rarr;
                                 </button>
                             </div>
@@ -369,44 +501,45 @@
         </section>
     </main>
 
-    <!-- ===== Footer ===== -->
-    <footer class="bg-gray-800 text-white py-12">
+    <!-- ===== Footer (Design Escuro e Profissional) ===== -->
+    <footer class="bg-gray-900 text-white py-16">
         <div class="container mx-auto px-6 text-center">
-            <h3 class="text-2xl font-bold">Saude Kangen Brasil</h3>
-            <p class="text-gray-400 mt-2">Distribuidor Independente Enagic Brasil</p>
-            <p class="text-gray-400 mt-1">Transformando sua saúde, um copo de cada vez.</p>
-            <div class="mt-6">
-                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%81GUA%20KANGEN." target="_blank" class="bg-green-500 text-white font-semibold py-3 px-6 rounded-full inline-flex items-center gap-2 hover:bg-green-600 transition">
+            <h3 class="text-3xl font-bold" style="font-family: 'Playfair Display', serif;">Saude Kangen Brasil</h3>
+            <p class="text-gray-400 mt-4">Distribuidor Independente Autorizado Enagic Brasil</p>
+            <p class="text-gray-400 mt-2">Transformando sua saúde, um copo de pura vitalidade de cada vez.</p>
+            <div class="mt-8">
+                <a href="https://wa.me/5567984533785?text=OL%C3%81!%20ENCONTREI%20O%20SITE%20E%20GOSTARIA%20DE%20AGENDAR%20UMA%20DEMONSTRA%C3%87%C3%83O%20DA%20%C3%8ÁGUA%20KANGEN." target="_blank" class="bg-green-600 text-white font-semibold py-4 px-8 rounded-full inline-flex items-center gap-3 hover:bg-green-700 transition transform hover:scale-105">
                     <i data-feather="message-circle"></i> Fale Conosco no WhatsApp
                 </a>
             </div>
-            <p class="text-sm text-gray-500 mt-8">&copy; <span id="year"></span> Saude Kangen Brasil. Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-500 mt-10">&copy; <span id="year"></span> Saude Kangen Brasil. Todos os direitos reservados.</p>
             
             <!-- Assinatura Conecta Web Digital -->
-            <div class="mt-8 border-t border-gray-700 pt-6">
-                <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-400 hover:text-white transition-colors">
-                    Desenvolvido por <span class="font-semibold">Conecta Web Digital</span>
+            <div class="mt-10 border-t border-gray-700 pt-8">
+                <a href="https://conectawebdigital.com.br" target="_blank" rel="noopener noreferrer" class="text-sm text-gray-500 hover:text-white transition-colors">
+                    Desenvolvido com excelência por <span class="font-semibold">Conecta Web Digital</span>
                 </a>
             </div>
         </div>
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-to-top" class="fixed bottom-6 right-6 bg-accent text-white w-12 h-12 rounded-full hidden justify-center items-center shadow-lg hover:bg-green-600 transition z-40">
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 bg-accent text-white w-14 h-14 rounded-full hidden justify-center items-center shadow-xl hover:bg-green-600 transition z-40">
         <i data-feather="arrow-up"></i>
     </button>
     
-    <!-- Toast para data de fundação -->
-    <div id="info-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50 text-center"></div>
+    <!-- Toast para informações -->
+    <div id="info-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-6 py-4 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50 text-center max-w-md"></div>
 
-    <!-- Scripts do Firebase -->
+    <!-- Scripts do Firebase (Mantidos) -->
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+    <!-- JavaScript (Lógica do Site, Firebase e Interações) -->
     <script>
-        // Configuração do Firebase
+        // Configuração do Firebase (Mantida)
         const firebaseConfig = {
             apiKey: "AIzaSyBjf5N4PbnlB7pUeYOj9F5A5f16WMHyDas",
             authDomain: "saudekangenbrasil-e96ff.firebaseapp.com",
@@ -417,10 +550,16 @@
             measurementId: "G-KXEP25LRF8"
         };
         
-        firebase.initializeApp(firebaseConfig);
+        // Verifica se o Firebase já foi inicializado
+        if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        } else if (typeof firebase !== 'undefined' && firebase.apps.length) {
+             // Firebase já está inicializado
+        }
+        
         const db = firebase.firestore();
 
-        // --- LÓGICA PARA FUNDOS DINÂMICOS (CORRIGIDA) ---
+        // --- LÓGICA PARA FUNDOS DINÂMICOS (Mantida) ---
         async function applyCustomBackgrounds() {
             try {
                 const doc = await db.collection('siteContent').doc('backgrounds').get();
@@ -433,18 +572,24 @@
                     const bgData = backgrounds[sectionId];
 
                     if (element && bgData && bgData.mediaUrl) {
-                        // Tratamento especial para a seção 'home' que já tem uma estrutura de vídeo
                         if (sectionId === 'home') {
                             const heroVideo = document.getElementById('hero-video');
-                            const videoSource = heroVideo ? heroVideo.querySelector('source') : null;
-                            const originalOverlay = element.querySelector('.bg-black\\/50');
+                            const originalOverlay = element.querySelector('.hero-overlay');
 
                             if (bgData.mediaType === 'video') {
-                                if (heroVideo && videoSource) {
-                                    videoSource.src = bgData.mediaUrl;
-                                    heroVideo.load(); // Essencial para carregar a nova fonte
+                                if (heroVideo) {
+                                    // Remove sources antigas e adiciona a nova
+                                    while (heroVideo.firstChild) {
+                                        heroVideo.removeChild(heroVideo.firstChild);
+                                    }
+                                    const source = document.createElement('source');
+                                    source.src = bgData.mediaUrl;
+                                    source.type = 'video/mp4';
+                                    heroVideo.appendChild(source);
+
+                                    heroVideo.load(); 
                                     heroVideo.style.display = 'block';
-                                    element.style.backgroundImage = ''; // Limpa o fundo de imagem
+                                    element.style.backgroundImage = '';
                                     if(originalOverlay) originalOverlay.style.display = 'block';
                                 }
                             } else { // mediaType is 'image'
@@ -455,7 +600,7 @@
                                 if(originalOverlay) originalOverlay.style.display = 'block';
                             }
                         } else {
-                            // Lógica original para outras seções (que não têm vídeo predefinido)
+                            // Lógica para outras seções
                             element.classList.add('has-dynamic-bg');
                             element.querySelectorAll('.dynamic-bg-video').forEach(el => el.remove());
                             element.classList.remove('bg-white', 'bg-neutral-light', 'bg-secondary', 'bg-primary');
@@ -489,19 +634,20 @@
             }
         }
 
-        // --- LÓGICA PARA CONTEÚDO DINÂMICO ---
+        // --- LÓGICA GERAL DO SITE ---
         document.addEventListener('DOMContentLoaded', () => {
             fetchContent();
-            applyCustomBackgrounds(); // Aplica os fundos dinâmicos
+            applyCustomBackgrounds(); 
             
             // Feather Icons
             feather.replace();
 
-            // AOS Initialization
+            // AOS Initialization (Configuração mais suave)
             AOS.init({
-                duration: 800,
+                duration: 1000, // Duração mais longa para um efeito mais elegante
                 once: true,
-                offset: 50,
+                offset: 100,
+                easing: 'ease-in-out-quad',
             });
 
             // Mobile Menu Toggle
@@ -511,7 +657,6 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Close mobile menu when a link is clicked
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
@@ -523,27 +668,32 @@
 
             // Scroll to Top Button
             const scrollToTopButton = document.getElementById('scroll-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
+            
+            
+            // Header Dynamic Behavior (Transparente -> Sólido)
+            const header = document.getElementById('header');
+            const handleScroll = () => {
+                // Lógica do Header
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Lógica do Botão Scroll to Top
+                if (window.scrollY > 400) {
                     scrollToTopButton.classList.remove('hidden');
                     scrollToTopButton.classList.add('flex');
                 } else {
                     scrollToTopButton.classList.add('hidden');
                     scrollToTopButton.classList.remove('flex');
                 }
-            });
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Executa na carga
+
             scrollToTopButton.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            
-            // Header shadow on scroll
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('shadow-lg');
-                } else {
-                    header.classList.remove('shadow-lg');
-                }
             });
 
             // --- LÓGICA PARA INFORMAÇÕES CLICÁVEIS E TOAST ---
@@ -554,6 +704,7 @@
             const experienceStats = document.getElementById('experience-stats');
             const infoToast = document.getElementById('info-toast');
 
+            // Cálculo da Data de Fundação
             const foundingDate = new Date('1974-06-21T00:00:00');
             const today = new Date();
             let yearsOfExperience = today.getFullYear() - foundingDate.getFullYear();
@@ -562,21 +713,21 @@
                 yearsOfExperience--;
             }
 
-            if (experienceText) experienceText.textContent = `${yearsOfExperience} anos de experiência`;
+            if (experienceText) experienceText.textContent = `${yearsOfExperience} anos`;
             if (experienceStats) experienceStats.setAttribute('data-target', yearsOfExperience);
             
             const showToast = (message) => {
                 if(infoToast) {
                     infoToast.textContent = message;
                     infoToast.classList.remove('opacity-0');
-                    setTimeout(() => { infoToast.classList.add('opacity-0'); }, 3500); 
+                    setTimeout(() => { infoToast.classList.add('opacity-0'); }, 4000); 
                 }
             };
-            if (inmetroInfo) inmetroInfo.addEventListener('click', () => showToast('Produtos certificados pelo INMETRO, garantindo máxima segurança e qualidade.'));
-            if (techInfo) techInfo.addEventListener('click', () => showToast('Tecnologia da Enagic®, empresa japonesa de Osaka, líder mundial desde 1974.'));
-            if (experienceInfo) experienceInfo.addEventListener('click', () => showToast('Fundada em 21 de junho de 1974'));
+            if (inmetroInfo) inmetroInfo.addEventListener('click', () => showToast('Produtos certificados pelo INMETRO, garantindo máxima segurança e conformidade com padrões de qualidade rigorosos.'));
+            if (techInfo) techInfo.addEventListener('click', () => showToast('Desenvolvido pela Enagic® em Osaka, Japão. Líder mundial e pioneira em tecnologia de ionização de água desde 1974.'));
+            if (experienceInfo) experienceInfo.addEventListener('click', () => showToast(`A Enagic foi fundada em 21 de junho de 1974, acumulando ${yearsOfExperience} anos de inovação contínua.`));
 
-            // Animated Stats Counter
+            // Animated Stats Counter (Mantido)
             const statsSection = document.getElementById('stats');
             const statNumbers = document.querySelectorAll('.stat-number');
             let hasAnimated = false;
@@ -614,7 +765,7 @@
 
             if (statsSection) observer.observe(statsSection);
 
-            // --- LÓGICA DO NOVO QUESTIONÁRIO (WIZARD) ---
+           // --- LÓGICA DO QUESTIONÁRIO (WIZARD) (Aprimorada com Auto-Avanço) ---
             const wizard = document.getElementById('demo-wizard');
             if (wizard) {
                 const steps = wizard.querySelectorAll('.wizard-step');
@@ -634,12 +785,46 @@
                     progressBar.style.width = `${((currentStep - 1) / (totalSteps - 1)) * 100}%`;
                     
                     prevBtn.style.display = currentStep === 1 ? 'none' : 'inline-block';
-                    nextBtn.style.display = currentStep === totalSteps ? 'none' : 'inline-block';
+                    
+                    // Gerenciamento do botão Próximo
+                    if (currentStep >= totalSteps) {
+                         nextBtn.style.display = 'none';
+                    } else {
+                        nextBtn.style.display = 'inline-block';
+                    }
+
+                    // Lógica específica para a etapa 5 (Data e Hora) - Avança automaticamente ao preencher
+                    if (currentStep === 5) {
+                        const dataInput = document.getElementById('data-demo');
+                        const horaInput = document.getElementById('hora-demo');
+
+                        const checkAndAdvance = () => {
+                            // Avança se ambos forem preenchidos
+                            if (dataInput.value && horaInput.value) {
+                                // Salva os dados antes de avançar
+                                formData.dataDemo = dataInput.value;
+                                formData.horaDemo = horaInput.value;
+                                currentStep++;
+                                updateWizard();
+                            }
+                        };
+                        
+                        // Adiciona listeners para mudança nos inputs de data/hora
+                        dataInput.onchange = checkAndAdvance;
+                        horaInput.onchange = checkAndAdvance;
+                    }
                 };
 
                 const validateStep = () => {
                     const activeStep = wizard.querySelector(`.wizard-step.active`);
                     const inputs = activeStep.querySelectorAll('input[required], input[type="radio"]');
+                    
+                     // Validação específica para o Passo 5 (Data e Hora)
+                    if (currentStep === 5) {
+                        // Permite avançar mesmo se não preenchido
+                        return true; 
+                    }
+
                     if (inputs.length === 0) return true;
 
                     if (inputs[0].type === 'radio') {
@@ -649,6 +834,23 @@
                         return inputs[0].value.trim() !== '';
                     }
                 };
+
+                // Auto-Avanço para inputs de rádio
+                wizard.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        // Se for a etapa 4 (Interesse Específico) e a resposta for "Sim", não avance automaticamente.
+                        if (currentStep === 4 && e.target.value === 'Sim') {
+                            return; // Deixa o usuário digitar o produto e clicar em Próximo.
+                        }
+
+                        if (radio.checked) {
+                             // Pequeno delay para o usuário ver a seleção antes de avançar
+                            setTimeout(() => {
+                                nextBtn.click();
+                            }, 350);
+                        }
+                    });
+                });
                 
                 nextBtn.addEventListener('click', () => {
                     if (validateStep()) {
@@ -657,17 +859,29 @@
                         stepInputs.forEach(input => {
                             if (input.type === 'radio' && input.checked) {
                                 formData[input.name] = input.value;
-                            } else if (input.type !== 'radio') {
-                                formData[input.name] = input.value;
+                            } else if (input.type !== 'radio' && input.type !== 'date' && input.type !== 'time') {
+                                 // Coleta dados de texto (Nome, Produto Específico)
+                                 if (!input.classList.contains('hidden')) {
+                                     formData[input.name] = input.value;
+                                 }
                             }
                         });
+
+                        // Tratamento especial para a etapa 5 se o usuário clicar em próximo sem preencher data/hora
+                        if (currentStep === 5) {
+                             formData.dataDemo = document.getElementById('data-demo').value;
+                             formData.horaDemo = document.getElementById('hora-demo').value;
+                        }
 
                         if (currentStep < totalSteps) {
                             currentStep++;
                             updateWizard();
                         }
                     } else {
-                        alert('Por favor, preencha o campo para continuar.');
+                         // Apenas alerta se não for um clique de rádio que já está sendo gerenciado pelo auto-avanço
+                        if (currentStep === 1 || (currentStep === 4 && document.getElementById('interesse-sim').checked && document.getElementById('produto-especifico').value.trim() === '')) {
+                             alert('Por favor, preencha o campo para continuar.');
+                        }
                     }
                 });
 
@@ -678,19 +892,22 @@
                     }
                 });
 
-                // Lógica para mostrar/ocultar campo de produto específico
-                const interesseRadios = document.querySelectorAll('input[name="interesseProduto"]');
+                // Lógica para mostrar/ocultar campo de produto específico (Etapa 4)
                 const produtoEspecificoInput = document.getElementById('produto-especifico');
-                interesseRadios.forEach(radio => {
+                document.querySelectorAll('input[name="interesseProduto"]').forEach(radio => {
                     radio.addEventListener('change', (e) => {
-                        produtoEspecificoInput.classList.toggle('hidden', e.target.value !== 'Sim');
+                        const isSim = e.target.value === 'Sim';
+                        produtoEspecificoInput.classList.toggle('hidden', !isSim);
+                        if (!isSim) {
+                            produtoEspecificoInput.value = ''; // Limpa o campo se oculto
+                        }
                     });
                 });
 
                 sendBtn.addEventListener('click', () => {
-                    // Coleta dados do último passo
-                    formData.dataDemo = document.getElementById('data-demo').value;
-                    formData.horaDemo = document.getElementById('hora-demo').value;
+                     // Garante a coleta dos dados de data/hora se o usuário pulou a etapa 5
+                    if (!formData.dataDemo) formData.dataDemo = document.getElementById('data-demo').value;
+                    if (!formData.horaDemo) formData.horaDemo = document.getElementById('hora-demo').value;
 
                     // Formata a data para o padrão brasileiro
                     let dataFormatada = "Não especificada";
@@ -704,15 +921,15 @@
                     mensagem += `💡 *Já conhece a Enagic®?* ${formData.conhece || 'Não preenchido'}\n`;
                     mensagem += `👀 *Já viu uma demonstração?* ${formData.viuDemo || 'Não preenchido'}\n`;
                     
-                    if (formData.interesseProduto === 'Sim') {
-                        mensagem += `💧 *Interesse específico:* ${formData.produtoEspecifico || 'Sim, mas não especificou qual'}\n`;
+                    if (formData.interesseProduto === 'Sim' && formData.produtoEspecifico) {
+                        mensagem += `💧 *Interesse específico:* ${formData.produtoEspecifico}\n`;
                     } else {
                         mensagem += `💧 *Tem interesse específico?* ${formData.interesseProduto || 'Não'}\n`;
                     }
                     
                     mensagem += `\n*Sugestão de agendamento:*\n`;
                     mensagem += `🗓️ *Data:* ${dataFormatada}\n`;
-                    mensagem += `⏰ *Horário:* ${formData.horaDemo || 'Não especificado'}`;
+                    mensagem += `⏰ *Horário:* ${formData.horaDemo || 'A combinar'}`;
                     
                     const whatsappNumber = '5567984533785';
                     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensagem)}`;
@@ -723,6 +940,8 @@
                 updateWizard();
             }
         });
+
+        // --- FUNÇÕES DE BUSCA E RENDERIZAÇÃO DE CONTEÚDO ---
 
         async function fetchContent() {
             try {
@@ -745,8 +964,6 @@
                     if (businessImageElem && businessContent.sectionImageUrl) {
                         businessImageElem.src = businessContent.sectionImageUrl;
                     }
-                } else {
-                    console.log("Documento de conteúdo 'businessPage' não encontrado.");
                 }
 
             } catch (error) {
@@ -754,6 +971,7 @@
             }
         }
 
+        // Função RenderBenefits MODIFICADA (Usando Glassmorphism e ícones elegantes)
         function renderBenefits(benefits) {
             const container = document.getElementById('benefits-list');
             if (!container || !benefits) return;
@@ -763,19 +981,23 @@
                 "ph alcalino balanceado": "alcalinidade.html",
                 "certificações globais": "certificacoes.html"
             };
+            // Ícones que evocam o conceito Spa/Natureza
+            const icons = ['droplet', 'zap', 'feather', 'award']; 
+
             container.innerHTML = benefits.map((item, index) => {
                 const url = pageMap[item.title.toLowerCase()] || '#benefits';
+                const icon = icons[index % icons.length];
                 return `
-                    <div data-aos="fade-up" data-aos-delay="${index * 100}">
-                        <a href="${url}" class="block bg-neutral-light p-8 rounded-xl shadow-sm text-center h-full flex flex-col hover-lift">
+                    <div data-aos="fade-up" data-aos-delay="${index * 150}">
+                        <a href="${url}" class="block p-8 h-full flex flex-col hover-lift glass-card shadow-md text-center">
                             <div class="flex-grow">
-                                <div class="bg-secondary text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                                    <i data-feather="${['droplet', 'shield', 'bar-chart-2', 'award'][index % 4]}" class="w-8 h-8"></i>
+                                <div class="text-accent rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 bg-white/70 shadow-inner">
+                                    <i data-feather="${icon}" class="w-10 h-10"></i>
                                 </div>
-                                <h3 class="text-xl font-bold text-primary mb-2">${item.title}</h3>
-                                <p class="text-secondary">${item.text}</p>
+                                <h3 class="text-2xl font-bold mb-4 text-primary">${item.title}</h3>
+                                <p class="text-gray-700">${item.text}</p>
                             </div>
-                            <span class="mt-4 inline-block font-semibold text-blue-600">
+                            <span class="mt-6 inline-block font-semibold text-blue-600 hover:text-blue-800 transition">
                                 Saiba Mais &rarr;
                             </span>
                         </a>
@@ -785,35 +1007,31 @@
             feather.replace();
         }
         
-        // Função renderProducts CORRIGIDA
+        // Função renderProducts MODIFICADA (Design mais limpo e profissional)
         function renderProducts(products) {
             const container = document.getElementById('products-list');
             if (!container || !products) return;
 
-            // Mapeamento explícito dos nomes dos produtos para os nomes dos arquivos
-            // Isso garante que os links sempre apontem para os arquivos corretos.
             const productUrlMap = {
                 'Leveluk K8': 'k8.html',
                 'SD501 Platinum': 'sd501-platinum.html',
-                'Anespa DX': 'anespa-dx.htm', // CORREÇÃO APLICADA AQUI
+                'Anespa DX': 'anespa-dx.htm',
                 'SD501': 'sd501.html'
-                // Adicione outros produtos aqui se necessário
             };
 
             container.innerHTML = products.map((item, index) => {
-                // Usar o mapa para obter a URL correta. 
                 const productUrl = productUrlMap[item.name] || '#'; 
 
                 return `
-                <a href="${productUrl}" class="block bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover-lift" data-aos="zoom-in-up" data-aos-delay="${index * 150}">
-                    <div class="p-4 bg-gray-100 flex justify-center">
-                        <img src="${item.imageUrl || `https://placehold.co/300x300/E2E8F0/2D3748?text=${encodeURIComponent(item.name)}`}" alt="Ionizador ${item.name}" class="h-48 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/300x300/E2E8F0/2D3748?text=Imagem+Indisponível';">
+                <a href="${productUrl}" class="block bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden flex flex-col hover-lift transition duration-300" data-aos="zoom-in" data-aos-delay="${index * 150}">
+                    <div class="p-6 bg-gray-50 flex justify-center aspect-video items-center">
+                        <img src="${item.imageUrl || `https://placehold.co/300x200/E2E8F0/2D3748?text=${encodeURIComponent(item.name)}`}" alt="Ionizador ${item.name}" class="max-h-48 object-contain transition duration-500 ease-in-out transform hover:scale-110" onerror="this.onerror=null;this.src='https://placehold.co/300x200/E2E8F0/2D3748?text=Imagem+Indisponível';">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow text-center">
-                        <h3 class="text-2xl font-bold text-primary">${item.name}</h3>
-                        <p class="text-secondary mt-2 mb-4 flex-grow">${item.description}</p>
+                    <div class="p-8 flex flex-col flex-grow text-center">
+                        <h3 class="text-3xl font-bold text-primary">${item.name}</h3>
+                        <p class="mt-4 mb-6 flex-grow font-normal" style="color: #374151 !important;">${item.description}</p>
                         <div class="mt-auto">
-                            <span class="bg-accent text-white font-semibold text-sm py-3 px-6 rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap transition hover:bg-green-600">
+                            <span class="bg-accent text-white font-semibold py-3 px-8 rounded-full inline-flex items-center justify-center gap-3 whitespace-nowrap transition hover:bg-green-600">
                                 <i data-feather="arrow-right-circle" class="w-5 h-5"></i>
                                 Ver Detalhes
                             </span>
@@ -824,16 +1042,21 @@
             feather.replace();
         }
 
+        // Função renderTestimonials MODIFICADA (Cartões elegantes e foco na citação)
         function renderTestimonials(testimonials) {
             const container = document.getElementById('testimonials-list');
             if (!container || !testimonials) return;
-            const colors = ['4299E1', '48BB78', '2C5282'];
+            // Cores baseadas na paleta para placeholders
+            const colors = ['4299E1', '10B981', '1A365D']; 
             container.innerHTML = testimonials.map((item, index) => `
-                 <div class="bg-neutral-light p-8 rounded-xl shadow-sm" data-aos="${['fade-right', 'fade-up', 'fade-left'][index % 3]}">
-                    <img src="${item.authorImageUrl || `https://placehold.co/80x80/${colors[index % 3]}/FFFFFF?text=${item.author.charAt(0)}`}" alt="Cliente ${item.author}" class="w-20 h-20 rounded-full mx-auto -mt-16 border-4 border-white object-cover" onerror="this.onerror=null;this.src='https://placehold.co/80x80/cccccc/FFFFFF?text=?';">
-                    <p class="text-secondary italic mt-6">"${item.quote}"</p>
-                    <h4 class="font-bold text-primary mt-4 text-center">${item.author}</h4>
-                </div>
+                   <div class="glass-card p-10 shadow-md flex flex-col h-full" data-aos="fade-up" data-aos-delay="${index * 150}">
+                        <div class="text-3xl text-accent mb-4">“</div>
+                        <p class="text-secondary italic text-lg mb-6 flex-grow">"${item.quote}"</p>
+                        <div class="flex items-center mt-6 pt-4 border-t border-gray-200">
+                            <img src="${item.authorImageUrl || `https://placehold.co/60x60/${colors[index % 3]}/FFFFFF?text=${item.author.charAt(0)}`}" alt="Cliente ${item.author}" class="w-16 h-16 rounded-full mr-4 object-cover border-2 border-white" onerror="this.onerror=null;this.src='https://placehold.co/60x60/cccccc/FFFFFF?text=?';">
+                            <h4 class="font-bold text-primary text-xl">${item.author}</h4>
+                        </div>
+                   </div>
             `).join('');
         }
     </script>
